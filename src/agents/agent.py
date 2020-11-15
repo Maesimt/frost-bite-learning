@@ -1,6 +1,6 @@
 class Agent(object):  
         
-    def __init__(self,observation_space, actions):
+    def __init__(self,observation_space, action_space):
         self.observation_space = observation_space
         self.state_size = observation_space.shape[0]
         self.action_space = action_space
