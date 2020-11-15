@@ -149,7 +149,8 @@ Gnuplot
 + learning_rate: 0.01
 + gamma: 0.9
 + hidden1: 128
-+ hidden2: 18
++ hidden2: 128
++ hidden3: 128
 +-------------------------------------+
 + Episode 1000              score: 40.0
 + Mean of last 50 = 79.0   Highest Score: 220.0

@@ -15,7 +15,7 @@ class REINFORCEAgent(Agent):
         # Hyperparamètres du policy gradient
         self.learning_rate = learning_rate
         self.gamma = gamma
-        self.hidden1, self.hidden2 = hidden1, hidden2
+        self.hidden1, self.hidden2, self.hidden3 = hidden1, hidden2, hidden3
 
         # Création du modèle de la politique
         self.policy, self.predict = self.policy_network()
@@ -35,7 +35,7 @@ class REINFORCEAgent(Agent):
         advantages = Input(shape=[1])
         dense1 = Dense(self.hidden1, activation='relu')(inpt)
         dense2 = Dense(self.hidden2, activation='relu')(dense1)
-        dense3 = Dense(self.hidden2, activation='relu')(dense2)
+        dense3 = Dense(self.hidden3, activation='relu')(dense2)
         probs = Dense(self.num_actions, activation='softmax')(dense3)
 
         def custom_loss(y_true, y_pred):
