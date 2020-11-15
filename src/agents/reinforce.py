@@ -65,7 +65,7 @@ class REINFORCEAgent(Agent):
         if noScoreYet:
             return np.random.choice(self.num_actions, 1)
         else:
-            choices = np.random.choice(self.num_actions, 1, p=fixedProb)
+            choices = np.random.choice(self.num_actions, 1, p=probabilities)
             return choices[0]
 
     
