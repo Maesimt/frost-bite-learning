@@ -4,6 +4,8 @@ from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 
+from agents.agent import Agent
+
 class REINFORCEAgent(Agent):
     def __init__(self, observation_space, actions_space, learning_rate = 0.001, gamma = 0.99, hidden1=64, hidden2=64):
         super(REINFORCEAgent, self).__init__(observation_space, actions_space)
