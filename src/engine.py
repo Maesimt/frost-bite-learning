@@ -21,7 +21,7 @@ def showProgress(agent, x, y, meanOfN):
     fig = tpl.figure()
     fig.plot(episodes_completed, episodes_reward, width=100, height=30)
     fig.show()
-    
+
 def run():
     env = gym.make('Frostbite-ram-v0')
 
@@ -64,7 +64,9 @@ def run():
             next_action = agentSmith.act(next_state)
             
             # agent learn
-            agentSmith.learn(state, action, reward, next_state, next_action)
+            # Sarsa
+            # agentSmith.learn(state, action, reward, next_state, next_action)
+            agentSmith.learn()
             
             # state <- next state, action <- next_action
             state = next_state
