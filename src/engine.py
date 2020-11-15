@@ -5,6 +5,7 @@ import termplotlib as tpl
 import os
 
 from agents.sarsaAgent import SarsaAgent
+from agents.reinforce import REINFORCEAgent
 
 def showProgress(agent, x, y, meanOfN):
     os.system('clear')
@@ -27,7 +28,12 @@ actions = env.action_space
 
 # agents
 # agent = SarsaAgent(range(actions.n))
-agentSmith = SarsaAgent(range(actions.n), epsilon=0.1, alpha=0.01, gamma=0.1)
+#agentSmith = SarsaAgent(env.observation_space,action_space, epsilon=0.1, alpha=0.01, gamma=0.1)
+agentSmith = REINFORCEAgent(env.observation_space, action_space,
+    learning_rate = 0.001,
+    gamma = 0.99,
+    hidden1 = 32,
+    hidden2 = 32)
 
 episodes_completed = []
 episodes_reward = []

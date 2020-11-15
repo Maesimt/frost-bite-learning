@@ -1,8 +1,10 @@
 class Agent(object):  
         
-    def __init__(self, actions):
-        self.actions = actions
-        self.num_actions = len(actions)
+    def __init__(self,observation_space, actions):
+        self.observation_space = observation_space
+        self.state_size = observation_space.shape[0]
+        self.action_space = action_space
+        self.num_actions = action_space.n
 
     def printName():
         raise NotImplementedError
