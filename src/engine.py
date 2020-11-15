@@ -1,4 +1,5 @@
 import gym
+import numpy as np
 
 from agents.sarsaAgent import SarsaAgent, SarsaExperiment
 from agents.reinforce import REINFORCEAgent, ReinforceExperiment
@@ -21,7 +22,7 @@ def run(algo):
             hidden3 = 18)
         ReinforceExperiment(env,agent, stop_criterion=10000, EPISODES=100000).run()
     elif algo == 'dqn':
-        agent = DQNAgent(range(env.action_space.n), obs_size=env.observation_space.shape[0], epsilon=1)
-        DQNExperiment(env, agent).run_qlearning(20000, interactive)
+        agent = DQNAgent(env.action_space, obs_size=env.observation_space, epsilon=1)
+        DQNExperiment().run_qlearning(env, agent, 20000, True)
 
 run('dqn')

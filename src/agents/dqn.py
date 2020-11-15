@@ -25,10 +25,11 @@ class DQNAgent(Agent):
     """Deep Q-Learning agent"""
 
     def __init__(self, actions, obs_size, **kwargs):
-        super(DQNAgent, self).__init__(actions)
+        super(DQNAgent, self).__init__(obs_size, actions)
 
         # Taille de S
-        self.obs_size = obs_size
+        self.obs_size = obs_size.shape[0]
+        self.actions = actions
         
         # Epsilon
         self.epsilon = kwargs.get('epsilon', .01)       
@@ -59,7 +60,7 @@ class DQNAgent(Agent):
     
     def act(self, state):    
         if np.random.random() < self.epsilon:
-            i = np.random.randint(0,len(self.actions))
+            i = np.random.randint(0,len(np.arange(self.actions.n)))
         else: 
             i = np.argmax(self.model_network.predict(state.reshape(1, state.shape[0]))[0])
                      
@@ -72,8 +73,8 @@ class DQNAgent(Agent):
                 #print(self.epsilon)
                 self.epsilon = max(.01, self.epsilon * .975)
         
-        action = self.actions[i]        
-        return action
+   
+        return i
     
     def learn(self, state1, action1, reward, state2, done):
         """
@@ -155,13 +156,13 @@ class DQNAgent(Agent):
         print('+ obs_size: ' + str(self.obs_size))
 
 class DQNExperiment(object):
-    def run_qlearning(self, max_number_of_episodes=100, interactive = False, display_frequency=1):
+    def run_qlearning(self, env, agent, max_number_of_episodes=100, interactive = False, display_frequency=1):
 
         # repeat for each episode
         for episode_number in range(max_number_of_episodes):
             
             # initialize state
-            state = self.env.reset()
+            state = env.reset()
             
             done = False # used to indicate terminal state
             R = 0 # used to display accumulated rewards for an episode
@@ -173,26 +174,25 @@ class DQNExperiment(object):
                 t += 1 # increase step counter - for display
                 
                 # choose action from state using policy derived from Q
-                action = self.agent.act(state)
+                action = agent.act(state)
                 
                 # take action, observe reward and next state
-                next_state, reward, done, _ = self.env.step(action)
+                next_state, reward, done, _ = env.step(action)
                 
                 # agent learn (Q-Learning update)
-                self.agent.learn(state, action, reward, next_state, done)
+                agent.learn(state, action, reward, next_state, done)
                 
                 # state <- next state
                 state = next_state
                 
                 R += reward # accumulate reward - for display
-                
-                # if interactive display, show update for each step
-                if interactive:
-                    self.update_display_step()
+            
             
             self.episode_length = np.append(self.episode_length,t) # keep episode length - for display
             self.episode_reward = np.append(self.episode_reward,R) # keep episode reward - for display 
             
             # if interactive display, show update for the episode
             if interactive:
-                showProgress(self.agent, episode_length, episode_reward, 50)
+                showProgress(agent, episode_length, episode_reward, 50)
+
+        env.close()
