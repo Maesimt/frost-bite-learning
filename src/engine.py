@@ -29,7 +29,7 @@ actions = env.action_space
 # agents
 # agent = SarsaAgent(range(actions.n))
 #agentSmith = SarsaAgent(env.observation_space,action_space, epsilon=0.1, alpha=0.01, gamma=0.1)
-agentSmith = REINFORCEAgent(env.observation_space, action_space,
+agentSmith = REINFORCEAgent(env.observation_space, env.action_space,
     learning_rate = 0.001,
     gamma = 0.99,
     hidden1 = 32,
