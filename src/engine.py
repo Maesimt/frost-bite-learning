@@ -1,17 +1,39 @@
 import gym
 import time
 import numpy as np
+import termplotlib as tpl
+import os
 
 from agents.sarsaAgent import SarsaAgent
+
+def showProgress(agent, x, y, meanOfN):
+    os.system('clear')
+    print('+-------------------------------------+')
+    agent.printName()
+    print('+-------------------------------------+')
+    agent.printParameters()
+    print('+-------------------------------------+')
+    print('+ Episode ' + str(len(x)) + '              score: '+ str(y[len(y)-1]))
+    divider = meanOfN if meanOfN < len(x) else len(x)
+    print('+ Mean of last ' + str(meanOfN) + ' = ' + str(np.sum(y[-divider:]) / divider) + '   Highest Score: ' + str(np.max(y)))
+    print('+-------------------------------------+')
+    fig = tpl.figure()
+    fig.plot(episodes_completed, episodes_reward, width=100, height=30)
+    fig.show()
 
 env = gym.make('Frostbite-ram-v0')
 
 actions = env.action_space
 
-agentSmith = SarsaAgent(range(actions.n))
+# agents
+# agent = SarsaAgent(range(actions.n))
+agentSmith = SarsaAgent(range(actions.n), epsilon=0.1, alpha=0.1, gamma=0.5)
+
+episodes_completed = []
+episodes_reward = []
 
 # repeat for each episode
-for episode_number in range(1000000):
+for episode_number in range(1000):
     
     # initialize state
     state = env.reset()
@@ -41,26 +63,12 @@ for episode_number in range(1000000):
         state = next_state
         action = next_action
 
-        R += reward # accumulate reward - for display
-
-        env.render()
-
-        if episode_number > 300000:
-            time.sleep(0.1)
+        R += reward # accumulate reward - for display  
     
-    print('------------------------------')
-    print('Episode ' + str(episode_number))
-    print('Episode length = ' + str(t))
-    print('Episode reward = ' + str(R))
-
-
-# if not interactive display, show graph at the end
-# if not interactive:
-self.fig.clf()
-stats = plotting.EpisodeStats(
-    episode_lengths=self.episode_length,
-    episode_rewards=self.episode_reward,
-    episode_running_variance=np.zeros(max_number_of_episodes))
-plotting.plot_episode_stats(stats, display_frequency)
+    episodes_completed.append(episode_number)
+    episodes_reward.append(R)
+    showProgress(agentSmith, episodes_completed, episodes_reward, 50)
+    #env.render()
 
 env.close()
+

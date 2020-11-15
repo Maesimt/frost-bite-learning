@@ -53,5 +53,11 @@ class SarsaAgent(Agent):
         td_delta = td_target - QSA
         self.Q[state1Str][action1] = QSA + self.alpha * td_delta
 
-    def getName(self):
-        return "Sarsa"
+    def printName(self):
+        print('+ Agent: Sarsa                        +')
+
+    def printParameters(self):
+        print('+ epsilon: ' + str(self.epsilon))
+        print('+ alpha: ' + str(self.alpha))
+        print('+ gamma: ' + str(self.gamma))
+

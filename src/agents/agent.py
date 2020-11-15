@@ -4,7 +4,10 @@ class Agent(object):
         self.actions = actions
         self.num_actions = len(actions)
 
-    def getName():
+    def printName():
+        raise NotImplementedError
+
+    def printParameters():
         raise NotImplementedError
 
     def act(self, state):
