@@ -13,10 +13,11 @@ def run(algo):
         agent = REINFORCEAgent(
             observation_space=env.observation_space,
             actions_space=env.action_space,
-            learning_rate = 0.005,
-            gamma = 0.9,
+            learning_rate = 0.001,
+            gamma = 0.5,
             hidden1 = 128,
-            hidden2 = 18)
+            hidden2 = 128,
+            hidden3 = 18)
         ReinforceExperiment(env,agent, stop_criterion=10000, EPISODES=100000).run()
 
 run('reinforce')

@@ -9,7 +9,7 @@ from helpers import showProgress
 import math
 
 class REINFORCEAgent(Agent):
-    def __init__(self, observation_space, actions_space, learning_rate = 0.001, gamma = 0.99, hidden1=64, hidden2=64):
+    def __init__(self, observation_space, actions_space, learning_rate = 0.001, gamma = 0.99, hidden1=64, hidden2=64, hidden3=64):
         super(REINFORCEAgent, self).__init__(observation_space, actions_space)
 
         # Hyperparamètres du policy gradient
@@ -35,7 +35,8 @@ class REINFORCEAgent(Agent):
         advantages = Input(shape=[1])
         dense1 = Dense(self.hidden1, activation='relu')(inpt)
         dense2 = Dense(self.hidden2, activation='relu')(dense1)
-        probs = Dense(self.num_actions, activation='softmax')(dense2)
+        dense3 = Dense(self.hidden2, activation='relu')(dense2)
+        probs = Dense(self.num_actions, activation='softmax')(dense3)
 
         def custom_loss(y_true, y_pred):
             
