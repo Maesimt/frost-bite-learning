@@ -6,7 +6,7 @@ from agents.reinforce import REINFORCEAgent, ReinforceExperiment
 from agents.dqn import DQNAgent, DQNExperiment
 
 def run(algo):
-    env = gym.make('SpaceInvaders-ram-v0')
+    env = gym.make('Frostbite-ram-v0')
 
     if algo == 'sarsa':
         agent = SarsaAgent(env.observation_space, env.action_space, epsilon=0.1, alpha=0.01, gamma=0.1)
