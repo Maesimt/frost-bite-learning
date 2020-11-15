@@ -62,7 +62,8 @@ class REINFORCEAgent(Agent):
         probabilities = self.predict.predict(state, batch_size=1)[0]
         #print('Swag -> probabilities', probabilities)
         #print('Swag -> np.random.choice', np.random.choice(self.num_actions, 1, p=probabilities))
-        return np.random.choice(self.num_actions, 1, p=probabilities)[0]
+        choices = np.random.choice(self.num_actions, 1, p=probabilities)
+        return choices[0]
 
     
     def discount_rewards(self, rewards):
