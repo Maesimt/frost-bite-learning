@@ -6,6 +6,9 @@ class Agent(object):
         self.action_space = action_space
         self.num_actions = action_space.n
 
+    def act(self, state):
+        raise NotImplementedError
+
     def printName():
         raise NotImplementedError
 

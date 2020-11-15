@@ -5,6 +5,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 
 from agents.agent import Agent
+from helpers import showProgress
 
 class REINFORCEAgent(Agent):
     def __init__(self, observation_space, actions_space, learning_rate = 0.001, gamma = 0.99, hidden1=64, hidden2=64):
@@ -55,6 +56,8 @@ class REINFORCEAgent(Agent):
         Sélection d'une action suivant la sortie du réseau de neurones
         """
         
+        # Compléter le code ci-dessous ~ 2 lignes
+        
         state = state[np.newaxis, :]
         probabilities = self.predict.predict(state, batch_size=1)[0]
         return np.random.choice(self.num_actions, 1, p=probabilities)[0]
@@ -77,6 +80,8 @@ class REINFORCEAgent(Agent):
         Sauvegarde <s, a ,r> pour chaque instant
         """
         
+        # Compléter le code ci-dessous ~ 3 lignes
+        
         self.states_memory.append(state)
         self.rewards_memory.append(reward)
         self.actions_memory.append(action)
@@ -91,6 +96,8 @@ class REINFORCEAgent(Agent):
         rewards_memory = np.array(self.rewards_memory)
 
         actions = np.zeros([len(actions_memory), self.num_actions])
+        print('actions_memory', actions_memory)
+        print(' self.num_actions',  self.num_actions)
         actions[np.arange(len(actions_memory)), actions_memory] = 1
 
         discounted_rewards = self.discount_rewards(self.rewards_memory)
@@ -108,3 +115,68 @@ class REINFORCEAgent(Agent):
         print('+ gamma: ' + str(self.gamma))
         print('+ hidden1: ' + str(self.hidden1))
         print('+ hidden2: ' + str(self.hidden2))
+
+class ReinforceExperiment(object):
+    def __init__(self, env, agent, EPISODES=1000, training=True, episode_max_length=None, mean_episodes=10, stop_criterion=100):
+        self.env = env
+        self.agent = agent
+        self.EPISODES = EPISODES
+        self.training = training
+        self.episode_max_length = episode_max_length
+        self.mean_episodes = mean_episodes
+        self.stop_criterion = stop_criterion
+
+    def run(self):
+        
+        # Tableaux utiles pour l'affichage
+        scores, mean, episodes = [], [], []
+    
+        for i in range(self.EPISODES):
+            done = False
+            score = 0
+            state = self.env.reset()
+
+            counter = 0
+            while not done:
+                counter +=1
+
+                # Afficher l'environnement
+                if self.agent.render:
+                    self.env.render()
+
+                # Obtient l'action pour l'état courant
+                action = self.agent.act(state)
+
+                # Effectue l'action
+                next_state, reward, done, _ = self.env.step(action)
+
+                # Sauvegarde la transition <s, a, r> dans la mémoire
+                self.agent.remember(state, action, reward)
+
+                # Mise à jour de l'état
+                state = next_state
+
+                # Accumulation des récompenses
+                score += reward
+
+                # Arrête l'épisode après 'episode_max_length' instants
+                if self.episode_max_length != None and counter > self.episode_max_length:
+                    done = True
+
+            # Lance l'apprentissage de la politique
+            if self.training == True:
+                self.agent.learn()
+
+            # Arrête l'entraînement lorsque la moyenne des récompense sur 'mean_episodes' épisodes est supérieure à 
+            if np.mean(scores[-self.mean_episodes:]) > self.stop_criterion:
+                break
+
+            # Sauvegarde du modèle (poids) tous les 50 épisodes
+            if self.training and i % 50 == 0:
+                self.agent.predict.save(f"./{self.env.spec.id}_reinforce.h5")    
+            
+            # Affichage des récompenses obtenues
+            if self.training == True:
+                scores.append(score)
+                episodes.append(i)
+                showProgress(agent, episodes, scores, 50)
