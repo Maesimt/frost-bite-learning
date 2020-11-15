@@ -98,5 +98,11 @@ class REINFORCEAgent(Agent):
         self.policy.train_on_batch([states_memory, discounted_rewards], actions)
         self.states_memory, self.actions_memory, self.rewards_memory = [], [], []
 
-    def getName(self):
-        return "Reinforce"
+    def printName(self):
+        print('+ Agent: Reinforce                    +')
+
+    def printParameters(self):
+        print('+ learning_rate: ' + str(self.learning_rate))
+        print('+ gamma: ' + str(self.gamma))
+        print('+ hidden1: ' + str(self.hidden1))
+        print('+ hidden2: ' + str(self.hidden2))

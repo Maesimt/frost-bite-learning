@@ -27,7 +27,7 @@ actions = env.action_space
 
 # agents
 # agent = SarsaAgent(range(actions.n))
-agentSmith = SarsaAgent(range(actions.n), epsilon=0.1, alpha=0.1, gamma=0.5)
+agentSmith = SarsaAgent(range(actions.n), epsilon=0.1, alpha=0.01, gamma=0.1)
 
 episodes_completed = []
 episodes_reward = []
