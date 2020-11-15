@@ -179,4 +179,4 @@ class ReinforceExperiment(object):
             if self.training == True:
                 scores.append(score)
                 episodes.append(i)
-                showProgress(agent, episodes, scores, 50)
+                showProgress(self.agent, episodes, scores, 50)
