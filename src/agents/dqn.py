@@ -189,8 +189,8 @@ class DQNExperiment(object):
                 R += reward # accumulate reward - for display
             
             
-            episode_length = np.append(episode_length,t) # keep episode length - for display
-            episode_reward = np.append(episode_reward,R) # keep episode reward - for display 
+            episode_length = episode_length.append(t) # keep episode length - for display
+            episode_reward = episode_reward.append(R) # keep episode reward - for display 
             
             # if interactive display, show update for the episode
             if interactive:
