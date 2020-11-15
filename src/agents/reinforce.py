@@ -122,6 +122,7 @@ class REINFORCEAgent(Agent):
         print('+ gamma: ' + str(self.gamma))
         print('+ hidden1: ' + str(self.hidden1))
         print('+ hidden2: ' + str(self.hidden2))
+        print('+ hidden3: ' + str(self.hidden3))
 
 class ReinforceExperiment(object):
     def __init__(self, env, agent, EPISODES=1000, training=True, episode_max_length=None, mean_episodes=10, stop_criterion=100):
