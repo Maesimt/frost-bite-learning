@@ -13,7 +13,7 @@ def run(algo):
         agent = REINFORCEAgent(
             observation_space=env.observation_space,
             actions_space=env.action_space,
-            learning_rate = 0.01,
+            learning_rate = 0.005,
             gamma = 0.9,
             hidden1 = 128,
             hidden2 = 18)
