@@ -61,8 +61,8 @@ class REINFORCEAgent(Agent):
         
         state = state[np.newaxis, :]
         probabilities = self.predict.predict(state, batch_size=1)[0]
-        isNan = math.isnan(probabilities[0])
-        if isNana:
+        noScoreYet = math.isnan(probabilities[0])
+        if noScoreYet:
             return np.random.choice(self.num_actions, 1)
         else:
             choices = np.random.choice(self.num_actions, 1, p=fixedProb)
