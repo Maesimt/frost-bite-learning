@@ -8,6 +8,7 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.activations import relu, linear
 from tensorflow.keras.optimizers import SGD, Adam
 
+from agents.agent import Agent
 from helpers import showProgress
 
 def QNetwork(obs_size, num_actions, nhidden, lr):
