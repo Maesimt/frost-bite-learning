@@ -2,6 +2,7 @@ import gym
 
 from agents.sarsaAgent import SarsaAgent, SarsaExperiment
 from agents.reinforce import REINFORCEAgent, ReinforceExperiment
+from agents.dqn import DQNAgent, DQNExperiment
 
 def run(algo):
     env = gym.make('SpaceInvaders-ram-v0')
@@ -19,5 +20,8 @@ def run(algo):
             hidden2 = 18,
             hidden3 = 18)
         ReinforceExperiment(env,agent, stop_criterion=10000, EPISODES=100000).run()
+    elif algo = 'dqn':
+        agent = DQNAgent(range(env.action_space.n), obs_size=env.observation_space.shape[0], epsilon=1)
+        DQNExperiment(env, agent).run_qlearning(20000, interactive)
 
-run('reinforce')
+run('dqn')
