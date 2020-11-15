@@ -6,6 +6,7 @@ from tensorflow.keras.optimizers import Adam
 
 from agents.agent import Agent
 from helpers import showProgress
+import math
 
 class REINFORCEAgent(Agent):
     def __init__(self, observation_space, actions_space, learning_rate = 0.001, gamma = 0.99, hidden1=64, hidden2=64):
@@ -60,12 +61,12 @@ class REINFORCEAgent(Agent):
         
         state = state[np.newaxis, :]
         probabilities = self.predict.predict(state, batch_size=1)[0]
-        fixedProb = np.nan_to_num(probabilities)
-        print('Swag -> probabilities', probabilities)
-        print('Swag -> sum proba', np.sum(probabilities))
-        #print('Swag -> np.random.choice', np.random.choice(self.num_actions, 1, p=probabilities))
-        choices = np.random.choice(self.num_actions, 1, p=fixedProb)
-        return choices[0]
+        isNan = math.isnan(probabilities[0])
+        if isNana:
+            return np.random.choice(self.num_actions, 1)
+        else:
+            choices = np.random.choice(self.num_actions, 1, p=fixedProb)
+            return choices[0]
 
     
     def discount_rewards(self, rewards):
