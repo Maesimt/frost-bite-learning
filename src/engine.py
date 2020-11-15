@@ -17,6 +17,6 @@ def run(algo):
             gamma = 0.9,
             hidden1 = 128,
             hidden2 = 18)
-        ReinforceExperiment(env,agent, stop_criterion=1000).run()
+        ReinforceExperiment(env,agent, stop_criterion=10000, EPISODES=100000).run()
 
 run('reinforce')
