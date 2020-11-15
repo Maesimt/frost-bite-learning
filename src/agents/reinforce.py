@@ -61,7 +61,7 @@ class REINFORCEAgent(Agent):
         state = state[np.newaxis, :]
         probabilities = self.predict.predict(state, batch_size=1)[0]
         fixedProb = np.nan_to_num(probabilities)
-        #print('Swag -> probabilities', probabilities)
+        print('Swag -> probabilities', probabilities)
         #print('Swag -> np.random.choice', np.random.choice(self.num_actions, 1, p=probabilities))
         choices = np.random.choice(self.num_actions, 1, p=fixedProb)
         return choices[0]
