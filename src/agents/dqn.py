@@ -158,6 +158,7 @@ class DQNAgent(Agent):
 class DQNExperiment(object):
     def run_qlearning(self, env, agent, max_number_of_episodes=100, interactive = False, display_frequency=1):
 
+        episode_length, episode_reward = [], []
         # repeat for each episode
         for episode_number in range(max_number_of_episodes):
             
@@ -188,8 +189,8 @@ class DQNExperiment(object):
                 R += reward # accumulate reward - for display
             
             
-            self.episode_length = np.append(self.episode_length,t) # keep episode length - for display
-            self.episode_reward = np.append(self.episode_reward,R) # keep episode reward - for display 
+            episode_length = np.append(episode_length,t) # keep episode length - for display
+            episode_reward = np.append(episode_reward,R) # keep episode reward - for display 
             
             # if interactive display, show update for the episode
             if interactive:
