@@ -71,7 +71,7 @@ class DQNAgent(Agent):
         if self.epsilon_decay:
             if self.step_counter % self.epoch_length == 0:
                 #print(self.epsilon)
-                self.epsilon = max(.01, self.epsilon * .995)
+                self.epsilon = max(.01, self.epsilon * .9995)
         
    
         return i
