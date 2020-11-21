@@ -22,7 +22,7 @@ def run(algo):
             hidden3 = 18)
         ReinforceExperiment(env,agent, stop_criterion=10000, EPISODES=100000).run()
     elif algo == 'dqn':
-        agent = DQNAgent(env.action_space, obs_size=env.observation_space, epsilon=1)
+        agent = DQNAgent(env.action_space, obs_size=env.observation_space, epsilon=0.01)
         DQNExperiment().run_qlearning(env, agent, 20000, True)
 
 run('dqn')
