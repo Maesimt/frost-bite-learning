@@ -32,6 +32,7 @@ class DQNAgent(Agent):
         # Taille de S
         self.obs_size = obs_size.shape[0]
         self.actions = actions
+        self.episodes_not_saved = 0
         
         # Epsilon
         self.epsilon = kwargs.get('epsilon', .01)       
@@ -53,7 +54,7 @@ class DQNAgent(Agent):
         # Instanciation des réseaux de neurones (modèle et cible)
         self.model_network = QNetwork(self.obs_size, self.num_actions, kwargs.get('nhidden', 150), self.lr)
         # Load existing model if available.
-        existingWeightsFile = "weights.h5";
+        existingWeightsFile = "weights2.h5";
         if (path.exists(existingWeightsFile)):
             print('Loaded existing weights from ', existingWeightsFile)
             self.model_network.load_weights("weights.h5")
@@ -143,8 +144,11 @@ class DQNAgent(Agent):
 
         self.model_network.fit(states, targets_full, epochs=1, verbose=0)
         
-        self.model_network.save_weights("weights2.h5")
+        if self.episodes_not_saved == 100:
+            self.model_network.save_weights("weights2.h5")
+            self.episodes_not_saved = 0
             
+        self.episodes_not_saved += 1
             
     def target_train(self):
         """
