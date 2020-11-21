@@ -163,6 +163,6 @@ class ActorCriticExperiment(object):
                 episodes_completed.append(i)
                 episodes_reward.append(score)
                 episodes_mean.append(meanOfLast(episodes_completed, episodes_reward, 50))
-                showProgress(agent, episodes_completed, episodes_reward, episodes_mean, 50)
+                showProgress(self.agent, episodes_completed, episodes_reward, episodes_mean, 50)
 
 
