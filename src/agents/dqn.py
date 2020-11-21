@@ -11,7 +11,7 @@ from tensorflow.keras.activations import relu, linear
 from tensorflow.keras.optimizers import SGD, Adam
 
 from agents.agent import Agent
-from helpers import showProgress
+from helpers import showProgress, meanOfLast
 
 def QNetwork(obs_size, num_actions, nhidden, lr):
 
@@ -172,6 +172,7 @@ class DQNExperiment(object):
 
         episodes_completed = []
         episodes_reward = []
+        episodes_mean = []
         # repeat for each episode
         for episode_number in range(max_number_of_episodes):
             
@@ -204,6 +205,7 @@ class DQNExperiment(object):
             
             episodes_completed.append(episode_number)
             episodes_reward.append(R)
-            showProgress(agent, episodes_completed, episodes_reward, 50)
+            episodes_mean.append(meanOfLast(episodes_completed, episodes_reward, 50))
+            showProgress(agent, episodes_completed, episodes_reward, episodes_mean, 50)
 
         env.close()
