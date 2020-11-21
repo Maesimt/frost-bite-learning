@@ -318,7 +318,7 @@ Cependant l'enregistrement des poids du model en `fichier.h5` etait activer alor
 J'ai ajuster le code pour repartir des poids sauvegardes. Seul difference, j'ai enlever l'exploration et la decroissance pour qu'il reparte de ses acquis. Donc epsilon a 0.01 en partant.
 
 On voit que des les premiers episodes il est capable de refaire une partie superieure a 1400 points, ce qui est encourageant.
-
+```C
 +-------------------------------------+
 + Agent: DQN                    +
 +-------------------------------------+
@@ -356,4 +356,4 @@ On voit que des les premiers episodes il est capable de refaire une partie super
        |**        ***              **                    ***                   ***              |
      0 +----------------------------------------------------------------------------------------+
        0          2          4          6           8          10         12         14         16
-
+```
