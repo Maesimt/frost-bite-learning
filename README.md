@@ -400,4 +400,15 @@ Il reussi a avoir deux autres runs interessantes dans un intervalle de 100 parti
        0            20          40           60           80          100         120          140
 ```
 
+Je vais arreter d'enregistrer le modele a chaque episode pour accelerer le temps d'entraintement, tant pis si des crashs comme la derniere fois arrive, je repartirai un peu en arriere.
+
+```python
+# DQN - Replay Method
+if self.episodes_not_saved == 100:
+    self.model_network.save_weights("weights2.h5")
+    self.episodes_not_saved = 0
+    
+self.episodes_not_saved += 1
+```
+
 Je vais ajouter un 2eme graph pour suivre la tendance de la moyenne pour voir quand est-ce qu'on atteint des minimums locaux pour mieux comprendre et suivre l'apprentissage.
