@@ -4,6 +4,7 @@ import numpy as np
 from agents.sarsaAgent import SarsaAgent, SarsaExperiment
 from agents.reinforce import REINFORCEAgent, ReinforceExperiment
 from agents.dqn import DQNAgent, DQNExperiment
+from agents.actorCritic import ActorCriticAgent, ActorCriticExperiment
 
 def run(algo):
     env = gym.make('Frostbite-ram-v0')
@@ -24,5 +25,15 @@ def run(algo):
     elif algo == 'dqn':
         agent = DQNAgent(env.action_space, obs_size=env.observation_space, epsilon=0.01)
         DQNExperiment().run_qlearning(env, agent, 20000, True)
-
-run('dqn')
+    elif algo == 'actorCritic':
+        agent = ActorCriticAgent(
+            observation_space=env.observation_space,
+            actions_space=env.action_space,
+            alpha = 0.0001,
+            beta = 0.0001,
+            gamma = 0.99,
+            hidden1 = 32,
+            hidden2 = 32,
+        )
+        ActorCriticExperiment(env, agent, stop_criterion=10000, EPISODES=100000).run_actorcritic()
+run('actorCritic')

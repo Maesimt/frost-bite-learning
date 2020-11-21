@@ -88,6 +88,16 @@ class ActorCriticAgent(Agent):
         # 7. Entrainer le critic
         self.critic.fit(state, target, verbose=0)
 
+    def printName(self):
+        print('+ Agent: Actor Critic                    +')
+
+    def printParameters(self):
+        print('+ gamma: ' + str(self.gamma))
+        print('+ alpha: ' + str(self.alpha))
+        print('+ beta: ' + str(self.beta))
+        print('+ hidden1: ' + str(self.hidden1))
+        print('+ hidden2: ' + str(self.hidden2))
+
 class ActorCriticExperiment(object):
     def __init__(self, env, agent, EPISODES=1000, training=True, episode_max_length=None, mean_episodes=10, stop_criterion=100):
         self.env = env
