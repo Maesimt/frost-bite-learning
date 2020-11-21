@@ -310,3 +310,50 @@ DQN
      0 +----------------------------------------------------------------------------------------+
        0             500            1000           1500          2000           2500           3000
 ```
+
+Suite a un crash de la machine sur GCP je n'ai pas pu garder une trace du dernier graphique. La derniere fois que j'avais regarder le graphique on voyait le modele qui avait reussi a faire plusieurs parties superieure a 1400 points.
+
+Cependant l'enregistrement des poids du model en `fichier.h5` etait activer alors j'ai pu conserver l'entrainement qu'il avait realiser jusqu'a un certain point problablement proche du crash.
+
+J'ai ajuster le code pour repartir des poids sauvegardes. Seul difference, j'ai enlever l'exploration et la decroissance pour qu'il reparte de ses acquis. Donc epsilon a 0.01 en partant.
+
+On voit que des les premiers episodes il est capable de refaire une partie superieure a 1400 points, ce qui est encourageant.
+
++-------------------------------------+
++ Agent: DQN                    +
++-------------------------------------+
++ epsilon: 0.01
++ obs_size: 128
++-------------------------------------+
++ Episode 16              score: 170.0
++ Mean of last 50 = 203.125   Highest Score: 1420.0
++-------------------------------------+
+  1600 +----------------------------------------------------------------------------------------+
+       |                                                                                        |
+       |                                                                                        |
+  1400 |                                                                  *                     |
+       |                                                                  *                     |
+       |                                                                 **                     |
+  1200 |                                                                 * *                    |
+       |                                                                 * *                    |
+       |                                                                 * *                    |
+       |                                                                *  *                    |
+  1000 |                                                                *   *                   |
+       |                                                                *   *                   |
+       |                                                               *    *                   |
+   800 |                                                               *    *                   |
+       |                                                               *     *                  |
+       |                                                              *      *                  |
+   600 |                                                              *      *                  |
+       |                                                              *      *                  |
+       |                                                              *      *                  |
+   400 |                                                             *        *                 |
+       |                                                             *        *                 |
+       |                                                             *        *                 |
+       |                                                            *         *                 |
+   200 |                               *******                    ***          *        ***     |
+       |  ********   **************  **       ***********   ******             *  ******        |
+       |**        ***              **                    ***                   ***              |
+     0 +----------------------------------------------------------------------------------------+
+       0          2          4          6           8          10         12         14         16
+
