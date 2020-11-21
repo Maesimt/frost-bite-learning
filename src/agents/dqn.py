@@ -56,7 +56,7 @@ class DQNAgent(Agent):
         existingWeightsFile = "weights.h5";
         if (path.exists(existingWeightsFile)):
             print('Loaded existing weights from ', existingWeightsFile)
-            model_network.load_weights("weights.h5")
+            self.model_network.load_weights("weights.h5")
 
         self.target_network = QNetwork(self.obs_size, self.num_actions, kwargs.get('nhidden', 150), self.lr)
         self.target_network.set_weights(self.model_network.get_weights()) 
