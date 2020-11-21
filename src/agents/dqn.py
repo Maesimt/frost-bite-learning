@@ -3,6 +3,8 @@ from collections import deque
 import random
 import numpy as np
 import tensorflow as tf
+import os.path
+from os import path
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.activations import relu, linear
@@ -50,11 +52,17 @@ class DQNAgent(Agent):
         
         # Instanciation des réseaux de neurones (modèle et cible)
         self.model_network = QNetwork(self.obs_size, self.num_actions, kwargs.get('nhidden', 150), self.lr)
+        # Load existing model if available.
+        existingWeightsFile = "weights.h5";
+        if (path.exists(existingWeightsFile)):
+            print('Loaded existing weights from ', existingWeightsFile)
+            model_network.load_weights("weights.h5")
+
         self.target_network = QNetwork(self.obs_size, self.num_actions, kwargs.get('nhidden', 150), self.lr)
         self.target_network.set_weights(self.model_network.get_weights()) 
 
         # Mémoire pour replay
-        self.memory  = deque(maxlen=kwargs.get('mem_size', 1000000))
+        self.memory = deque(maxlen=kwargs.get('mem_size', 1000000))
     
         self.step_counter = 0
     
@@ -135,7 +143,7 @@ class DQNAgent(Agent):
 
         self.model_network.fit(states, targets_full, epochs=1, verbose=0)
         
-        self.model_network.save_weights("weights.h5")
+        self.model_network.save_weights("weights2.h5")
             
             
     def target_train(self):
