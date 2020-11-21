@@ -5,6 +5,8 @@ from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.optimizers import Adam
 import numpy as np
 
+from helpers import showProgress, meanOfLast
+
 class Agent(object):  
         
     def __init__(self, observation_space, action_space):
