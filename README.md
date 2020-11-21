@@ -358,7 +358,7 @@ On voit que des les premiers episodes il est capable de refaire une partie super
        0          2          4          6           8          10         12         14         16
 ```
 
-Il reussi a avoir une 2eme run interessante dans un intervalle de 100 parties. Je m'interesse au run superieur a 300 car en-bas de 300 le bot est encore dans le meme niveau du jeu.
+Il reussi a avoir deux autres runs interessantes dans un intervalle de 100 parties. Je m'interesse au run superieur a 300 car en-bas de 300 le bot est encore dans le meme niveau du jeu.
 
 ```C
 +-------------------------------------+
@@ -367,36 +367,37 @@ Il reussi a avoir une 2eme run interessante dans un intervalle de 100 parties. J
 + epsilon: 0.01
 + obs_size: 128
 +-------------------------------------+
-+ Episode 109              score: 60.0
-+ Mean of last 50 = 125.4   Highest Score: 1420.0
++ Episode 137              score: 190.0
++ Mean of last 50 = 121.2   Highest Score: 1420.0
 +-------------------------------------+
   1600 +----------------------------------------------------------------------------------------+
        |                                                                                        |
        |                                                                                        |
-  1400 |        *                                                                               |
-       |        *                                                                               |
-       |        *                                                                               |
-  1200 |        *                                                                               |
-       |        *                                                                               |
-       |        *                                                                               |
-       |        *                                                                               |
-  1000 |        *                                                                               |
-       |        *                                                                               |
-       |        *                                         *                                     |
-   800 |        *                                         *                                     |
-       |       * *                                        *                                     |
-       |       * *                                        *                                     |
-   600 |       * *                                        *                                     |
-       |       * *                                        *                                     |
-       |       * *                                        **                                    |
-   400 |       * *                                       * *                                    |
-       |       * *                                       * *                                    |
-       |       * *                                       * *                                    |
-       |       * *    *       *        **                * *                                    |
-   200 |   *   * ** ** **    ***   * * **  *  *   *** **** * **      *   **  * *      *         |
-       |*******  * *   * *** * ** * ***  ******* *  ***  * **  **** **  ** * * *     ***        |
-       |*  *  *  *        * *  * **      *     ***  ***  *        ** ****  ** * * *  * *        |
+  1400 |       *                                                                                |
+       |       *                                                                                |
+       |       *                                                                                |
+  1200 |       *                                                                                |
+       |       *                                                                                |
+       |       *                                                                                |
+       |       *                                                                                |
+  1000 |       *                                                                                |
+       |       *                                                                                |
+       |       *                                   *                                    *       |
+   800 |       *                                   *                                    *       |
+       |      **                                   *                                    *       |
+       |      **                                   *                                    *       |
+   600 |      **                                   *                                    *       |
+       |      **                                   *                                    *       |
+       |      **                                   **                                   *       |
+   400 |      **                                  * *                                  **       |
+       |      **                                  * *                                  **       |
+       |      **                                  * *                                  **       |
+       |      **    *      *      * *             * *                                  **       |
+   200 |   *  ** **** *  * *   * **** *  *  *** *** ***     *   ** * *     *       *  *** * **  |
+       |****** ***  *** **** * ** * ****** * ** * * ** *** ** * ** * *    * *  * *** **** ** *  |
+       |* *  * *       * *  ***     *    *** ***  *       * **** ** ****  * ******  ***  *      |
      0 +----------------------------------------------------------------------------------------+
-       0              20             40             60            80            100            120
-
+       0            20          40           60           80          100         120          140
 ```
+
+Je vais ajouter un 2eme graph pour suivre la tendance de la moyenne pour voir quand est-ce qu'on atteint des minimums locaux pour mieux comprendre et suivre l'apprentissage.
