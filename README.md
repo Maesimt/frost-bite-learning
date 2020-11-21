@@ -404,6 +404,7 @@ Je vais arreter d'enregistrer le modele a chaque episode pour accelerer le temps
 
 ```python
 # DQN - Replay Method
+# ...
 if self.episodes_not_saved == 100:
     self.model_network.save_weights("weights2.h5")
     self.episodes_not_saved = 0
