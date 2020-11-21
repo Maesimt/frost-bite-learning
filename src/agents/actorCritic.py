@@ -112,6 +112,9 @@ class ActorCriticExperiment(object):
         
         # Tableaux utiles pour l'affichage
         scores, mean, episodes = [], [], []
+        episodes_completed = []
+        episodes_reward = []
+        episodes_mean = []
 
         for i in range(self.EPISODES):
             done = False
@@ -155,22 +158,9 @@ class ActorCriticExperiment(object):
             
             # Affichage des récompenses obtenues
             if self.training == True:
-                scores.append(score)
-                mean.append(np.mean(scores[-self.mean_episodes:]))
-                episodes.append(i)
-                
-                ax1_1.clear()
-                ax1_1.plot(episodes, scores, 'b', label='gains')
-    
-                ax1_2.clear()
-                ax1_2.plot(episodes, mean, 'r', label='Moyenne des gains')
-    
-                fig1.canvas.draw()
-                
-                ax1_1.set_xlabel("Épisodes")
-                ax1_1.set_ylabel("Gains")
-                ax1_2.set_xlabel("Épisodes")
-                ax1_2.set_ylabel("Moyenne des gains")
-                #plt.legend(loc='upper left')
+                episodes_completed.append(i)
+                episodes_reward.append(score)
+                episodes_mean.append(meanOfLast(episodes_completed, episodes_reward, 50))
+                showProgress(agent, episodes_completed, episodes_reward, episodes_mean, 50)
 
 
