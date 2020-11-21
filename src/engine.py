@@ -36,4 +36,4 @@ def run(algo):
             hidden2 = 32,
         )
         ActorCriticExperiment(env, agent, stop_criterion=10000, EPISODES=100000).run_actorcritic()
-run('actorCritic')
+run('dqn')

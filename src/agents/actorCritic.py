@@ -113,7 +113,6 @@ class ActorCriticExperiment(object):
     def run_actorcritic(self):
         
         # Tableaux utiles pour l'affichage
-        scores, mean, episodes = [], [], []
         episodes_completed = []
         episodes_reward = []
         episodes_mean = []
@@ -126,10 +125,6 @@ class ActorCriticExperiment(object):
             counter = 0
             while not done:
                 counter +=1
-
-                # Afficher l'environnement
-                if self.agent.render:
-                    self.env.render()
 
                 # Obtient l'action pour l'état courant
                 action = self.agent.act(state)
@@ -148,10 +143,6 @@ class ActorCriticExperiment(object):
                 # Arrête l'épisode après 'episode_max_length' instants
                 if self.episode_max_length != None and counter > self.episode_max_length:
                     done = True
-
-            # Arrête l'entraînement lorsque la moyenne des récompense sur 'mean_episodes' épisodes est supérieure à 
-            if np.mean(scores[-self.mean_episodes:]) > self.stop_criterion:
-                break
 
             # Sauvegarde du modèle (poids) tous les 50 épisodes
             if self.training and i % 50 == 0:
