@@ -12,7 +12,8 @@ Un jeu de 1983 cree par Steve Cartwright et publier par Activision pour la conso
 Il y avait un semblant de multi-joueur avec la posibilite d'alterner en deux personnages.
 
 Le but du jeu est de marquer le plus de points. 
-On peut accumuler des points de differentes facons.
+
+Le joueur peut accumuler des points de differentes facons.
 - Sauter sur un bloc de glaces blancs
 - Finir un niveau avec des degres de temperature superieur a 0.
 - Attraper un poisson.
@@ -30,12 +31,13 @@ Les niveaux alternent en les gros blocs et les petits blocs.
 
 Un ours polaire commence a apparaitre a partir du niveau 4 et se deplace sur la banquise pour empecher le joueur d'atteindre l'igloo.
 
-Je joueur dispose de 3 vies. Lorsqu'il meurt, le joueur recommence au niveau qu'il etait rendu avec le meme score. Lorsqu'il epuise sa derniere vie, la partie est terminee et son score est celui qu'il avait juste avant sa mort.
+Le joueur dispose de 3 vies. 
+Lorsqu'il meurt, le joueur recommence au niveau qu'il etait rendu avec le meme score. Lorsqu'il epuise sa derniere vie, la partie est terminee et son score est celui qu'il avait juste avant sa mort.
 
-On peut mourir de plusieurs facons
-- En tombant dans l'eau.
-- En se faisant frapper par un oiseau.
-- En se faisant manger par l'ours polaire.
+Plusieurs choses peuvent enlever une vie au joueur.
+- Tomber dans l'eau.
+- Se faire toucher par un oiseau.
+- Se faire toucher par l'ours polaire.
 
 > Source https://en.wikipedia.org/wiki/Frostbite_(video_game)
 
@@ -667,6 +669,78 @@ Je vais ajouter un 2eme graph pour suivre la tendance de la moyenne pour voir qu
     0 +-----------------------------------------------------------------------------------------+
       0             500            1000           1500           2000           2500           3000
 
+```
+
+Changement du nombre de neuronnes par couche.
+
+```C
++ Agent: Actor Critic                    +
++-------------------------------------+
++ gamma: 0.99
++ alpha: 0.0001
++ beta: 0.0001
++ hidden1: 128
++ hidden2: 72
++-------------------------------------+
++ Episode 481              score: 0.0
++ Mean of last 50 = 10.0   Highest Score: 170.0
++-------------------------------------+
+  180 +-----------------------------------------------------------------------------------------+
+      |       *                                                                                 |
+      |       *                                                                                 |
+  160 |       *                                                                                 |
+      |       *                                                                                 |
+      |       *                                                                                 |
+  140 |       *                         *                                                       |
+      |       *                         *                                                       |
+      |       *                         *                                                       |
+  120 |     * *                *       **                                                       |
+      |     * *                *       **                                                       |
+      |     * **               *       **                                                       |
+  100 |     * **        *      *       **                                                       |
+      |     * **        **     *       **                                                       |
+   80 |    ** **        **     *    *  **               *                                       |
+      |    *****        **     *    *  **               *                                       |
+      |    *****       ***    ** *  *  ***             ****   *    *                            |
+   60 |    ******      *** ** ***** ** *** *   **      *****  ***  *                            |
+      |    ******      *** ** ***** ** *** *   **      *****  ***  **                           |
+      |    ********   **** ************************ * ****** ******** *** *      **             |
+   40 |   *********** ***************************************************************           |
+      |   *********** *********   * * **** ************************ *****************           |
+      |  *** ******************   * * **** ************************ ****************** * *      |
+   20 |  *** ** ********* *** *       **** * ***  ***** *** ** ****  *  *  *    **********      |
+      |  ***  *   *****   *              * *  *   * **  ***    *        *         *  *****      |
+      | ****  *   *****   *              * *  *   * **  ***    *        *         *  ********   |
+    0 +-----------------------------------------------------------------------------------------+
+      0        50      100      150      200      250      300      350      400      450      500
+  60 +------------------------------------------------------------------------------------------+
+     |                                                                                          |
+     |                                                                                          |
+     |                                                                                          |
+  50 |                                 *                                                        |
+     |           ****              ******                                                       |
+     |          **  *         ********* ***                                                     |
+     |          *   *         *          ****                                                   |
+     |         *    *        **             **                          *                       |
+  40 |         *     *       *                ***              *  ***********                   |
+     |        *      **    **                   ***     *    ****** *       *****               |
+     |        *       * ****                    *****  *** ***                  *****           |
+     |       *         ** *                        ***** **                          *          |
+  30 |       *                                                                       **         |
+     |      *                                                                         **        |
+     |      *                                                                          **       |
+     |     *                                                                            **      |
+  20 |     *                                                                             *      |
+     |     *                                                                              *     |
+     |     *                                                                              **    |
+     |     *                                                                               **   |
+     |    *                                                                                 *   |
+  10 |   **                                                                                 *   |
+     |  **                                                                                      |
+     |  *                                                                                       |
+     | **                                                                                       |
+   0 +------------------------------------------------------------------------------------------+
+     0        50      100      150      200       250      300      350      400      450      500
 ```
 
 Je viens de realiser que le DQN a beacoup plus d'hyper-parametres de disponibles que je le croyais.
