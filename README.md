@@ -763,8 +763,16 @@ Ma strategie va consister de regarder le DQN qui a marcher pour essayer de prend
 Dans DQN avec lequel on avait des parties superieur a 1400 de temps en temps, on avait :
 
 ```C
-# Todo
++ epsilon: 1
++ obs_size: 128
++ gamma: 0.99
++ batch_size: 64
++ epoch_length: 100
++ learning_rate: 0.0001
++ tau: 0.05
++ nHidden: 150
 ```
+
 
 # Conclusion
 

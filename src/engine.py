@@ -31,9 +31,9 @@ def run(algo):
             actions_space=env.action_space,
             alpha = 0.0001,
             beta = 0.0001,
-            gamma = 0.99,
-            hidden1 = 128,
-            hidden2 = 72,
+            gamma = 0.9995,
+            hidden1 = 150,
+            hidden2 = 150,
         )
         # agent = ActorCriticAgent(
         #     observation_space=env.observation_space,
@@ -45,4 +45,4 @@ def run(algo):
         #     hidden2 = 72,
         # )
         ActorCriticExperiment(env, agent, EPISODES=100000).run_actorcritic()
-run('dqn')
+run('actorCritic')
