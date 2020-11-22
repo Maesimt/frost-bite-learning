@@ -6,15 +6,49 @@
 
 # Ojectifs
 
-# Environnement
+# Description de l'application
 
-Todo Open-ai gym.
+Un jeu de 1983 cree par Steve Cartwright et publier par Activision pour la console Atari 2600.
+Il y avait un semblant de multi-joueur avec la posibilite d'alterner en deux personnages.
 
-Gnuplot
+Le but du jeu est de marquer le plus de points. 
+On peut accumuler des points de differentes facons.
+- Sauter sur un bloc de glaces blancs
+- Finir un niveau avec des degres de temperature superieur a 0.
+- Attraper un poisson.
 
-# Agents
+Chaque fois que le personnage saute sur une ligne de glace blanche, un bloc est ajouter a l'igloo.
+Lorsque l'igloo est completer, le joueur peut rentrer dedans pour mettre fin au niveau.
+Lorsque le joueur atteri sur une ligne de glace blanche, celle-ci devient bleue. Lorsque toutes les lignes de glaces sont bleus, elles redeviennent blanche.
 
-## Sarsa
+La direction des lignes de glaces peut etre changer en cliquant sur un bouton et en sacrifiant un bloc de l'igloo en construction.
+
+Il y a deux types de morceaux de glace.
+1. Large
+2. Petit
+Les niveaux alternent en les gros blocs et les petits blocs.
+
+Je joueur dispose de 3 vies. Lorsqu'il meurt, le joueur recommence au niveau qu'il etait rendu avec le meme score. Lorsqu'il epuise sa derniere vie, la partie est terminee et son score est celui qu'il avait juste avant sa mort.
+
+# PDM
+
+Quels sont les etats, comment est represente l'environnement.
+
+Taches episodiques ou continues ?
+
+Fonction de recompenses
+
+Quels sont les actions (18)
+
+Est-ce un probleme stationnaire
+
+Subitlite. Les vies.
+
+# Demarche
+
+## Agents
+
+### Sarsa
 
 ```C
 +-------------------------------------+
@@ -98,7 +132,7 @@ Gnuplot
       0       100      200      300      400      500      600      700      800      900      1000
     ```
 
-## Reinforce
+### Reinforce
 
 ```C
 +-------------------------------------+
@@ -229,7 +263,7 @@ Gnuplot
 
 ```
 
-DQN
+### DQN
 ```C
 +-------------------------------------+
 + Agent: DQN                    +
@@ -552,7 +586,7 @@ Je vais ajouter un 2eme graph pour suivre la tendance de la moyenne pour voir qu
 
 ```
 
-## Actor Critic
+### Actor Critic
 
 ```C
 +-------------------------------------+
@@ -626,33 +660,31 @@ Je vais ajouter un 2eme graph pour suivre la tendance de la moyenne pour voir qu
 
 ```
 
-Je crois que le manque de resultat vient du modele qui etait configurer pour jouer au cart-pole.
+Je viens de realiser que le DQN a beacoup plus d'hyper-parametres de disponibles que je le croyais.
+J'ai ajouter les hyper-parametres que je n'avais pas vue dans l'agent DQN pour les voir.
 
 ```python
-inpt = Input(shape=(self.state_size,))
-delta = Input(shape=[1])
-dense1 = Dense(self.hidden1, activation='relu')(inpt)
-dense2 = Dense(self.hidden2, activation='relu')(dense1)
-probs = Dense(self.num_actions, activation='softmax')(dense2)
-values = Dense(1, activation='linear')(dense2)
-
-def custom_loss(y_true, y_pred):
-    out = tf.keras.backend.clip(y_pred, 1e-8, 1-1e-8)
-    log_likelihood = y_true*tf.keras.backend.log(out)
-
-    return tf.keras.backend.sum(-log_likelihood*delta)
-
-actor = Model(inputs=[inpt, delta], outputs=[probs])
-actor.compile(optimizer=Adam(lr=self.alpha), loss=custom_loss)
-
-critic = Model(inputs=[inpt], outputs=[values])
-critic.compile(optimizer=Adam(lr=self.beta), loss='mean_squared_error')
+    def printParameters(self):
+        print('+ epsilon: ' + str(self.epsilon))
+        print('+ obs_size: ' + str(self.obs_size))
+        print('+ gamma: ' + str(self.gamma))
+        print('+ batch_size: ' + str(self.batch_size))
+        print('+ epoch_length: ' + str(self.epoch_length))
+        print('+ learning_rate: ' + str(self.lr))
+        print('+ tau: ' + str(self.tau))
+        print('+ nHidden: ' + str(self.nhidden))
 ```
 
-Je vais essayer de recreer le modele de DQN dans le actor critic pour combiner les deux.
+Ma strategie va consister de regarder le DQN qui a marcher pour essayer de prendre des parametres similaires avec ActorCritic.
 
-```python
-# todo
+Dans DQN avec lequel on avait des parties superieur a 1400 de temps en temps, on avait :
+
+```C
+# Todo
 ```
 
-Les resultats
+# Conclusion
+
+Demontration (.gif)
+
+presentation des performances.

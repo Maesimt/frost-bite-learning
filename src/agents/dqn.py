@@ -50,6 +50,7 @@ class DQNAgent(Agent):
         self.epoch_length = kwargs.get('epoch_length', 100)
         self.lr = kwargs.get('learning_rate', .0001)
         self.tau = kwargs.get('tau', .05)
+        self.nhidden = kwargs.get('nhidden', 150)
         
         # Instanciation des réseaux de neurones (modèle et cible)
         self.model_network = QNetwork(self.obs_size, self.num_actions, kwargs.get('nhidden', 150), self.lr)
@@ -166,6 +167,12 @@ class DQNAgent(Agent):
     def printParameters(self):
         print('+ epsilon: ' + str(self.epsilon))
         print('+ obs_size: ' + str(self.obs_size))
+        print('+ gamma: ' + str(self.gamma))
+        print('+ batch_size: ' + str(self.batch_size))
+        print('+ epoch_length: ' + str(self.epoch_length))
+        print('+ learning_rate: ' + str(self.lr))
+        print('+ tau: ' + str(self.tau))
+        print('+ nHidden: ' + str(self.nhidden))
 
 class DQNExperiment(object):
     def run_qlearning(self, env, agent, max_number_of_episodes=100, interactive = False, display_frequency=1):
