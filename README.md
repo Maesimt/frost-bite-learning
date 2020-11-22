@@ -37,6 +37,8 @@ On peut mourir de plusieurs facons
 - En se faisant frapper par un oiseau.
 - En se faisant manger par l'ours polaire.
 
+> Source https://en.wikipedia.org/wiki/Frostbite_(video_game)
+
 # PDM
 
 Quels sont les etats, comment est represente l'environnement.
