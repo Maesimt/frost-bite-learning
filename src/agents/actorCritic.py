@@ -53,6 +53,8 @@ class ActorCriticAgent(Agent):
         critic = Model(inputs=[inpt], outputs=[values])
         critic.compile(optimizer=Adam(lr=self.beta), loss='mean_squared_error')
 
+        policy = Model(inputs=[inpt], outputs=[probs])
+
         return actor, critic, policy
 
     def act(self, observation):
