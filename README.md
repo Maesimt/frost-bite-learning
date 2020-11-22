@@ -28,7 +28,14 @@ Il y a deux types de morceaux de glace.
 2. Petit
 Les niveaux alternent en les gros blocs et les petits blocs.
 
+Un ours polaire commence a apparaitre a partir du niveau 4 et se deplace sur la banquise pour empecher le joueur d'atteindre l'igloo.
+
 Je joueur dispose de 3 vies. Lorsqu'il meurt, le joueur recommence au niveau qu'il etait rendu avec le meme score. Lorsqu'il epuise sa derniere vie, la partie est terminee et son score est celui qu'il avait juste avant sa mort.
+
+On peut mourir de plusieurs facons
+- En tombant dans l'eau.
+- En se faisant frapper par un oiseau.
+- En se faisant manger par l'ours polaire.
 
 # PDM
 
