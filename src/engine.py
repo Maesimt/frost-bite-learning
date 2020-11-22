@@ -27,7 +27,7 @@ def run(algo):
             env.action_space,
             obs_size=env.observation_space,
             epsilon=1,
-            nHidden=64,
+            nhidden=64,
             )
         DQNExperiment().run_qlearning(env, agent, 100000, True)
     elif algo == 'actorCritic':
