@@ -44,5 +44,5 @@ def run(algo):
         #     hidden1 = 128,
         #     hidden2 = 72,
         # )
-        ActorCriticExperiment(env, agent, stop_criterion=10000, EPISODES=100000).run_actorcritic()
+        ActorCriticExperiment(env, agent, EPISODES=100000).run_actorcritic()
 run('actorCritic')
