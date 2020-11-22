@@ -23,8 +23,13 @@ def run(algo):
             hidden3 = 18)
         ReinforceExperiment(env,agent, stop_criterion=10000, EPISODES=100000).run()
     elif algo == 'dqn':
-        agent = DQNAgent(env.action_space, obs_size=env.observation_space, epsilon=0.01)
-        DQNExperiment().run_qlearning(env, agent, 20000, True)
+        agent = DQNAgent(
+            env.action_space,
+            obs_size=env.observation_space,
+            epsilon=1,
+            nHidden=64,
+            )
+        DQNExperiment().run_qlearning(env, agent, 100000, True)
     elif algo == 'actorCritic':
         agent = ActorCriticAgent(
             observation_space=env.observation_space,
@@ -32,7 +37,7 @@ def run(algo):
             alpha = 0.0001,
             beta = 0.0001,
             gamma = 0.9995,
-            hidden1 = 150,
+            hidden1 = 18,
             hidden2 = 150,
         )
         # agent = ActorCriticAgent(
