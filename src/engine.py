@@ -32,8 +32,17 @@ def run(algo):
             alpha = 0.0001,
             beta = 0.0001,
             gamma = 0.99,
-            hidden1 = 32,
-            hidden2 = 32,
+            hidden1 = 128,
+            hidden2 = 72,
         )
+        # agent = ActorCriticAgent(
+        #     observation_space=env.observation_space,
+        #     actions_space=env.action_space,
+        #     alpha = 0.0001,
+        #     beta = 0.0001,
+        #     gamma = 0.9995,
+        #     hidden1 = 128,
+        #     hidden2 = 72,
+        # )
         ActorCriticExperiment(env, agent, stop_criterion=10000, EPISODES=100000).run_actorcritic()
 run('actorCritic')

@@ -99,14 +99,12 @@ class ActorCriticAgent(Agent):
         print('+ hidden2: ' + str(self.hidden2))
 
 class ActorCriticExperiment(object):
-    def __init__(self, env, agent, EPISODES=1000, training=True, episode_max_length=None, mean_episodes=10, stop_criterion=100):
+    def __init__(self, env, agent, EPISODES=1000, training=True, episode_max_length=None):
         self.env = env
         self.agent = agent
         self.EPISODES = EPISODES
         self.training = training
         self.episode_max_length = episode_max_length
-        self.mean_episodes = mean_episodes
-        self.stop_criterion = stop_criterion
 
     def run_actorcritic(self):
         
