@@ -940,6 +940,84 @@ Je crois qu'il devrait davantage explorer car il n'a clairement pas encore compr
 Je vais essayer de le faire explorer encore plus longtemps. 
 Pour lui faire comprendre le concept de l'igloo tant que ca moyenne de points ne sera pas superieur au premier niveau (800-900 points) plutot que de laisser exploiter a 99.995 je vais lui forcer un 20% d'exploration.
 
+Je viens de repartir une run par accident avec l'ancien weights.h5 et un epislon de 1 alors il va explorer encore comme il l'etait avant.
+
+```C
++ epsilon: 0.2
++ obs_size: 128
++ gamma: 0.99
++ batch_size: 64
++ epoch_length: 100
++ learning_rate: 0.0001
++ tau: 0.05
++ nHidden: 256
++-------------------------------------+
++ Episode 4325              score: 130.0
++ Mean of last 50 = 151.8   Highest Score: 1860.0
++-------------------------------------+
+  2000 +----------------------------------------------------------------------------------------+
+       |                                                                                        |
+       |                     *                                                                  |
+  1800 |                     *                                                                  |
+       |                     *                                                                  |
+  1600 |                     *                                                                  |
+       |                     *       *                                                          |
+       |                * *  *       *                                                          |
+  1400 |                * *  *       *                                                          |
+       |                * *  *       *                                             *     *      |
+  1200 |                * *  *       *                    *                        *     *      |
+       |                * *  *       **                   *                        *     *      |
+       |                * *  *       **                   *                        *     *      |
+  1000 |                * * **    *  **                   *                        *     *      |
+       |                ****** *  * ***                   *                        *     *      |
+       |                ********  ***** *            *    *                        **    *  *   |
+   800 |                ********  ***** *            *    *                        ** *  *  *   |
+       |                ********  ***** *            *    *                        ** * **  *   |
+   600 |                ********  ***** *            *    *                        ** * **  *   |
+       |                ********  ***** *            *    *                        ** * **  *   |
+       |                ********  ***** *            *    *                        ** * **  *   |
+   400 |                ********  ***** *            *    *                        ** * **  *   |
+       |                ********  ***** *            *    *                        ** * **  *   |
+   200 |**** *************************************** ****************************************   |
+       |**************************************************************************************  |
+       |*************************************************************************************   |
+     0 +----------------------------------------------------------------------------------------+
+       0        500       1000      1500      2000     2500      3000      3500      4000      4500
+  240 +-----------------------------------------------------------------------------------------+
+      |                     *                                                                   |
+      |                   * *                                                                   |
+  220 |                   * **                                                                  |
+      |                   ****                                                                  |
+  200 |                   ****                                                                  |
+      |                   ****                                                                  |
+      |                   ****                                                                  |
+  180 |                   ****     *                                                *           |
+      |                *  ****     ***                    *                         ***         |
+  160 |                ** **** *   ****                   *                   *    ****  *      |
+      |                ***** *** ******* *                **    *  ** **     ***   **** *****   |
+      |                ***   ****** **********          * **** *** ** **    ** *   *  *******   |
+  140 |             *  ***    ***** *********** *  *    ****** ********* ** ** *****  *******   |
+      |          *  *****     * ***   * * *   **** *   ***   *** ***** ******   ****  *****     |
+      |          ****** *        *            ******  ****   ***  ****  *****   * **            |
+  120 |         **** **                       **  ****** *    *   **    *         *             |
+      | *  *  *** *                               * ***  *        *                             |
+  100 | ***** *** *                                 ***                                         |
+      | *******                                     ***                                         |
+      | *** ***                                                                                 |
+   80 |***  **                                                                                  |
+      |*                                                                                        |
+   60 |                                                                                         |
+      |                                                                                         |
+      |                                                                                         |
+   40 +-----------------------------------------------------------------------------------------+
+      0        500       1000      1500      2000      2500      3000      3500      4000      4500
+```
+
+Meme probleme qu'avant.
+
+On va changer un autre parametre. Si ce n'est pas l'exploration qui regle tout a fait le probleme de ressayer les meme solutions. Peut-etre que c'est de l'overfitting sur les experiences du passer qui ont donner des resultats positifs. Je vais tester une reduction du epoch length pour voir si ca diminue l'overfitting et ca nous permet de rejoindre l'igloo plus facilement.
+
+
 # Conclusion
 
 Demontration (.gif)

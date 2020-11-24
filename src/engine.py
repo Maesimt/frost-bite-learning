@@ -28,6 +28,7 @@ def run(algo):
             env.action_space,
             obs_size=env.observation_space,
             epsilon=1,
+            epoch_length=25,
             nhidden=256
             )
         DQNExperiment().run_qlearning(env, agent, 100000, True)
@@ -59,4 +60,4 @@ def run(algo):
         #     hidden2 = 72,
         # )
         ActorCriticExperiment(env, agent, EPISODES=100000).run_actorcritic()
-run('dqn')
+run('dqn') 
