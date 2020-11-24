@@ -4,6 +4,7 @@ import numpy as np
 from agents.sarsaAgent import SarsaAgent, SarsaExperiment
 from agents.reinforce import REINFORCEAgent, ReinforceExperiment
 from agents.dqn import DQNAgent, DQNExperiment
+from agents.dqnWatch import DQNWatchAgent, DQNWatchExperiment
 from agents.actorCritic import ActorCriticAgent, ActorCriticExperiment
 
 def run(algo):
@@ -30,6 +31,14 @@ def run(algo):
             nhidden=256
             )
         DQNExperiment().run_qlearning(env, agent, 100000, True)
+    elif algo == 'watch dqn':
+        agent = DQNWatchAgent(
+            env.action_space,
+            obs_size=env.observation_space,
+            epsilon=1,
+            nhidden=256
+            )
+        DQNWatchExperiment().run_qlearning(env, agent, 100000, True)
     elif algo == 'actorCritic':
         agent = ActorCriticAgent(
             observation_space=env.observation_space,

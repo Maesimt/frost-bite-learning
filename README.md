@@ -849,6 +849,96 @@ Passer de 150 a 64 neuronnes par couches
     0 +-----------------------------------------------------------------------------------------+
       0             200            400            600            800            1000           1200
 
+Bon on va essayer avec une architecture 256 neuronnes, nombre arbitraire qui est le double du nombre de bytes de la ram. (128 x 2). On va le demarrer du debut sans l'arreter.
+
+```C
++-------------------------------------+
++ Agent: DQN                    +
++-------------------------------------+
++ epsilon: 0.01
++ obs_size: 128
++ gamma: 0.99
++ batch_size: 64
++ epoch_length: 100
++ learning_rate: 0.0001
++ tau: 0.05
++ nHidden: 256
++-------------------------------------+
++ Episode 11264              score: 140.0
++ Mean of last 50 = 130.6   Highest Score: 2520.0
++-------------------------------------+
+  3000 +----------------------------------------------------------------------------------------+
+       |                                                                                        |
+       |                                                                                        |
+       |                                                                                        |
+  2500 |                                                                    *                   |
+       |                 *                                                  *                   |
+       |                 *                                                  *                   |
+       |                 *                                                  *                   |
+       |                 *                                                  *                   |
+  2000 |                 *                       *                          *                   |
+       |                 *                       *                          *                   |
+       |                 *                       *                          *                   |
+       |                **                       *                     *    *                   |
+  1500 |                **                       *                     *    *                   |
+       |                **                       *                     *    *                   |
+       |               ***                       *                     *    *                   |
+       |               ****          * * *       *           *      *  *    * *                 |
+  1000 |           *   **** *   *    * * *       * *         *   *  * **    * *                 |
+       |           *   **** **  *  ***** *       * *         *   *  * **    * *                 |
+       |           *   **** ** **  ********      * *    ** * * * * ** **    * * **      *       |
+       |     *     *   **** ** **  ********      * *    ** * * * * ** **  * * * **    * * *     |
+       |     *     *   **** ** *** ********      * *    ** * * * * ** **  * * * **    * * *     |
+   500 |     *     *   **** ** *** ********      * *    ** * * * * ** **  * * * **    * * *     |
+       |     *     *   **** ** *** ********      * *    ** * * * * ** **  * * * **    * * *     |
+       |*** *******************************************************************************     |
+       |************************************************************************************    |
+     0 +----------------------------------------------------------------------------------------+
+       0             2000           4000           6000          8000          10000          12000
+  300 +-----------------------------------------------------------------------------------------+
+      |                                                                                         |
+      |                                                                                         |
+      |                                          *                                              |
+  250 |                                          *                                              |
+      |                 *                        *                                              |
+      |                **                        *                                              |
+      |                **                        *                           **                 |
+      |                **                        *                           **                 |
+  200 |                ***            *          *      *           *  *    ***                 |
+      |           **   ***          * * *       **      ** *     *  ****    *** *** * * * *     |
+      |           *** ****          ******      **      ** * *   * *****  * *** *** * * ***     |
+      |           ******** * *   ** ******      ** *   *** *** * ************** ***********     |
+  150 |           ************************      ** *********** ****************************     |
+      |          ** ***  *********** *****    * ******** ********** ************* **   *  *     |
+      |      ** ***  **  ********  * ******  *********** ** *******  ************      *  *     |
+      |      *****    *  ** *****  * * **** **** **** **  * ***** *   * * * ****          *     |
+  100 |      ****     *     * * *  *    *** ****   **       * *   *            *                |
+      |     *****     *     * *          ******     *         *                                 |
+      | **  ****                         * ****                                                 |
+      |***  ****                           ****                                                 |
+      | *****                                                                                   |
+   50 |  ****                                                                                   |
+      |   **                                                                                    |
+      |   **                                                                                    |
+      |   *                                                                                     |
+    0 +-----------------------------------------------------------------------------------------+
+      0             2000           4000           6000           8000          10000          12000
+
+```
+
+On voit une bonne progression au debut mais il stagne au [180,220] points.
+J'ai de la misere a comprendre pourquoi il ne reussi pas tjrs a passer au 2eme niveau du jeu.
+On voit qu'il reussi de temps en temps mais il est quand souvent pris a la fin du premier niveau.
+
+Je vais transferer le fichier du modele et le rouler en local pour voir ce qu'il fait.
+
+# gif.
+
+Je crois qu'il exploite la meilleur strategie qu'il a trouver jusqu'a maintenant. Il semble toujours faire la meme ligne droite avec un retour.
+Il voit l'igloo completer mais il ne semble pas realiser le potentiel de point qui se trouve a sa porte et il decide de rexploiter sa ligne de point avec les plateformes de glaces plutot.
+Je crois qu'il devrait davantage explorer car il n'a clairement pas encore compris le concept de l'igloo.
+Je vais essayer de le faire explorer encore plus longtemps. 
+Pour lui faire comprendre le concept de l'igloo tant que ca moyenne de points ne sera pas superieur au premier niveau (800-900 points) plutot que de laisser exploiter a 99.995 je vais lui forcer un 20% d'exploration.
 
 # Conclusion
 

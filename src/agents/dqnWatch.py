@@ -23,17 +23,16 @@ def QNetwork(obs_size, num_actions, nhidden, lr):
     
     return model
 
-class DQNAgent(Agent):
+class DQNWatchAgent(Agent):
     """Deep Q-Learning agent"""
 
     def __init__(self, actions, obs_size, **kwargs):
-        super(DQNAgent, self).__init__(obs_size, actions)
+        super(DQNWatchAgent, self).__init__(obs_size, actions)
 
         # Taille de S
         self.obs_size = obs_size.shape[0]
         self.actions = actions
         self.episodes_not_saved = 0
-        self.average_score = 0
         
         # Epsilon
         self.epsilon = kwargs.get('epsilon', .01)       
@@ -55,11 +54,9 @@ class DQNAgent(Agent):
         
         # Instanciation des réseaux de neurones (modèle et cible)
         self.model_network = QNetwork(self.obs_size, self.num_actions, kwargs.get('nhidden', 150), self.lr)
-        # Load existing model if available.
-        existingWeightsFile = "weights.h5";
-        if (path.exists(existingWeightsFile)):
-            print('Loaded existing weights from ', existingWeightsFile)
-            self.model_network.load_weights("weights.h5")
+        # Load existing model.
+
+        self.model_network.load_weights("/home/guillaumecummings/Desktop/weights_long_run_dqn.h5")
 
         self.target_network = QNetwork(self.obs_size, self.num_actions, kwargs.get('nhidden', 150), self.lr)
         self.target_network.set_weights(self.model_network.get_weights()) 
@@ -70,104 +67,16 @@ class DQNAgent(Agent):
         self.step_counter = 0
     
     def act(self, state):    
-        if np.random.random() < self.epsilon:
-            i = np.random.randint(0,len(np.arange(self.actions.n)))
-        else: 
-            i = np.argmax(self.model_network.predict(state.reshape(1, state.shape[0]))[0])
+
+        i = np.argmax(self.model_network.predict(state.reshape(1, state.shape[0]))[0])
                      
-        self.step_counter += 1 
-        #self.epsilon = max(.01, self.epsilon * .996)
-        
-        # decay epsilon after each epoch
-        if self.epsilon_decay:
-            if self.step_counter % self.epoch_length == 0:
-                if self.average_score > 400
-                    self.epsilon = max(.01, self.epsilon * .9995)
-                else
-                    self.epsilon = max(.2, self.epsilon * .9995)
-   
         return i
 
-    def updateAverageScore(self, score):
-        self.average_score = score
-    
-    def learn(self, state1, action1, reward, state2, done):
-        """
-        Apprentissage: Mémorisation -> Replay -> Mise-à-jour Target
-        """
-        
-        # Démarrer l'entraînement après 1 epoch
-        if self.step_counter <= self.epoch_length:
-            return
-        
-        # Sauvegarde la transition dans la mémoire de replay
-        self.remember(state1, action1, reward, state2, done)
-        
-        # Experience replay
-        self.replay()       
-        
-        # Mise-à-jour du modèle cible
-        self.target_train() 
-
-        
-    def remember(self, state1, action1, reward, state2, done):
-        """
-        Sauvegarde la transition dans la mémoire de replay
-        """
-        self.memory.append([state1, action1, reward, state2, done])
-    
-    def replay(self):
-        # Taille de la mémoire de replay insuffisante
-        if len(self.memory) < self.batch_size: 
-            return
-
-        minibatch = random.sample(self.memory, self.batch_size)
-        
-        #for state1, action1, reward, state2, done in minibatch:
-        #    target = self.target_network.predict(state1.reshape(1, state1.shape[0]))
-        #    if done:
-        #        target[0][action1] = reward
-        #    else:
-        #        Q_future = max(self.target_network.predict(state2.reshape(1, state2.shape[0]))[0])
-        #        target[0][action1] = reward + self.gamma * Q_future
-        #    
-        #    self.model_network.fit(state1.reshape(1, state1.shape[0]), target, epochs=1, verbose=0)
-            
-        # Implémentation parallèle
-        states = np.array([i[0] for i in minibatch])
-        actions = np.array([i[1] for i in minibatch])
-        rewards = np.array([i[2] for i in minibatch])
-        next_states = np.array([i[3] for i in minibatch])
-        dones = np.array([i[4] for i in minibatch])
-
-        states = np.squeeze(states)
-        next_states = np.squeeze(next_states)
-
-        targets = rewards + self.gamma*(np.amax(self.target_network.predict_on_batch(next_states), axis=1))*(1-dones)
-        targets_full = self.target_network.predict_on_batch(states)
-        ind = np.array([i for i in range(self.batch_size)])
-        targets_full[[ind], [actions]] = targets
-
-        self.model_network.fit(states, targets_full, epochs=1, verbose=0)
-        
-        if self.episodes_not_saved == 100:
-            self.model_network.save_weights("weights.h5")
-            self.episodes_not_saved = 0
-            
-        self.episodes_not_saved += 1
-            
-    def target_train(self):
-        """
-        Mise-à-jour des poids du réseau de neurones "cible"
-        """
-        model_weights = self.model_network.get_weights()
-        target_weights = self.target_network.get_weights()
-        for i in range(len(target_weights)):
-            target_weights[i] = self.tau * model_weights[i] + (1 - self.tau) * target_weights[i]
-        self.target_network.set_weights(target_weights)
+    def learn(a,b,c,d,e,f):
+        return
     
     def printName(self):
-        print('+ Agent: DQN                    +')
+        print('+ Agent: DQN Watch                  +')
 
     def printParameters(self):
         print('+ epsilon: ' + str(self.epsilon))
@@ -179,7 +88,7 @@ class DQNAgent(Agent):
         print('+ tau: ' + str(self.tau))
         print('+ nHidden: ' + str(self.nhidden))
 
-class DQNExperiment(object):
+class DQNWatchExperiment(object):
     def run_qlearning(self, env, agent, max_number_of_episodes=100, interactive = False, display_frequency=1):
 
         episodes_completed = []
@@ -213,12 +122,13 @@ class DQNExperiment(object):
                 state = next_state
                 
                 R += reward # accumulate reward - for display
+
+                env.render()
             
             
             episodes_completed.append(episode_number)
             episodes_reward.append(R)
-            agent.updateAverageScore(meanOfLast(episodes_completed, episodes_reward, 50))
-            episodes_mean.append(agent.average_score)
+            episodes_mean.append(meanOfLast(episodes_completed, episodes_reward, 50))
             showProgress(agent, episodes_completed, episodes_reward, episodes_mean, 50)
 
         env.close()
