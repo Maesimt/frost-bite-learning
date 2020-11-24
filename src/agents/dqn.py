@@ -81,9 +81,9 @@ class DQNAgent(Agent):
         # decay epsilon after each epoch
         if self.epsilon_decay:
             if self.step_counter % self.epoch_length == 0:
-                if self.average_score > 400
+                if self.average_score > 400:
                     self.epsilon = max(.01, self.epsilon * .9995)
-                else
+                else:
                     self.epsilon = max(.2, self.epsilon * .9995)
    
         return i
