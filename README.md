@@ -1324,8 +1324,6 @@ Trop fort l'apprentissage est penaliser. On va ressayer un peu moins fort.
      0        200       400       600       800        1000      1200      1400      1600      1800
 ```
 
-Encore top fort, on va faire l'inverse, on va le diminuer voir si ca change de quoi.
-
 # Conclusion
 
 Demontration (.gif)
