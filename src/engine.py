@@ -48,7 +48,7 @@ def run(algo):
             actions_space=env.action_space,
             alpha = 0.0001,
             beta = 0.0001,
-            gamma = 0.9995,
+            gamma = 0.9,
             hidden1 = 18,
             hidden2 = 150,
         )
