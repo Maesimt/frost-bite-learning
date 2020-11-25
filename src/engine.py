@@ -28,8 +28,9 @@ def run(algo):
             env.action_space,
             obs_size=env.observation_space,
             epsilon=1,
-            epoch_length=25,
-            nhidden=256
+            epoch_length=100,
+            nhidden=256,
+            learning_rate=0.001
             )
         DQNExperiment().run_qlearning(env, agent, 100000, True)
     elif algo == 'watch dqn':
