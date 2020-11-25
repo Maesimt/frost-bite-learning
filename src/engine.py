@@ -30,7 +30,7 @@ def run(algo):
             epsilon=1,
             epoch_length=100,
             nhidden=256,
-            learning_rate=0.0001
+            learning_rate=0.0001,
             gamma=0.9999
             )
         DQNExperiment().run_qlearning(env, agent, 100000, True)
