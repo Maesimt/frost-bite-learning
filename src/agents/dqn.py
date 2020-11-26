@@ -34,6 +34,7 @@ class DQNAgent(Agent):
         self.actions = actions
         self.episodes_not_saved = 0
         self.average_score = 0
+        self.best_average = 0
         
         # Epsilon
         self.epsilon = kwargs.get('epsilon', .01)       
@@ -150,7 +151,7 @@ class DQNAgent(Agent):
 
         self.model_network.fit(states, targets_full, epochs=1, verbose=0)
         
-        if self.episodes_not_saved == 100:
+        if self.average_score > self.best_average:
             self.model_network.save_weights("weights.h5")
             self.episodes_not_saved = 0
             

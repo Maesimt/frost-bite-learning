@@ -1400,7 +1400,19 @@ Je vais essayer avec un gamma plus petit de ce qu'on avait au debut.
       0             500            1000           1500           2000           2500           3000
 
 ```
-La, c'est bien, une moyenne a 550. Seul probleme c'est que j'enregistre au 100 episodes de facons fixe. Je vais changer le moment de l'enregistrement
+La, c'est bien, une moyenne a 550. Seul probleme c'est que j'enregistre au 100 episodes de facons fixe. Je vais changer le moment de l'enregistrement.
+
+Mettre le gif du bonhomme dans le coin. ICI .gif
+
+```Python
+if self.average_score > self.best_average:
+    self.model_network.save_weights("weights.h5")
+```
+
+Next try, 
+- diminuer le gamma 0.9 -> 0.85
+- le decay d'epsilone 0.9995 -> 0.9999 (faire de l'exploration plus longtemps.)
+
 # Conclusion
 
 Demontration (.gif)
