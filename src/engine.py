@@ -32,6 +32,7 @@ def run(algo):
             nhidden=256,
             learning_rate=0.0001,
             gamma=0.9
+            tau=0.1
             )
         DQNExperiment().run_qlearning(env, agent, 100000, True)
     elif algo == 'watch dqn':
