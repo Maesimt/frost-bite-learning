@@ -55,7 +55,7 @@ Manger un poisson -> 200 points
 Quels sont les actions (18)
 Il y a 18 actions possibles 
 | index        | nam          | signification  |
-| ------------- |:-------------:| -----:|
+| ------------- | ------------- | ----- |
 | 0 | "NOOP" | Ne rien faire |
 | 1 | "FIRE" | Ne rien faire |
 | 2 | "UP" | Ne rien faire |
