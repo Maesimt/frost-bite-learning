@@ -45,17 +45,44 @@ Plusieurs choses peuvent enlever une vie au joueur.
 
 Quels sont les etats, comment est represente l'environnement.
 
-Taches episodiques ou continues ?
-
-Fonction de recompenses
+L'environnement est fourni par OpenAI Gym. Il nous donne accès à 128 bytes qui représente la ram du jeu à chaque instant t.
+Pour l'agent, jouer au jeu est en soit une tâche épisodique.
+La fonction de récompense nous retourne plusieurs récompenses:
+Sauter sur un block de glace blanc -> 10 points
+Terminer un niveau avec des degres restants -> N * degré restants , 15 deg * ? = 310, 40 deg * ? = 1120
+Manger un poisson -> 200 points
 
 Quels sont les actions (18)
+Il y a 18 actions possibles 
+| index        | nam          | signification  |
+| ------------- |:-------------:| -----:|
+| 0 | "NOOP" | Ne rien faire |
+| 1 | "FIRE" | Ne rien faire |
+| 2 | "UP" | Ne rien faire |
+| 3 | "RIGHT"  | Ne rien faire |
+| 4 | "LEFT" | Ne rien faire |
+| 5 | "DOWN" | Ne rien faire |
+| 6 | "UPRIGHT" | Ne rien faire |
+| 7 | "UPLEFT" | Ne rien faire |
+| 8 |"DOWNRIGHT" | Ne rien faire |
+| 9 |"DOWNLEFT" | Ne rien faire |
+| 10 | "UPFIRE" | Ne rien faire |
+| 11 |"RIGHTFIRE" | Ne rien faire |
+| 12 |"LEFTFIRE" | Ne rien faire |
+| 13 | "DOWNFIRE" | Ne rien faire |
+| 14 | "UPRIGHTFIRE" | Ne rien faire |
+| 15 | "UPLEFTFIRE" | Ne rien faire |
+| 16 | "DOWNRIGHTFIRE" | Ne rien faire |
+| 17 | "DOWNLEFTFIRE" | Ne rien faire |
+Source: https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py#L219 
 
 Est-ce un probleme stationnaire
 
 Subitlite. Les vies.
 
 # Demarche
+
+Essayer une première fois plusieurs des algorithmes vue en cours pour voir si certains sont déjà capable de produire des résultats sans modification quelqueconque.
 
 ## Agents
 
