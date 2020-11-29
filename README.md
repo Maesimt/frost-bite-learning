@@ -262,9 +262,9 @@ Je le laisse aller pour comprendre un peu mieux où il était rendu avant le cra
 
 Il reussi a avoir deux autres runs interessantes dans un intervalle de 100 parties. Je m'interesse au run superieur a 300 car en-bas de 300 le bot est encore dans le meme niveau du jeu.
 
-J'arrète l'entrainement.
+J'arrète l'agent pour faire un petite modification au code, suite à des commentaires des autres étudiants sur Teams.
 
-Je vais arreter d'enregistrer le modele a chaque episode pour accelerer le temps d'entraintement, tant pis si des crashs comme la derniere fois arrive, je repartirai un peu en arriere.
+Je change le code pour qu'il enregistre les poids après 100 épisodes pour accelerer le temps d'entraintement, tant pis si des crashs comme la derniere fois arrive, je repartirai un peu en arriere.
 
 ```python
 # DQN - Replay Method
@@ -276,7 +276,9 @@ if self.episodes_not_saved == 100:
 self.episodes_not_saved += 1
 ```
 
-Je vais ajouter un 2eme graph pour suivre la tendance de la moyenne pour voir quand est-ce qu'on atteint des minimums locaux pour mieux comprendre et suivre l'apprentissage.
+Aussi, je vais ajouter un 2eme graphique pour suivre la tendance de la moyenne pour voir quand est-ce qu'on atteint des minimums locaux pour mieux comprendre et suivre l'apprentissage.
+
+Je relance le même agent `DQN` déjà entrainé avec ces deux changements.
 
 <img src="./images/dqn-5.png" />
 
