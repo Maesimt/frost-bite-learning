@@ -242,7 +242,7 @@ Dans DQN avec lequel on avait des parties superieur a 1400 de temps en temps, on
 ## DQN
 
 Passer de 150 a 64 neuronnes par couches
-
+```C
 +-------------------------------------+
 + Agent: DQN                    +
 +-------------------------------------+
@@ -314,6 +314,7 @@ Passer de 150 a 64 neuronnes par couches
       |                                          **********   *******      ***                  |
     0 +-----------------------------------------------------------------------------------------+
       0             200            400            600            800            1000           1200
+```
 
 Bon on va essayer avec une architecture 256 neuronnes, nombre arbitraire qui est le double du nombre de bytes de la ram. (128 x 2). On va le demarrer du debut sans l'arreter.
 
