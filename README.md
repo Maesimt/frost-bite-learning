@@ -282,9 +282,11 @@ Je relance le même agent `DQN` déjà entrainé avec ces deux changements.
 
 <img src="./images/dqn-5.png" />
 
-<img src="./images/dqn-6.png" />
+La performance de l'agent a plateau, mais de temps en il a des bonnes "runs".
 
 ### Actor Critic
+
+Dernier cours, un nouvel agent à essayer. Même chose ont relance avec les paramètres par défaut.
 
 <img src="./images/actor-critic-1.png" />
 
