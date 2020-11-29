@@ -9,8 +9,6 @@ from agents.actorCritic import ActorCriticAgent, ActorCriticExperiment
 
 def run(algo):
     env = gym.make('Frostbite-ram-v0')
-    
-    return
 
     if algo == 'sarsa':
         agent = SarsaAgent(env.observation_space, env.action_space, epsilon=0.1, alpha=0.01, gamma=0.1)
