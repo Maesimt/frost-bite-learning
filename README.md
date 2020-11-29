@@ -113,11 +113,11 @@ Il y a 18 actions possibles :
 
 (https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py#L219) 
 
-Est-ce un probleme stationnaire
+Jouer au jeu avec l'agent est un problème stationnaire. C'est-à-dire que les décisions ne dépendent pas du temps mais bien de l'état. L'agent vise à apprendre et améliorer une politique qui prendra les mêmes décisions lorsqu'elle sera présenté le même état. Dans note l'état est représenté par l'ensemble des 128 bytes.
 
-Subitlite. Les vies.
+La tâche est épisodique mais une chose intéressante qui potentiellement va amener son lot de défis c'est qu'un épisode ne correspond pas à une vie. L'agent commence un nouvel épisode avec 4 vies et lorsqu'il meurt pour la 4ème fois, l'épisode prend fin et son score est totaliser.
 
-Représenter les états au niveau
+Pour comprendre rapidement un peu les interactions possibles entre l'agent et les endroits sur lesquels il peut être dans le jeu. Voici un petit graphique qui inclut la plupart des règles du jeu.
 
 <img src="./images/frostbite-pdm.png" />
 
@@ -139,12 +139,17 @@ Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le
 
 ### Open AI Gym
 
+Évidamment il faut que Python soit installé pour rouler le code. Il faut aussi avoir les librairies de OpenAI Gym sur sont poste.
+
+[documentation OpenAI Gym](https://gym.openai.com/docs/)
+
 ### Graphique Terminal
 
 On peut prendre jupyter, mais j'aime bien rester dans le terminal.
 
 J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais directement dans la console lorsque je suis connecter sur le serveur.
 
+[Github - termplotlib](https://github.com/nschloe/termplotlib)
 
 ##  Journal
 
