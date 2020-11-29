@@ -301,6 +301,11 @@ Encore une fois le nombre de neuronnes est choisi avec très peu réflexion.
 
 <img src="./images/actor-critic-2.png" />
 
+Oups, c'est atroce. Ça commence bas, ça monte à peine et ça se casse la geule en pas trop de temps.
+Je vais retourner sur `DQN`.
+
+## DQN
+
 Je viens de realiser que le DQN a beacoup plus d'hyper-parametres de disponibles que je le croyais.
 J'ai ajouter les hyper-parametres que je n'avais pas vue dans l'agent DQN pour les voir.
 
@@ -316,27 +321,30 @@ J'ai ajouter les hyper-parametres que je n'avais pas vue dans l'agent DQN pour l
         print('+ nHidden: ' + str(self.nhidden))
 ```
 
-Ma strategie va consister de regarder le DQN qui a marcher pour essayer de prendre des parametres similaires avec ActorCritic.
-
-Dans DQN avec lequel on avait des parties superieur a 1400 de temps en temps, on avait :
+Dans l'agent DQN avec lequel on avait des parties superieur a 1400 de temps en temps, on avait les paramètres par défaut soit :
 
 ```C
-+ epsilon: 1
-+ obs_size: 128
-+ gamma: 0.99
-+ batch_size: 64
-+ epoch_length: 100
-+ learning_rate: 0.0001
-+ tau: 0.05
-+ nHidden: 150
+epsilon: 1
+obs_size: 128
+gamma: 0.99
+batch_size: 64
+epoch_length: 100
+learning_rate: 0.0001
+tau: 0.05
+nHidden: 150
+```
+Je vais essayer de nouvelles choses en jouant avec des paramètres.
+En commençant par diminuer le nombre de neuronnes par couches.
+
+```haskell
+150 -> 64
 ```
 
-## DQN
-
-Passer de 150 a 64 neuronnes par couches
 <img src="./images/dqn-advance-1.png" />
 
-Bon on va essayer avec une architecture 256 neuronnes, nombre arbitraire qui est le double du nombre de bytes de la ram. (128 x 2). On va le demarrer du debut sans l'arreter.
+Ah bah, c'est pas super ça meurt dès le début, la quantité de neuronnes ne doit pas ètre suffisantes pour s'ajuster à la compléxité de l'environnement.
+
+On va essayer avec une architecture 256 neuronnes, nombre arbitraire qui est le double du nombre de bytes de la ram. (128 x 2).
 
 <img src="./images/dqn-advance-2.png" />
 
