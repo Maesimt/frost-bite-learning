@@ -54,8 +54,8 @@ Manger un poisson -> 200 points
 
 Quels sont les actions (18)
 Il y a 18 actions possibles 
-| index        | nam          | signification  |
-| ------------- | ------------- | ----- |
+| index        | name          | signification  |
+|:-- |:-- |:----- |
 | 0 | "NOOP" | Ne rien faire |
 | 1 | "FIRE" | Ne rien faire |
 | 2 | "UP" | Ne rien faire |
@@ -74,6 +74,7 @@ Il y a 18 actions possibles
 | 15 | "UPLEFTFIRE" | Ne rien faire |
 | 16 | "DOWNRIGHTFIRE" | Ne rien faire |
 | 17 | "DOWNLEFTFIRE" | Ne rien faire |
+
 Source: https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py#L219 
 
 Est-ce un probleme stationnaire
