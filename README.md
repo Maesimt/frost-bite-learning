@@ -290,7 +290,14 @@ Dernier cours, un nouvel agent à essayer. Même chose ont relance avec les para
 
 <img src="./images/actor-critic-1.png" />
 
-Changement du nombre de neuronnes par couche.
+Eh, c'est vraiment étrange comme graphique, il plateau instantannément au début, ensuite il doit explorer pour finalement revenir exactement où il était plutôt.
+
+
+Prochaine "run", changement du nombre de neuronnes par couche:
++ couche cachée 1: 32 -> 128
++ couche cachée 2: 32 -> 72
+
+Encore une fois le nombre de neuronnes est choisi avec très peu réflexion.
 
 <img src="./images/actor-critic-2.png" />
 
