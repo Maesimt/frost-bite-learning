@@ -224,29 +224,45 @@ On voit que c'est carrément meilleur que les autres dès le début.
 <img src="./images/dqn-2.png" />
 Notes:
 
-+ L'image ci-dessous c'est la suite de l'entrainement de la première run.
++ L'image ci-dessus c'est la suite de l'entrainement de la première run.
 + Il manque le paramètre de décroissance du Epsilon parce que je l'avais modifier directement dans l'algo.
 + Epsilon bouge pas rapport à la première image parce qu'il décroit pendant l'entrainement.
 
 
 On voit qu'il vient d'avoir un score de 1470. Le meilleur jusqu'à présent.
-Je vais l'essayer l'entrainement continuer pour voir s'il va réussir à faire d'autres gros scores.
+Je vais laisser l'entrainement continuer pour voir s'il va réussir à faire d'autres gros scores.
 
 > Pretend like there's a picture here :(
 
-Suite a un crash de la machine sur GCP je n'ai pas pu garder une trace du dernier graphique. La derniere fois que j'avais regarder le graphique on voyait le modele qui avait reussi a faire plusieurs parties superieure a 1400 points.
+Suite a un crash de la machine sur GCP, je n'ai pas pu garder une trace du dernier graphique. La derniere fois que j'avais regarder le graphique, on voyait l'agent qui avait réussi à faire plusieurs parties supérieure a 1400 points.
 
-Cependant l'enregistrement des poids du model en `fichier.h5` etait activer alors j'ai pu conserver l'entrainement qu'il avait realiser jusqu'a un certain point problablement proche du crash.
+Heureusement, l'enregistrement des poids du model en `fichier.h5` était activé alors j'ai pu conserver l'entrainement qu'il avait realiser jusqu'à un certain point problablement proche du crash.
 
-J'ai ajuster le code pour repartir des poids sauvegardes. Seul difference, j'ai enlever l'exploration et la decroissance pour qu'il reparte de ses acquis. Donc epsilon a 0.01 en partant.
+J'ai ajouter du code pour repartir des poids sauvegardés.
 
-On voit que des les premiers episodes il est capable de refaire une partie superieure a 1400 points, ce qui est encourageant.
+```python
+# Load existing model if available.
+existingWeightsFile = "weights.h5";
+if (path.exists(existingWeightsFile)):
+    print('Loaded existing weights from ', existingWeightsFile)
+    self.model_network.load_weights("weights.h5")
+```
+
+Seul difference, j'ai enlever l'exploration et la décroissance pour qu'il reparte de ses acquis. Donc epsilon a 0.01 en partant.
 
 <img src="./images/dqn-3.png" />
 
-Il reussi a avoir deux autres runs interessantes dans un intervalle de 100 parties. Je m'interesse au run superieur a 300 car en-bas de 300 le bot est encore dans le meme niveau du jeu.
+On voit que des les premiers episodes il est capable de refaire une partie superieure a 1400 points, ce qui est encourageant.
+
+Ça prouve aussi que le chargement des poids enregistrés à bien fonctionner.
+
+Je le laisse aller pour comprendre un peu mieux où il était rendu avant le crash de la machine sur GCP.
 
 <img src="./images/dqn-4.png" />
+
+Il reussi a avoir deux autres runs interessantes dans un intervalle de 100 parties. Je m'interesse au run superieur a 300 car en-bas de 300 le bot est encore dans le meme niveau du jeu.
+
+J'arrète l'entrainement.
 
 Je vais arreter d'enregistrer le modele a chaque episode pour accelerer le temps d'entraintement, tant pis si des crashs comme la derniere fois arrive, je repartirai un peu en arriere.
 
