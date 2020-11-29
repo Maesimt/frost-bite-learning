@@ -80,6 +80,10 @@ Est-ce un probleme stationnaire
 
 Subitlite. Les vies.
 
+Représenter les états au niveau
+
+<img src="./images/frostbite-pdm.png" />
+
 # Demarche
 
 Essayer une première fois plusieurs des algorithmes vue en cours pour voir si certains sont déjà capable de produire des résultats sans modification quelqueconque.
