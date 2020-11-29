@@ -191,21 +191,27 @@ J'ai ajouter `Reinforce` dans le projet. Je vais essayer avec les paramètres pa
 Pour 1000 parties c'est encore pire que `Sarsa`.
 
 Je vais jouer avec le nombre de neuronnes par couches voir qu'est-ce que ca peut faire.
-Et ajouter une 3ème couche pour voir.
+Et ajouter une 3ème couche cachée pour voir.
 
 - 1ère couche: 36 -> 128
 - 2ème couche: 36 -> 128
 - Nouvel couche: 128
 
-* Le nombre 128 parce que c'est le nombre de bytes qui représente l'état. Je me dis que peut-ètre que c'est bien d'avoir 1 neuronnes fully-connected à chaque bytes de l'état. C'est complètement aléatoire, j'ai aucune idée si c'est une bonne décision.
+* Le nombre 128 parce que c'est le nombre de bytes qui représente l'état. Je me dis que peut-ètre que c'est bien d'avoir 1 neuronnes fully-connected à chaque bytes de l'état (via la couche d'entrée). C'est complètement aléatoire, j'ai aucune idée si c'est une bonne décision.
 ** Une nouvelle couche parce que le problème est plus complexe que ceux vu dans le cours. Encore là, aucune idée si c'est une bonne décision.
 *** Au moins je respecte le design de couche identique, peut-être que c'est pas fou, à voir.
 
 <img src="./images/reinforce-2.png" />
 
+C'est un peu mieux qu'avant, c'est comparable à `Sarsa` encore avec 1000 épisodes.
 
+Avec la même logique un peu douteuse que j'ai pris avant, peut-être que je si réduis le nombres de neuronnes de la dernière couche cachée au même nombre que la couche de sortie. 18 c'est le nombre d'actions disponibles dans l'émulateur.
+
+J'ai aussi enlever la limite de 1000 épisodes (parties) pour voir si avec le temps ça devient mieux.
 
 <img src="./images/reinforce-3.png" />
+
+Bon on voit que la tendant est un peu plus haute. La moyenne des 50 dernieres parties est pire, mais on voit qu'il était meilleur dans l'ensemble même au tout début.
 
 ### DQN
 <img src="./images/dqn-1.png" />
