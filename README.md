@@ -211,12 +211,25 @@ J'ai aussi enlever la limite de 1000 épisodes (parties) pour voir si avec le te
 
 <img src="./images/reinforce-3.png" />
 
-Bon on voit que la tendant est un peu plus haute. La moyenne des 50 dernieres parties est pire, mais on voit qu'il était meilleur dans l'ensemble même au tout début.
+Bon on voit que la tendant est un peu plus haute. La moyenne des 50 dernieres parties est pire, mais on voit qu'il était meilleur dans l'ensemble même au tout début. C'est peut-être pas vrai parce qu'on voit que l'amplitude est similaire mais l'échelle des X n'est pas la même ça se peut que la compression dans le graphique nous induise en erreur.
 
 ### DQN
+
+Nouvelle agent à essayer, comme d'habitude, les paramètres par défaut du cours. Je vais le laisser tourner un peu plus longtemps comme la dernière "run" de `Reinforce`.
+
 <img src="./images/dqn-1.png" />
 
+On voit que c'est carrément meilleur que les autres dès le début.
+
 <img src="./images/dqn-2.png" />
+* L'image ci-dessous c'est la suite de l'entrainement de la première run.
+** Il manque le paramètre de décroissance du Epsilon parce que je l'avais modifier directement dans l'algo.
+*** Epsilon bouge pas rapport à la première image parce qu'il décroit pendant l'entrainement.
+
+On voit qu'il vient d'avoir un score de 1470. Le meilleur jusqu'à présent.
+Je vais l'essayer l'entrainement continuer pour voir s'il va réussir à faire d'autres gros scores.
+
+> Missing Picture... :(
 
 Suite a un crash de la machine sur GCP je n'ai pas pu garder une trace du dernier graphique. La derniere fois que j'avais regarder le graphique on voyait le modele qui avait reussi a faire plusieurs parties superieure a 1400 points.
 
