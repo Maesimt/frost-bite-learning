@@ -229,7 +229,7 @@ On voit que c'est carrément meilleur que les autres dès le début.
 On voit qu'il vient d'avoir un score de 1470. Le meilleur jusqu'à présent.
 Je vais l'essayer l'entrainement continuer pour voir s'il va réussir à faire d'autres gros scores.
 
-> Missing Picture... :(
+> Pretend like there's a picture here :(
 
 Suite a un crash de la machine sur GCP je n'ai pas pu garder une trace du dernier graphique. La derniere fois que j'avais regarder le graphique on voyait le modele qui avait reussi a faire plusieurs parties superieure a 1400 points.
 
