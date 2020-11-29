@@ -43,7 +43,8 @@ def run(algo):
             epoch_length=100,
             nhidden=256,
             learning_rate=0.0001,
-            gamma=0.9
+            gamma=0.9,
+            tau=0.1
             )
         DQNWatchExperiment().run_qlearning(env, agent, 100000, True)
     elif algo == 'actorCritic':
@@ -66,4 +67,4 @@ def run(algo):
         #     hidden2 = 72,
         # )
         ActorCriticExperiment(env, agent, EPISODES=100000).run_actorcritic()
-run('dqn') 
+run('watch dqn') 

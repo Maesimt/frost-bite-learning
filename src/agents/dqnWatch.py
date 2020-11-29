@@ -56,7 +56,7 @@ class DQNWatchAgent(Agent):
         self.model_network = QNetwork(self.obs_size, self.num_actions, kwargs.get('nhidden', 150), self.lr)
         # Load existing model.
 
-        self.model_network.load_weights("/home/guillaumecummings/Desktop/weights_550.h5")
+        self.model_network.load_weights("/home/guillaumecummings/Desktop/weights_620_tau_1.h5")
 
         self.target_network = QNetwork(self.obs_size, self.num_actions, kwargs.get('nhidden', 150), self.lr)
         self.target_network.set_weights(self.model_network.get_weights()) 
