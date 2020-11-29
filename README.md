@@ -155,9 +155,15 @@ J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais di
 
 Essayer une première fois plusieurs des algorithmes vue en cours pour voir si certains sont déjà capable de produire des résultats sans modification quelqueconque.
 
-### Sarsa
+### a. Sarsa
+
+On vient de voir `Sarsa`, je viens de créer un répertoire avec les `Agents` et les `Experiement` pour centraliser tout le contenu.J'ai brancher `termoplotlib` pour suivre les algos dans le terminal.
+
+J'essaye `Sarsa` avec les paramètres de bases sans rien toucher.
 
 <img src="./images/sarsa-1.png" />
+
+
 
 <img src="./images/sarsa-2.png" />
 
