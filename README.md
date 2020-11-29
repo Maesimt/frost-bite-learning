@@ -5,31 +5,16 @@
 
 <ol>
     <li><a href="#contexte">Contexte</a></li>
-    <li><a href="#histoire">L'histoire et le future de Caffe2</a></li>
-    <li><a href="#pre-requis">Pré-requis</a></li>
-    <li><a href="#on-se-lance">Bon, on se lance !</a></li>
+    <li><a href="#histoire">Description du jeu</a></li>
+    <li><a href="#details">Détails techniques supplémentaires</a></li>
     <li>
-        <a href="#configurer-gpu">Configurer un GPU (Optionnel)</a>
+        <a href="#pre-requis">Pré-requis</a>
         <ol>
-            <li><a href="#cuda-toolkit">Nvidia CUDA Toolkit</a></li>
+            <li><a href="#gpu">GPU</a></li>
             <li><a href="#CUDDN">Nvidia CUDDN</a></li>
         </ol>
     </li>
-        <li>
-        <a href="#installation-de-caffe2">Installation de Caffe2</a>
-        <ol>
-            <li><a href="#installation-de-caffe2">Récupérer le code source</a></li>
-            <li><a href="#compiler-code-source">Compiler le code source</a></li>
-        </ol>
-    </li>
-        <li>
-        <a href="#verifier-installation">Vérifier l'installation</a>
-        <ol>
-            <li><a href="#verifier-installation-caffe2">Tester l’installation des librairies de Caffe2.</a></li>
-            <li><a href="#verifier-installation-gpu">Tester le build GPU avec Caffe2 (Conditionnel)</a></li>
-        </ol>
-    </li>
-    <li><a href="#installer-interface">Installer un environnement de développement</a></li>
+    <li><a href="#journal">Journal</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
     <li><a href="#annexe">Annexe</a></li>
 </ol>
@@ -47,7 +32,9 @@ Note supplémentaire, le code source des algorithmes à été fourni par Mr.Mika
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
 </p>
 
-# Description de l'application
+<a id="jeu" />
+
+## 2. Description du jeu
 
 <img src="./images/frostbite-menu.gif" />
 
@@ -84,7 +71,13 @@ Plusieurs choses peuvent enlever une vie au joueur.
 
 > Source https://en.wikipedia.org/wiki/Frostbite_(video_game)
 
-# PDM
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
+
+<a id="details" />
+
+## 3. Détails techniques supplémentaires
 
 Quels sont les etats, comment est represente l'environnement.
 
@@ -100,23 +93,23 @@ Il y a 18 actions possibles
 | index        | name          | signification  |
 |:-- |:-- |:----- |
 | 0 | "NOOP" | Ne rien faire |
-| 1 | "FIRE" | Ne rien faire |
-| 2 | "UP" | Ne rien faire |
-| 3 | "RIGHT"  | Ne rien faire |
-| 4 | "LEFT" | Ne rien faire |
-| 5 | "DOWN" | Ne rien faire |
-| 6 | "UPRIGHT" | Ne rien faire |
-| 7 | "UPLEFT" | Ne rien faire |
-| 8 |"DOWNRIGHT" | Ne rien faire |
-| 9 |"DOWNLEFT" | Ne rien faire |
-| 10 | "UPFIRE" | Ne rien faire |
-| 11 |"RIGHTFIRE" | Ne rien faire |
-| 12 |"LEFTFIRE" | Ne rien faire |
-| 13 | "DOWNFIRE" | Ne rien faire |
-| 14 | "UPRIGHTFIRE" | Ne rien faire |
-| 15 | "UPLEFTFIRE" | Ne rien faire |
-| 16 | "DOWNRIGHTFIRE" | Ne rien faire |
-| 17 | "DOWNLEFTFIRE" | Ne rien faire |
+| 1 | "FIRE" | Échanger un bloc de l'igloo contre un changement de direction. |
+| 2 | "UP" | Faire un saut vers le haut |
+| 3 | "RIGHT"  | Marcher vers la droite |
+| 4 | "LEFT" | Marcher vers la gauche |
+| 5 | "DOWN" | Faire un saut vers le bas |
+| 6 | "UPRIGHT" | Faire un saut en haut vers la droite |
+| 7 | "UPLEFT" | Faire un saut en haut vers la gauche |
+| 8 |"DOWNRIGHT" | Faire un saut en bas vers la droite |
+| 9 |"DOWNLEFT" | Faire un saut en bas vers la gauche |
+| 10 | "UPFIRE" | Échanger un bloc de l'igloo contre un changement de direction. |
+| 11 |"RIGHTFIRE" | Échanger un bloc de l'igloo contre un changement de direction. |
+| 12 |"LEFTFIRE" | Échanger un bloc de l'igloo contre un changement de direction. |
+| 13 | "DOWNFIRE" | Échanger un bloc de l'igloo contre un changement de direction. |
+| 14 | "UPRIGHTFIRE" | Échanger un bloc de l'igloo contre un changement de direction. |
+| 15 | "UPLEFTFIRE" | Échanger un bloc de l'igloo contre un changement de direction. |
+| 16 | "DOWNRIGHTFIRE" | Échanger un bloc de l'igloo contre un changement de direction. |
+| 17 | "DOWNLEFTFIRE" | Échanger un bloc de l'igloo contre un changement de direction. |
 
 (https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py#L219) 
 
@@ -128,7 +121,32 @@ Représenter les états au niveau
 
 <img src="./images/frostbite-pdm.png" />
 
-# Demarche
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
+
+<a id="pre-requis" />
+
+## 4. Pré-requis
+
+<a id="gpu" />
+
+### GPU
+
+Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le configurer en utilisant un autre guide que j'ai fait en me basant sur d'autres guides trouvés sur internet. 
+
+[Mon Guide](https://github.com/Maesimt/tensorflow-cloud-gpu)
+
+### Open AI Gym
+
+### Graphique Terminal
+
+On peut prendre jupyter, mais j'aime bien rester dans le terminal.
+
+J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais directement dans la console lorsque je suis connecter sur le serveur.
+
+
+##  Journal
 
 Essayer une première fois plusieurs des algorithmes vue en cours pour voir si certains sont déjà capable de produire des résultats sans modification quelqueconque.
 
