@@ -74,7 +74,7 @@ class DQNAgent(Agent):
     
     def act(self, state):
         current_epsilon = self.epsilon if self.score <= 400 else self.epsilon_lvl_2 
-        if np.random.random() < self.current_epsilon:
+        if np.random.random() < current_epsilon:
             i = np.random.randint(0,len(np.arange(self.actions.n)))
         else: 
             i = np.argmax(self.model_network.predict(state.reshape(1, state.shape[0]))[0])

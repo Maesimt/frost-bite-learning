@@ -522,7 +522,8 @@ C'est en quelque sorte ce qu'on a vu dans le cours, on peut donner un modele du 
 
 On va choisir l'epsilon d'un niveau si le score est <= 400 et l'epsilon du niveau 2 si le score est > 400 tel que :
 ```python
-if np.random.random() < self.current_epsilon:
+current_epsilon = self.epsilon if self.score <= 400 else self.epsilon_lvl_2 
+if np.random.random() < current_epsilon:
     i = np.random.randint(0,len(np.arange(self.actions.n)))
 else: 
     i = np.argmax(self.model_network.predict(state.reshape(1, state.shape[0]))[0])  
