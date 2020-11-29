@@ -137,11 +137,14 @@ Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le
 
 [Mon Guide](https://github.com/Maesimt/tensorflow-cloud-gpu)
 
-### Open AI Gym
+<a id="openai-gym" />
+### OpenAI Gym
 
 Évidamment il faut que Python soit installé pour rouler le code. Il faut aussi avoir les librairies de OpenAI Gym sur sont poste.
 
-[documentation OpenAI Gym](https://gym.openai.com/docs/)
+[Documentation OpenAI Gym](https://gym.openai.com/docs/)
+
+<a id="termplotlib" />
 
 ### Graphique Terminal
 
@@ -151,9 +154,13 @@ J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais di
 
 [Github - termplotlib](https://github.com/nschloe/termplotlib)
 
+<a id="journal" />
+
 ##  Journal
 
 Essayer une première fois plusieurs des algorithmes vue en cours pour voir si certains sont déjà capable de produire des résultats sans modification quelqueconque.
+
+<a id="sarsa" />
 
 ### a. Sarsa
 
@@ -161,13 +168,21 @@ On vient de voir `Sarsa`, je viens de créer un répertoire avec les `Agents` et
 
 J'essaye `Sarsa` avec les paramètres de bases sans rien toucher.
 
-<img src="./images/sarsa-1.png" width="300" />
+<img src="./images/sarsa-1.png" />
 
+Pas super bon, après 1000 parties on dirait que l'agent fait n'importe quoi. 
 
+Je sais pas trop quoi faire, je vais augmenter l'epsilon et baisser l'alpha:
+- epsilon: 0.2 -> 0.4
+- alpha: 0.5 -> 0.1
 
 <img src="./images/sarsa-2.png" />
 
-### Reinforce
+Légère amélioration par rapport à avant. L'agent fait encore n'importe quoi. Le nombre de partie n'est peut-être pas suffisant.
+
+<a id="reinforce" />
+
+### b. Reinforce<a id="openai-gym" />
 
 <img src="./images/reinforce-1.png" />
 
