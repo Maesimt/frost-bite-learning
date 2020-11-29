@@ -1,5 +1,5 @@
 # Frost Bite
-<img src="./images/frostbite-box-front.jpeg" />
+<img src="./images/frostbite-box-front.jpg" />
 
 ## Table des matières
 
