@@ -1193,6 +1193,10 @@ gym.spaces.Discrete(10)
 
 Wow, la moyenne augmente constatment
 
+
+- Double layer exploration
+- Parler des apprentissages stategie apprise lvl2 appuyer sur espace pour faire du surplace une fois que ligloo est construit parce que ca ne coute plus de bloc. Je ne le savais meme pas.
+
 # Conclusion
 
 Demontration (.gif)
