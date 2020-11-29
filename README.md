@@ -184,9 +184,26 @@ Légère amélioration par rapport à avant. L'agent fait encore n'importe quoi.
 
 ### b. Reinforce<a id="openai-gym" />
 
+J'ai ajouter `Reinforce` dans le projet. Je vais essayer avec les paramètres par défaut du cours.
+
 <img src="./images/reinforce-1.png" />
 
+Pour 1000 parties c'est encore pire que `Sarsa`.
+
+Je vais jouer avec le nombre de neuronnes par couches voir qu'est-ce que ca peut faire.
+Et ajouter une 3ème couche pour voir.
+
+- 1ère couche: 36 -> 128
+- 2ème couche: 36 -> 128
+- Nouvel couche: 128
+
+* Le nombre 128 parce que c'est le nombre de bytes qui représente l'état. Je me dis que peut-ètre que c'est bien d'avoir 1 neuronnes fully-connected à chaque bytes de l'état. C'est complètement aléatoire, j'ai aucune idée si c'est une bonne décision.
+** Une nouvelle couche parce que le problème est plus complexe que ceux vu dans le cours. Encore là, aucune idée si c'est une bonne décision.
+*** Au moins je respecte le design de couche identique, peut-être que c'est pas fou, à voir.
+
 <img src="./images/reinforce-2.png" />
+
+
 
 <img src="./images/reinforce-3.png" />
 
