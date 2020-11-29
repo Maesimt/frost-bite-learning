@@ -75,7 +75,7 @@ Il y a 18 actions possibles
 | 16 | "DOWNRIGHTFIRE" | Ne rien faire |
 | 17 | "DOWNLEFTFIRE" | Ne rien faire |
 
-Source: https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py#L219 
+(https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py#L219) 
 
 Est-ce un probleme stationnaire
 
