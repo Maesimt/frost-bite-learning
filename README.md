@@ -161,7 +161,7 @@ On vient de voir `Sarsa`, je viens de créer un répertoire avec les `Agents` et
 
 J'essaye `Sarsa` avec les paramètres de bases sans rien toucher.
 
-<img src="./images/sarsa-1.png" />
+<img src="./images/sarsa-1.png" width="300" />
 
 
 
