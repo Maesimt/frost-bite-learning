@@ -34,6 +34,7 @@ class DQNAgent(Agent):
         self.actions = actions
         self.episodes_not_saved = 0
         self.average_score = 0
+        self.score = 0
         self.best_average = 0
         self.epsilon_lvl_2 = 1
         
@@ -174,6 +175,7 @@ class DQNAgent(Agent):
 
     def printParameters(self):
         print('+ epsilon: ' + str(self.epsilon))
+        print('+ epsilon lvl 2: ' + str(self.epsilon_lvl_2))
         print('+ obs_size: ' + str(self.obs_size))
         print('+ gamma: ' + str(self.gamma))
         print('+ batch_size: ' + str(self.batch_size))
@@ -216,6 +218,7 @@ class DQNExperiment(object):
                 state = next_state
                 
                 R += reward # accumulate reward - for display
+                agent.score = R
             
             
             episodes_completed.append(episode_number)
