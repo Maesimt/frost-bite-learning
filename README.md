@@ -222,9 +222,10 @@ Nouvelle agent à essayer, comme d'habitude, les paramètres par défaut du cour
 On voit que c'est carrément meilleur que les autres dès le début.
 
 <img src="./images/dqn-2.png" />
-* L'image ci-dessous c'est la suite de l'entrainement de la première run.
-** Il manque le paramètre de décroissance du Epsilon parce que je l'avais modifier directement dans l'algo.
-*** Epsilon bouge pas rapport à la première image parce qu'il décroit pendant l'entrainement.
+Notes: 
+- L'image ci-dessous c'est la suite de l'entrainement de la première run.
+- Il manque le paramètre de décroissance du Epsilon parce que je l'avais modifier directement dans l'algo.
+- Epsilon bouge pas rapport à la première image parce qu'il décroit pendant l'entrainement.
 
 On voit qu'il vient d'avoir un score de 1470. Le meilleur jusqu'à présent.
 Je vais l'essayer l'entrainement continuer pour voir s'il va réussir à faire d'autres gros scores.
