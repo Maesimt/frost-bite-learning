@@ -1,7 +1,7 @@
 
 <div style="text-align:center;">
 <h1>Frost Bite</h1>
-<img src="./images/frostbite.png" width="200" />
+<img src="./images/frostbite-menu.gif" />
 </div>
 
 # Ojectifs
@@ -48,9 +48,9 @@ Quels sont les etats, comment est represente l'environnement.
 L'environnement est fourni par OpenAI Gym. Il nous donne accès à 128 bytes qui représente la ram du jeu à chaque instant t.
 Pour l'agent, jouer au jeu est en soit une tâche épisodique.
 La fonction de récompense nous retourne plusieurs récompenses:
-Sauter sur un block de glace blanc -> 10 points
-Terminer un niveau avec des degres restants -> N * degré restants , 15 deg * ? = 310, 40 deg * ? = 1120
-Manger un poisson -> 200 points
+- Sauter sur un block de glace blanc -> 10 points
+- Terminer un niveau avec des degres restants -> N * degré restants , 15 deg * ? = 310, 40 deg * ? = 1120
+- Manger un poisson -> 200 points
 
 Quels sont les actions (18)
 Il y a 18 actions possibles 
