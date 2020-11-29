@@ -1,10 +1,55 @@
 # Frost Bite
-<img src="./images/frostbite-menu.gif" />
-> Frost Bite - Écran du menu principale, les règles du jeu ne sont pas toutes appliqués dans ce vidéo.
+<img src="./images/frostbite-box-front.jpeg" />
 
-# Ojectifs
+## Table des matières
+
+<ol>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#histoire">L'histoire et le future de Caffe2</a></li>
+    <li><a href="#pre-requis">Pré-requis</a></li>
+    <li><a href="#on-se-lance">Bon, on se lance !</a></li>
+    <li>
+        <a href="#configurer-gpu">Configurer un GPU (Optionnel)</a>
+        <ol>
+            <li><a href="#cuda-toolkit">Nvidia CUDA Toolkit</a></li>
+            <li><a href="#CUDDN">Nvidia CUDDN</a></li>
+        </ol>
+    </li>
+        <li>
+        <a href="#installation-de-caffe2">Installation de Caffe2</a>
+        <ol>
+            <li><a href="#installation-de-caffe2">Récupérer le code source</a></li>
+            <li><a href="#compiler-code-source">Compiler le code source</a></li>
+        </ol>
+    </li>
+        <li>
+        <a href="#verifier-installation">Vérifier l'installation</a>
+        <ol>
+            <li><a href="#verifier-installation-caffe2">Tester l’installation des librairies de Caffe2.</a></li>
+            <li><a href="#verifier-installation-gpu">Tester le build GPU avec Caffe2 (Conditionnel)</a></li>
+        </ol>
+    </li>
+    <li><a href="#installer-interface">Installer un environnement de développement</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#annexe">Annexe</a></li>
+</ol>
+
+<a id="contexte" />
+
+## 1. Contexte
+
+Dans le cadre du cours <strong>Algorithmes d'appentissage par renforcement</strong> donné dans le programme de spécialisation en intelligence artificielle du Cégep de Sainte-foy à Québec, nous devons essayer de faire un agent qui est capable d'apprendre à jouer
+à un des jeux offerts sur [OpenAI - Gym](https://gym.openai.com/envs).
+
+Note supplémentaire, le code source des algorithmes à été fourni par Mr.Mikaël pendant les cours.
+
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
 
 # Description de l'application
+
+<img src="./images/frostbite-menu.gif" />
 
 Un jeu de 1983 cree par Steve Cartwright et publier par Activision pour la console Atari 2600.
 Il y avait un semblant de multi-joueur avec la posibilite d'alterner en deux personnages.
