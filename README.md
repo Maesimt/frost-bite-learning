@@ -433,6 +433,117 @@ gym.spaces.Discrete(10)
 
 <img src="./images/dqn-advance-12.png" />
 
+C'est le plus rapide a atteindre le plateau. A peine 500 episodes. Les premiers entrainement du DQN pouvait prendre jusqu'a 2000-2500 pour atteinre le plateau de 180 points.
+
+Je vais le laisser continuer voir s'il reussi a devenir bon dans le 2eme niveau.
+
+```C
++-------------------------------------+
++ Agent: DQN                    +
++-------------------------------------+
++ epsilon: 0.01236855095771794
++ obs_size: 128
++ gamma: 0.9
++ batch_size: 64
++ epoch_length: 100
++ learning_rate: 0.0001
++ tau: 0.1
++ nHidden: 256
++-------------------------------------+
++ Episode 1562              score: 80.0
++ Mean of last 50 = 169.6   Highest Score: 1750.0
++-------------------------------------+
+  1800 +----------------------------------------------------------------------------------------+
+       |                                         *                                              |
+       |                                         *                                              |
+  1600 |                                         *                                              |
+       |                                         *                                              |
+       |                                         *  *                      *                    |
+  1400 |                                         *  *                      *                    |
+       |                                         *  *   *                  *                    |
+       |                                         *  *   *                  *                    |
+  1200 |                                         *  *   *       *          *                    |
+       |                                         *  *   *       *          *                    |
+       |                                         *  *   *       *         **           *        |
+  1000 |                                         *  *   *       *         **           *        |
+       |                                         *  *   *       *         **  *    *   *        |
+   800 |                                         *  *   *       *         **  *    *   *   *    |
+       |                                         *  *   *       *         **  *    *   *   *    |
+       |                                         *  *   *       *         **  *    *   *   *    |
+   600 |                                         *  *   *       *         **  *    *   *   *    |
+       |                                         *  *   *       *         **  *    *   *   *    |
+       |                                         *  *   *       *         **  *    *   *   *    |
+   400 |                                         *  *   *       *         **  *    *   *   *    |
+       |                                         *  *   *       *         **  *    *   *   *    |
+       |                               *    * *  * **   ** *  * * *    *****  *   *** *** ** *  |
+   200 |      *  *  *************************************************************************** |
+       |*************************************************************************************** |
+       |*************************** ************ **** ** ** *  ***   ********** *******  ****** |
+     0 +----------------------------------------------------------------------------------------+
+       0         200        400        600         800        1000       1200       1400       1600
+  250 +-----------------------------------------------------------------------------------------+
+      |                                             *                                           |
+      |                                            **                                           |
+      |                                            **                      *                    |
+      |                                          ****                      **                   |
+  200 |                                          **********     * *        ****        ***      |
+      |                                          *    **  *  ***** **    ********   ** *** ***  |
+      |                                         **    **  ******** ********   * * **** * *****  |
+      |                             ******* *  ***    **  ***        **          **  **   *  ** |
+      |                          **** **********                                 **  *        * |
+  150 |                        **** *        *                                                  |
+      |                     *****                                                               |
+      |                    *****                                                                |
+      |              *******                                                                    |
+      |             *******                                                                     |
+      |            **                                                                           |
+  100 |        *****                                                                            |
+      |       *****                                                                             |
+      |      **                                                                                 |
+      |********                                                                                 |
+      |** *                                                                                     |
+   50 |*                                                                                        |
+      |                                                                                         |
+      |                                                                                         |
+      |                                                                                         |
+      |                                                                                         |
+    0 +-----------------------------------------------------------------------------------------+
+      0         200         400        600        800        1000        1200       1400       1600
+```
+
+Autre idee 
+
+De l'exploration en double couche. Terme que je viens d'inventer. On sait que les tableaux du jeu alterne entre des petits blocs et des gros blocs et ca change beaucoup le comportement du jeu.
+
+je vais utiliser un Epsilon pour le premier niveau et un autre Epsilon pour le deuxieme niveau.
+Comme ca lorsque l'agent devient greedy (0.01) sur le premier niveau et qu'il le maitrise, il va aller directement au deuxieme niveau et continuer de baisser l'Epsilon pour le nouveau niveau.
+
+C'est en quelque sorte ce qu'on a vu dans le cours, on peut donner un modele du monde a un agent pour l'aider.
+
+On va choisir l'epsilon d'un niveau si le score est <= 400 et l'epsilon du niveau 2 si le score est > 400 tel que :
+```python
+if np.random.random() < self.current_epsilon:
+    i = np.random.randint(0,len(np.arange(self.actions.n)))
+else: 
+    i = np.argmax(self.model_network.predict(state.reshape(1, state.shape[0]))[0])  
+```
+
+Et avec la meme logique on va decay l'epsilon approprie
+
+```python
+if self.epsilon_decay:
+    if self.step_counter % self.epoch_length == 0:
+        if self.average_score > 400:
+            self.epsilon_lvl_2 = max(.01, self.epsilon_lvl_2 * .9995)
+        else:
+            self.epsilon = max(.01, self.epsilon * .9995)
+```
+
+On lance ca, go break the plateau boi.
+
+
+
+
 # Conclusion
 
 Demontration (.gif)
