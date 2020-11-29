@@ -9,6 +9,8 @@ from agents.actorCritic import ActorCriticAgent, ActorCriticExperiment
 
 def run(algo):
     env = gym.make('Frostbite-ram-v0')
+    
+    return
 
     if algo == 'sarsa':
         agent = SarsaAgent(env.observation_space, env.action_space, epsilon=0.1, alpha=0.01, gamma=0.1)
@@ -25,7 +27,7 @@ def run(algo):
         ReinforceExperiment(env,agent, stop_criterion=10000, EPISODES=100000).run()
     elif algo == 'dqn':
         agent = DQNAgent(
-            env.action_space,
+            gym.spaces.Discrete(10),
             obs_size=env.observation_space,
             epsilon=1,
             epoch_length=100,
@@ -67,4 +69,4 @@ def run(algo):
         #     hidden2 = 72,
         # )
         ActorCriticExperiment(env, agent, EPISODES=100000).run_actorcritic()
-run('watch dqn') 
+run('dqn') 

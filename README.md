@@ -1738,6 +1738,13 @@ On va jouer sur le Tau voir qu'est-ce que ca fait.
 
 C'est mieux.
 
+Essayer d'enlever les 8 actions de fire puisque ca ne sert a rien dans ce jeu pour eviter de perdre du temps avec des controles inutilises.
+
+```Python
+# env.action_space == Discrete(18)
+gym.spaces.Discrete(10)
+```
+
 # Conclusion
 
 Demontration (.gif)
