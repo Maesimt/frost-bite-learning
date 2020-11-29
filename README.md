@@ -1,8 +1,6 @@
-
-<div style="text-align:center;">
-<h1>Frost Bite</h1>
+# Frost Bite
 <img src="./images/frostbite-menu.gif" />
-</div>
+> Frost Bite - Écran du menu principale, les règles du jeu ne sont pas toutes appliqués dans ce vidéo.
 
 # Ojectifs
 
