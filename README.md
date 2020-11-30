@@ -348,13 +348,15 @@ On va essayer avec une architecture 256 neuronnes, nombre arbitraire qui est le 
 
 <img src="./images/dqn-advance-2.png" />
 
+L'agent plateau à 180 points après environ 2000 épisodes.
+
 On voit une bonne progression au debut mais il stagne au [180,220] points.
 J'ai de la misere a comprendre pourquoi il ne reussi pas tjrs a passer au 2eme niveau du jeu.
 On voit qu'il reussi de temps en temps mais il est quand souvent pris a la fin du premier niveau.
 
 Je vais transferer le fichier du modele et le rouler en local pour voir ce qu'il fait.
 
-# gif.
+<img src="./images/not_going_to_igloo.gif />
 
 Je crois qu'il exploite la meilleur strategie qu'il a trouver jusqu'a maintenant. Il semble toujours faire la meme ligne droite avec un retour.
 Il voit l'igloo completer mais il ne semble pas realiser le potentiel de point qui se trouve a sa porte et il decide de rexploiter sa ligne de point avec les plateformes de glaces plutot.
