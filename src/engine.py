@@ -28,11 +28,11 @@ def run(algo):
             gym.spaces.Discrete(10),
             obs_size=env.observation_space,
             epsilon=1,
-            epoch_length=100,
-            nhidden=256,
-            learning_rate=0.0001,
-            gamma=0.9,
-            tau=0.1
+            epoch_length=50,
+            nhidden=202,
+            learning_rate=0.0002,
+            gamma=0.945,
+            tau=0.75
             )
         DQNExperiment().run_qlearning(env, agent, 100000, True)
     elif algo == 'watch dqn':

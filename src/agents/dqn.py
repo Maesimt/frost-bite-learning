@@ -34,7 +34,9 @@ class DQNAgent(Agent):
         self.actions = actions
         self.episodes_not_saved = 0
         self.average_score = 0
+        self.score = 0
         self.best_average = 0
+        self.epsilon_lvl_2 = 1
         
         # Epsilon
         self.epsilon = kwargs.get('epsilon', .01)       
@@ -70,8 +72,9 @@ class DQNAgent(Agent):
     
         self.step_counter = 0
     
-    def act(self, state):    
-        if np.random.random() < self.epsilon:
+    def act(self, state):
+        current_epsilon = self.epsilon if self.score <= 400 else self.epsilon_lvl_2 
+        if np.random.random() < current_epsilon:
             i = np.random.randint(0,len(np.arange(self.actions.n)))
         else: 
             i = np.argmax(self.model_network.predict(state.reshape(1, state.shape[0]))[0])
@@ -82,10 +85,10 @@ class DQNAgent(Agent):
         # decay epsilon after each epoch
         if self.epsilon_decay:
             if self.step_counter % self.epoch_length == 0:
-                if self.average_score > 0:
-                    self.epsilon = max(.01, self.epsilon * .9995)
+                if self.score > 400:
+                    self.epsilon_lvl_2 = max(.01, self.epsilon_lvl_2 * .9997)
                 else:
-                    self.epsilon = max(.2, self.epsilon * .9995)
+                    self.epsilon = max(.01, self.epsilon * .9997)
    
         return i
 
@@ -172,6 +175,7 @@ class DQNAgent(Agent):
 
     def printParameters(self):
         print('+ epsilon: ' + str(self.epsilon))
+        print('+ epsilon lvl 2: ' + str(self.epsilon_lvl_2))
         print('+ obs_size: ' + str(self.obs_size))
         print('+ gamma: ' + str(self.gamma))
         print('+ batch_size: ' + str(self.batch_size))
@@ -214,6 +218,7 @@ class DQNExperiment(object):
                 state = next_state
                 
                 R += reward # accumulate reward - for display
+                agent.score = R
             
             
             episodes_completed.append(episode_number)
