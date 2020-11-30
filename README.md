@@ -356,7 +356,7 @@ On voit qu'il reussi de temps en temps mais il est quand souvent pris a la fin d
 
 Je vais transferer le fichier du modele et le rouler en local pour voir ce qu'il fait.
 
-<img src="./images/not_going_to_igloo.gif />
+<img src="./images/not_going_to_igloo.gif" />
 
 Je crois qu'il exploite la meilleur strategie qu'il a trouver jusqu'a maintenant. Il semble toujours faire la meme ligne droite avec un retour.
 Il voit l'igloo completer mais il ne semble pas realiser le potentiel de point qui se trouve a sa porte et il decide de rexploiter sa ligne de point avec les plateformes de glaces plutot.
