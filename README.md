@@ -572,10 +572,10 @@ Autre idee
 
 De l'exploration en double couche. Terme que je viens d'inventer. On sait que les tableaux du jeu alterne entre des petits blocs et des gros blocs et ca change beaucoup le comportement du jeu.
 
-je vais utiliser un Epsilon pour le premier niveau et un autre Epsilon pour le deuxieme niveau.
-Comme ca lorsque l'agent devient greedy (0.01) sur le premier niveau et qu'il le maitrise, il va aller directement au deuxieme niveau et continuer de baisser l'Epsilon pour le nouveau niveau.
+je vais utiliser un `epsilon` pour le premier niveau et un autre `epsilon` pour le deuxieme niveau.
+Comme ca lorsque la politque de l'agent devient greedy (1% exploration) sur le premier niveau et qu'il le maitrise, il va aller directement au deuxieme niveau. Son score sera supérieur à 400 il va utiliser l'autre `epsilon` pour le 2ème niveau et donc recommencer avec un 100% d'exploration.
 
-C'est en quelque sorte ce qu'on a vu dans le cours, on peut donner un modele du monde a un agent pour l'aider.
+> C'est en quelque sorte ce qu'on a vu dans le cours, on peut donner un modele du monde a un agent pour l'aider. Je sais que le 2ème niveau à des nouveautés comme les poissons et que la logique de déplacement sur la glace n'est pas la même. Dans le niveau 1 les mouvements horizontal sont mortels alors que dans le deuxième niveau c'est tout à fait possible et permettre d'aller chercher les poissons plus rapidement.
 
 On va choisir l'epsilon d'un niveau si le score est <= 400 et l'epsilon du niveau 2 si le score est > 400 tel que :
 ```python
@@ -591,13 +591,13 @@ Et avec la meme logique on va decay l'epsilon approprie
 ```python
 if self.epsilon_decay:
     if self.step_counter % self.epoch_length == 0:
-        if self.average_score > 400:
+        if self.score > 400:
             self.epsilon_lvl_2 = max(.01, self.epsilon_lvl_2 * .9995)
         else:
             self.epsilon = max(.01, self.epsilon * .9995)
 ```
 
-On lance ca, go break the plateau boi.
+On lance ca, en espérant que ca réussise à briser le plateau.
 
 ```C
 +-------------------------------------+
@@ -678,9 +678,11 @@ Il y a pas ete assez performant pour etre souvent dans le niveau 2.
 
 Dernier espoir du lundi matin on va combiner les parametres au milieu de tout ce qui a marcher pour voir.
 
-neuronnes -> 150 + 228 / 2 = 203 -> nombre pair = 202
-tau -> 0.5 + 1 / 2 = 0.75
-gamma -> 0.99 + 0.9 / 2 = 0.945
+```haskell
+neuronnes:  150 + 228 / 2 = 203 = 202 (pour avoir un nombre pair)
+      tau:          0.5 + 1 / 2 = 0.75
+    gamma:       0.99 + 0.9 / 2 = 0.945
+```
 
 Go middle ground !
 
