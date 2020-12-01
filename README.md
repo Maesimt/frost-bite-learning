@@ -772,8 +772,10 @@ learning rate un petit plus agressif 0.0001 -> 0.0002
 
 J'ai choisi d'y aller avec `DQN` à cause des gains initiaux versus les autres algorithmes. Avec un contexte plus souple en terme de temps et avec une carte graphique à disposition pour éviter les coûts du cloud, j'aurais insister plus sur `Actor-Critic`. J'aurais aussi essayer plus d'algorithmes disponibles sur internet avec d'autres frameworks que Tensorflow.
 
-Je suis quand même content des performances qu'il a 
+Je suis quand même content des performances qu'il a eu. Une moyenne de 650 dans les 50 derniers épisodes ça voulait dire qu'il passait régulièrement au 2ème niveau. 
+En jouant avec les paramètres on voit qu'on peut vraiment faire la différence.
+Avec le tau et le retrait des actions inutiles, on est passé de 2500 episodes à 500 épisodes pour atteindre la moyenne. 
 
-Demontration (.gif)
+<img src="./images/best-score.gif" />
 
 presentation des performances.
