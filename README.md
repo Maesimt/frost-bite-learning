@@ -159,7 +159,7 @@ Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le
 
 On peut prendre jupyter, mais j'aime bien rester dans le terminal.
 
-J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais directement dans la console lorsque je suis connecter sur le serveur.
+J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais directement dans la console lorsque je suis connecter sur le serveur. Pour éviter les coupures d'internet je recommande de démarrer des terminaux virtuels sur le server pour exécuter le python avec [Tmux](https://github.com/tmux/tmux/wiki/Getting-Started)
 
 [Github - termplotlib](https://github.com/nschloe/termplotlib)
 
@@ -167,13 +167,13 @@ J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais di
 
 ##  Journal
 
-Essayer une première fois plusieurs des algorithmes vue en cours pour voir si certains sont déjà capable de produire des résultats sans modification quelqueconque.
+Essayer une première fois plusieurs des algorithmes vues en cours pour voir si certains sont déjà capable de produire des résultats sans modification quelqueconque.
 
 <a id="sarsa" />
 
 ### a. Sarsa
 
-On vient de voir `Sarsa`, je viens de créer un répertoire avec les `Agents` et les `Experiement` pour centraliser tout le contenu.J'ai brancher `termoplotlib` pour suivre les algos dans le terminal.
+On vient de voir `Sarsa`, je viens de créer un répertoire avec les `Agents` et les `Experiment` pour centraliser tout le contenu.J'ai brancher `termplotlib` pour suivre les algos dans le terminal avec `tmux`.
 
 J'essaye `Sarsa` avec les paramètres de bases sans rien toucher.
 
@@ -182,12 +182,14 @@ J'essaye `Sarsa` avec les paramètres de bases sans rien toucher.
 Pas super bon, après 1000 parties on dirait que l'agent fait n'importe quoi. 
 
 Je sais pas trop quoi faire, je vais augmenter l'epsilon et baisser l'alpha:
-- epsilon: 0.2 -> 0.4
-- alpha: 0.5 -> 0.1
-
+```haskell
+epsilon: 0.2 -> 0.4
+alpha: 0.5 -> 0.1
+```
 <img src="./images/sarsa-2.png" />
 
 Légère amélioration par rapport à avant. L'agent fait encore n'importe quoi. Le nombre de partie n'est peut-être pas suffisant.
+J'ai essayer avec plusieurs autres paramètres avant de prendre des notes de qualités et j'ai essayer avec du gros volume d'épisodes (>30 000), mais sans succès. Ça restait pas mal aléatoire, mais on peut dire qu'un des avantages de Sarsa c'est la vitesse à laquelle il roule comparer aux algorithmes.
 
 <a id="reinforce" />
 
