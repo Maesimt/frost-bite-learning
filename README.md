@@ -152,7 +152,7 @@ Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
 </p>
 
-<a id="openai-gym" />
+<a id="openai" />
 
 ### OpenAI Gym
 
