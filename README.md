@@ -11,7 +11,8 @@
         <a href="#pre-requis">Pré-requis</a>
         <ol>
             <li><a href="#gpu">GPU</a></li>
-            <li><a href="#CUDDN">Nvidia CUDDN</a></li>
+            <li><a href="#openai">OpenAI Gym</a></li>
+            <li><a href="#termplotlib">Termplotlib</a></li>
         </ol>
     </li>
     <li><a href="#journal">Journal</a></li>
@@ -24,7 +25,7 @@
 ## 1. Contexte
 
 Dans le cadre du cours <strong>Algorithmes d'appentissage par renforcement</strong> donné dans le programme de spécialisation en intelligence artificielle du Cégep de Sainte-foy à Québec, nous devons essayer de faire un agent qui est capable d'apprendre à jouer
-à un des jeux offerts sur [OpenAI - Gym](https://gym.openai.com/envs).
+à un des jeux disponibles sur [OpenAI - Gym](https://gym.openai.com/envs).
 
 Note supplémentaire, le code source des algorithmes à été fourni par Mr.Mikaël pendant les cours.
 
@@ -43,10 +44,18 @@ Il y avait un semblant de multi-joueur avec la posibilite d'alterner en deux per
 
 Le but du jeu est de marquer le plus de points. 
 
-Le joueur peut accumuler des points de differentes facons.
-- Sauter sur un bloc de glaces blancs
+Le joueur peut accumuler de trois facons:
+1. Sauter sur un bloc de glaces blancs
+
+<img src="./images/jump.gif" width="100 />
+                                    
 - Finir un niveau avec des degres de temperature superieur a 0.
+
+<img src="./images/points_when_entering_igloo.gif" width="100 />
+                                                          
 - Attraper un poisson.
+
+<img src="./images/eat_fish.gif" width="100 />
 
 Chaque fois que le personnage saute sur une ligne de glace blanche, un bloc est ajouter a l'igloo.
 Lorsque l'igloo est completer, le joueur peut rentrer dedans pour mettre fin au niveau.
