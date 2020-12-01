@@ -184,6 +184,10 @@ J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais di
 
 Essayer une première fois plusieurs des algorithmes vues en cours pour voir si certains sont déjà capable de produire des résultats sans modification quelqueconque.
 
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
+
 <a id="sarsa" />
 
 ### a. Sarsa
@@ -199,12 +203,16 @@ Pas super bon, après 1000 parties on dirait que l'agent fait n'importe quoi.
 Je sais pas trop quoi faire, je vais augmenter l'epsilon et baisser l'alpha:
 ```haskell
 epsilon: 0.2 -> 0.4
-alpha: 0.5 -> 0.1
+  alpha: 0.5 -> 0.1
 ```
 <img src="./images/sarsa-2.png" />
 
 Légère amélioration par rapport à avant. L'agent fait encore n'importe quoi. Le nombre de partie n'est peut-être pas suffisant.
 J'ai essayer avec plusieurs autres paramètres avant de prendre des notes de qualités et j'ai essayer avec du gros volume d'épisodes (>30 000), mais sans succès. Ça restait pas mal aléatoire, mais on peut dire qu'un des avantages de Sarsa c'est la vitesse à laquelle il roule comparer aux algorithmes.
+
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
 
 <a id="reinforce" />
 
@@ -216,12 +224,13 @@ J'ai ajouter `Reinforce` dans le projet. Je vais essayer avec les paramètres pa
 
 Pour 1000 parties c'est encore pire que `Sarsa`.
 
-Je vais jouer avec le nombre de neuronnes par couches voir qu'est-ce que ca peut faire.
-Et ajouter une 3ème couche cachée pour voir.
+Je ne sais pas trop vers où m'enligner. Je vais jouer avec le nombre de neuronnes par couches voir qu'est-ce que ca peut faire. Et ajouter une 3ème couche cachée pour voir.  Je pense que mon problème doit être plus complexe que le `Cart Pole` et le `Lunar Lander`. 
 
-- 1ère couche: 36 -> 128
-- 2ème couche: 36 -> 128
-- Nouvel couche: 128
+```haskell
+         1ère couche: 36 -> 128
+         2ème couche: 36 -> 128
+Nouvelle 3ème couche: 128
+```
 
 * Le nombre 128 parce que c'est le nombre de bytes qui représente l'état. Je me dis que peut-ètre que c'est bien d'avoir 1 neuronnes fully-connected à chaque bytes de l'état (via la couche d'entrée). C'est complètement aléatoire, j'ai aucune idée si c'est une bonne décision.
 ** Une nouvelle couche parce que le problème est plus complexe que ceux vu dans le cours. Encore là, aucune idée si c'est une bonne décision.
@@ -231,13 +240,19 @@ Et ajouter une 3ème couche cachée pour voir.
 
 C'est un peu mieux qu'avant, c'est comparable à `Sarsa` encore avec 1000 épisodes.
 
-Avec la même logique un peu douteuse que j'ai pris avant, peut-être que je si réduis le nombres de neuronnes de la dernière couche cachée au même nombre que la couche de sortie. 18 c'est le nombre d'actions disponibles dans l'émulateur.
+Avec la même logique un peu douteuse que j'ai prise avant, peut-être que je si réduis le nombres de neuronnes de la dernière couche cachée au même nombre que la couche de sortie. 18 c'est le nombre d'actions disponibles dans l'émulateur.
 
 J'ai aussi enlever la limite de 1000 épisodes (parties) pour voir si avec le temps ça devient mieux.
 
 <img src="./images/reinforce-3.png" />
 
-Bon on voit que la tendant est un peu plus haute. La moyenne des 50 dernieres parties est pire, mais on voit qu'il était meilleur dans l'ensemble même au tout début. C'est peut-être pas vrai parce qu'on voit que l'amplitude est similaire mais l'échelle des X n'est pas la même ça se peut que la compression dans le graphique nous induise en erreur.
+Bon on voit que les résultats semblent plus haut. La moyenne des 50 dernieres parties est pire, mais on voit qu'il était meilleur dans l'ensemble même au tout début. C'est peut-être faux parce qu'on voit que l'amplitude est similaire mais l'échelle des X n'est pas la même ça se peut que la compression dans le graphique nous induise en erreur.
+
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
+
+<a id="dqn1" />
 
 ### DQN
 
@@ -310,6 +325,12 @@ Je relance le même agent `DQN` déjà entrainé avec ces deux changements.
 
 La performance de l'agent a plateau, mais de temps en il a des bonnes "runs".
 
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
+
+<a id="actor-critic" />
+
 ### Actor Critic
 
 Dernier cours, un nouvel agent à essayer. Même chose ont relance avec les paramètres par défaut.
@@ -329,6 +350,12 @@ Encore une fois le nombre de neuronnes est choisi avec très peu réflexion.
 
 Oups, c'est atroce. Ça commence bas, ça monte à peine et ça se casse la geule en pas trop de temps.
 Je vais retourner sur `DQN`.
+
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
+
+<a id="dqn2" />
 
 ## DQN
 
@@ -446,7 +473,9 @@ Bon bah c'etait boring ca. Pas reussir a passer dans le niveau 2. Juste vraiment
 Meme avec les anciens parametres je n'arrive pas a reproduire une moyenne de 550. Le hasard joue quand meme un bon role sur la decouverte du monde.
 
 On va jouer sur le Tau voir qu'est-ce que ca fait.
-0.05 -> 0.1
+```haskell
+tau: 0.05 -> 0.1
+```
 
 <img src="./images/dqn-advance-11.png" />
 
@@ -455,7 +484,7 @@ C'est mieux.
 Essayer d'enlever les 8 actions de fire puisque ca ne sert a rien dans ce jeu pour eviter de perdre du temps avec des controles inutilises.
 
 ```Python
-# env.action_space == Discrete(18)
+# Avant j'utilisais env.action_space
 gym.spaces.Discrete(10)
 ```
 
@@ -740,6 +769,10 @@ epoch de 100 -> 50
 learning rate un petit plus agressif 0.0001 -> 0.0002
 
 # Conclusion
+
+J'ai choisi d'y aller avec `DQN` à cause des gains initiaux versus les autres algorithmes. Avec un contexte plus souple en terme de temps et avec une carte graphique à disposition pour éviter les coûts du cloud, j'aurais insister plus sur `Actor-Critic`. J'aurais aussi essayer plus d'algorithmes disponibles sur internet avec d'autres frameworks que Tensorflow.
+
+Je suis quand même content des performances qu'il a 
 
 Demontration (.gif)
 
