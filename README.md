@@ -7,7 +7,7 @@
 
 <ol>
     <li><a href="#contexte">Contexte</a></li>
-    <li><a href="#histoire">Description du jeu</a></li>
+    <li><a href="#jeu">Description du jeu</a></li>
     <li><a href="#details">Détails techniques supplémentaires</a></li>
     <li>
         <a href="#pre-requis">Pré-requis</a>
@@ -148,12 +148,21 @@ Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le
 
 [Mon Guide](https://github.com/Maesimt/tensorflow-cloud-gpu)
 
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
+
 <a id="openai-gym" />
+
 ### OpenAI Gym
 
 Évidamment il faut que Python soit installé pour rouler le code. Il faut aussi avoir les librairies de OpenAI Gym sur sont poste.
 
 [Documentation OpenAI Gym](https://gym.openai.com/docs/)
+
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
 
 <a id="termplotlib" />
 
@@ -164,6 +173,10 @@ On peut prendre jupyter, mais j'aime bien rester dans le terminal.
 J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais directement dans la console lorsque je suis connecter sur le serveur. Pour éviter les coupures d'internet je recommande de démarrer des terminaux virtuels sur le server pour exécuter le python avec [Tmux](https://github.com/tmux/tmux/wiki/Getting-Started)
 
 [Github - termplotlib](https://github.com/nschloe/termplotlib)
+
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
 
 <a id="journal" />
 
