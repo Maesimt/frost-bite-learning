@@ -1,6 +1,8 @@
 # Frost Bite
 <img src="./images/frostbite-box-front.jpg" />
 
+<a id="table-matieres" />
+
 ## Table des matières
 
 <ol>
