@@ -24,7 +24,7 @@
             <li><a href="#reinforce">Reinforce</a></li>
             <li><a href="#dqn-1">DQN</a></li>
             <li><a href="#actor-critic">Actor-Critic</a></li>
-            <li><a href="#dqn-2>Le retour de DQN</a></li>
+            <li><a href="#dqn-2">Le retour de DQN</a></li>
         </ol>
     </li>
     <li><a href="#conclusion">Conclusion</a></li>
