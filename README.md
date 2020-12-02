@@ -17,7 +17,16 @@
             <li><a href="#termplotlib">Termplotlib</a></li>
         </ol>
     </li>
-    <li><a href="#journal">Journal</a></li>
+    <li>
+        <a href="#journal">Journal</a>
+        <ol>
+            <li><a href="#sarsa">Sarsa</a></li>
+            <li><a href="#reinforce">Reinforce</a></li>
+            <li><a href="#dqn-1">DQN</a></li>
+            <li><a href="#actor-critic">Actor-Critic</a></li>
+            <li><a href="#dqn-2>Le retour de DQN</a></li>
+        </ol>
+    </li>
     <li><a href="#conclusion">Conclusion</a></li>
     <li><a href="#annexe">Annexe</a></li>
 </ol>
@@ -38,8 +47,6 @@ Note supplémentaire, le code source des algorithmes à été fourni par Mr.Mika
 <a id="jeu" />
 
 ## 2. Description du jeu
-
-<img src="./images/frostbite-menu.gif" />
 
 Un jeu de 1983 cree par Steve Cartwright et publier par Activision pour la console Atari 2600.
 Il y avait un semblant de multi-joueur avec la posibilite d'alterner en deux personnages.
@@ -93,8 +100,6 @@ Un ours polaire commence a apparaitre a partir du niveau 4 et se deplace sur la 
 
 ## 3. Détails techniques supplémentaires
 
-Quels sont les etats, comment est represente l'environnement.
-
 L'environnement est fourni par OpenAI Gym. Il nous donne accès à 128 bytes qui représente la ram du jeu à chaque instant t.
 Pour l'agent, jouer au jeu est en soit une tâche épisodique.
 
@@ -137,6 +142,8 @@ Pour comprendre rapidement un peu les interactions possibles entre l'agent et le
 
 <img src="./images/frostbite-pdm.png" />
 
+Notre objectif c'est en quelque sorte de créer un agent qui est capable d'apprendre à naviguer au travers de ce graphique en évitant les points de terminaison. Avec plusieurs épisodes (parties), il va apprendre à éviter les situations terminales et exploiter certains mouvements pour accumuler des points. Une phase d'exploration sera de mise car il ne connait pas les règles de transitions décrites par ce graphique. Il devra aussi les apprendres au fur et à mesure.
+
 <p align="right">
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
 </p>
@@ -149,7 +156,7 @@ Pour comprendre rapidement un peu les interactions possibles entre l'agent et le
 
 ### GPU
 
-Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le configurer en utilisant un autre guide que j'ai fait en me basant sur d'autres guides trouvés sur internet. 
+Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le configurer en utilisant un autre guide que j'ai fait en me basant sur des articles trouvés sur internet. 
 
 [Mon Guide](https://github.com/Maesimt/tensorflow-cloud-gpu)
 
@@ -173,9 +180,9 @@ Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le
 
 ### Graphique Terminal
 
-On peut prendre jupyter, mais j'aime bien rester dans le terminal.
+On peut prendre jupyter notebook, mais j'aime bien rester dans le terminal. Une interface graphique n'est pas obligatoire. On peut toujours transférer les modèles entrainés sur notre machine locale plus tard pour voir le rendu.
 
-J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais directement dans la console lorsque je suis connecter sur le serveur. Pour éviter les coupures d'internet je recommande de démarrer des terminaux virtuels sur le server pour exécuter le python avec [Tmux](https://github.com/tmux/tmux/wiki/Getting-Started)
+J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais directement dans la console lorsque je suis connecter sur le serveur. Ça permet de suivre l'entrainement de l'algorithme en temps réel. Pour éviter les problèmes liés aux coupures d'internet, je recommande de démarrer des terminaux virtuels sur le server avec [Tmux](https://github.com/tmux/tmux/wiki/Getting-Started)
 
 [Github - termplotlib](https://github.com/nschloe/termplotlib)
 
@@ -187,7 +194,7 @@ J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais di
 
 ##  Journal
 
-Essayer une première fois plusieurs des algorithmes vues en cours pour voir si certains sont déjà capable de produire des résultats sans modification quelqueconque.
+Ma stratégie initiale, c'est d'essayer une première fois plusieurs des algorithmes vues en cours pour voir si certains sont déjà capable de produire des résultats sans modification.
 
 <p align="right">
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
@@ -195,7 +202,7 @@ Essayer une première fois plusieurs des algorithmes vues en cours pour voir si 
 
 <a id="sarsa" />
 
-### a. Sarsa
+### Sarsa
 
 On vient de voir `Sarsa`, je viens de créer un répertoire avec les `Agents` et les `Experiment` pour centraliser tout le contenu.J'ai brancher `termplotlib` pour suivre les algos dans le terminal avec `tmux`.
 
@@ -221,7 +228,7 @@ J'ai essayer avec plusieurs autres paramètres avant de prendre des notes de qua
 
 <a id="reinforce" />
 
-### b. Reinforce<a id="openai-gym" />
+### b. Reinforce
 
 J'ai ajouter `Reinforce` dans le projet. Je vais essayer avec les paramètres par défaut du cours.
 
