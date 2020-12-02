@@ -591,12 +591,12 @@ Je vais le laisser continuer voir s'il réussi à devenir bon dans le 2ème nive
 
 ### Autre idée
 
-De l'exploration en double couche. Terme que je viens d'inventer. On sait que les tableaux du jeu alterne entre des petits blocs et des gros blocs et ca change beaucoup le comportement du jeu.
+N-epsilon, terme que je viens d'inventer (copyright - joke). On sait que les tableaux du jeu alterne entre des petits blocs et des gros blocs. Ça change beaucoup le comportement du jeu. Si on avait un algorithme qui devait apprendre à faire cuire des carottes au premier niveau et apprendre à faire cuire des croissants au 2ème niveau. Si l'exploration est rendu nulle en arrivant au niveau 2, il n'aura pas eu le temps d'explorer la complexité de la cuisson des croissants. Il va simplement appliquer sa politique de cuisson des carottes et les croissants vont être râtés.
 
-je vais utiliser un `epsilon` pour le premier niveau et un autre `epsilon` pour le deuxieme niveau.
-Comme ca lorsque la politque de l'agent devient greedy (1% exploration) sur le premier niveau et qu'il le maitrise, il va aller directement au deuxieme niveau. Son score sera supérieur à 400 il va utiliser l'autre `epsilon` pour le 2ème niveau et donc recommencer avec un 100% d'exploration.
+je vais utiliser un `epsilon` pour le premier niveau et un autre `epsilon` pour le deuxième niveau.
+Comme ca lorsque la politque de l'agent devient greedy (1% exploration) sur le premier niveau et qu'il le maitrise, il va aller directement au deuxième niveau. Son score sera supérieur à 400 (dans Frosbite), il va utiliser l'autre `epsilon` pour le 2ème niveau et donc recommencer avec un 100% d'exploration. On perd en généralisation de l'algorithme mais on lui donne une information supplémentaire sur le fonctionnement du jeu.
 
-> C'est en quelque sorte ce qu'on a vu dans le cours, on peut donner un modele du monde a un agent pour l'aider. Je sais que le 2ème niveau à des nouveautés comme les poissons et que la logique de déplacement sur la glace n'est pas la même. Dans le niveau 1 les mouvements horizontal sont mortels alors que dans le deuxième niveau c'est tout à fait possible et permettre d'aller chercher les poissons plus rapidement.
+> C'est en quelque sorte ce qu'on a vu dans le cours, on peut donner un modele du monde à un agent pour l'aider. Je sais que le 2ème niveau à des nouveautés comme les poissons et que la logique de déplacement sur la glace n'est pas la même. Dans le niveau 1 les mouvements horizontaux sont mortels alors que dans le deuxième niveau c'est tout à fait possible et permettre d'aller chercher les poissons plus rapidement.
 
 On va choisir l'epsilon d'un niveau si le score est <= 400 et l'epsilon du niveau 2 si le score est > 400 tel que :
 ```python
@@ -607,7 +607,7 @@ else:
     i = np.argmax(self.model_network.predict(state.reshape(1, state.shape[0]))[0])  
 ```
 
-Et avec la meme logique on va decay l'epsilon approprie
+Et avec la même logique on va decay l'epsilon approprié:
 
 ```python
 if self.epsilon_decay:
@@ -618,7 +618,7 @@ if self.epsilon_decay:
             self.epsilon = max(.01, self.epsilon * .9995)
 ```
 
-On lance ca, en espérant que ca réussise à briser le plateau.
+On lance ca, en espérant que ça réussise à briser le plateau.
 
 ```C
 +-------------------------------------+
@@ -695,7 +695,7 @@ On lance ca, en espérant que ca réussise à briser le plateau.
       0         500         1000       1500       2000       2500        3000       3500       4000
 ```
 
-Il y a pas ete assez performant pour etre souvent dans le niveau 2.
+Il y a pas été assez performant pour être souvent dans le niveau 2.
 
 Dernier espoir du lundi matin on va combiner les parametres au milieu de tout ce qui a marcher pour voir.
 
@@ -782,7 +782,7 @@ Go middle ground !
       0         200         400        600        800        1000        1200       1400       1600
 ```
 
-Bon, malheureusement je n'ai pas eu le temps d'avoir une run avec une moyenne supérieur à 300 points. J'aurai voir si l'idée était viable pour exploiter le niveau 1 et continuer d'explorer dans le niveau 2 pour éviter les problèmes d'exploitation trop précoce. 
+Bon, malheureusement je n'ai pas eu le temps d'avoir une run avec une moyenne supérieur à 300 points pour tester ma théorie. J'aurai voir si l'idée était viable pour exploiter le niveau 1 et continuer d'explorer dans le niveau 2 pour éviter les problèmes d'exploitation trop précoce. 
 
 <p align="right">
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
