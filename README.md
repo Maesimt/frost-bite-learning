@@ -47,7 +47,7 @@ Il y avait un semblant de multi-joueur avec la posibilite d'alterner en deux per
 Le but du jeu est de marquer le plus de points. 
 
 Le joueur peut accumuler de trois facons:
-1. Sauter sur un bloc de glaces blancs
+Sauter sur un bloc de glaces blancs
 
 <img src="./images/jump.gif" width="100 />
                                     
@@ -76,9 +76,11 @@ Le joueur dispose de 3 vies.
 Lorsqu'il meurt, le joueur recommence au niveau qu'il etait rendu avec le meme score. Lorsqu'il epuise sa derniere vie, la partie est terminee et son score est celui qu'il avait juste avant sa mort.
 
 Plusieurs choses peuvent enlever une vie au joueur.
-- Tomber dans l'eau.
-- Se faire toucher par un oiseau.
-- Se faire toucher par l'ours polaire.
+| Façon de mourir | Démonstration  |
+| Tomber dans l'eau. | <img src="./images/death_by_stupidity.gif" width="100" /> |
+| Se faire toucher par l'ours polaire. | <img src="./images/death_by_bear.gif" width="100" /> |
+| La température atteint le 0 degré | <img src="./images/frostbite-menu.gif" width="100" /> |
+
 
 > Source https://en.wikipedia.org/wiki/Frostbite_(video_game)
 
@@ -94,13 +96,15 @@ Quels sont les etats, comment est represente l'environnement.
 
 L'environnement est fourni par OpenAI Gym. Il nous donne accès à 128 bytes qui représente la ram du jeu à chaque instant t.
 Pour l'agent, jouer au jeu est en soit une tâche épisodique.
-La fonction de récompense nous retourne plusieurs récompenses:
-- Sauter sur un block de glace blanc -> 10 points
-- Terminer un niveau avec des degres restants -> N * degré restants , 15 deg * ? = 310, 40 deg * ? = 1120
-- Manger un poisson -> 200 points
 
+La fonction de récompenses nous retourne des points lorsqu'on :
+1. Saute sur un block de glace blanc (10 points * K) 
+2. Termine un niveau avec des degres restants (1 point par degré restant * K) 
+3. Mange un poisson (200 points) 
 
-Il y a 18 actions possibles : 
+> où K = Un nombre qui augmente avec le temps et la progression du jeu.
+
+Il y a 18 actions possibles dans l'environnement d'OpenAI. Ils correspondent aux touches de la manette de la console Atari 2600.
 | index        | name          | signification  |
 |:-- |:-- |:----- |
 | 0 | "NOOP" | Ne rien faire |
