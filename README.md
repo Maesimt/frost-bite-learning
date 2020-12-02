@@ -47,17 +47,11 @@ Il y avait un semblant de multi-joueur avec la posibilite d'alterner en deux per
 Le but du jeu est de marquer le plus de points. 
 
 Le joueur peut accumuler de trois facons:
-Sauter sur un bloc de glaces blancs
-
-<img src="./images/jump.gif" width="100 />
-                                    
-- Finir un niveau avec des degres de temperature superieur a 0.
-
-<img src="./images/points_when_entering_igloo.gif" width="100 />
-                                                          
-- Attraper un poisson.
-
-<img src="./images/eat_fish.gif" width="100 />
+| Façon de gagner des points | Démonstration  |
+|:-- | :----- |
+| Sauter sur un bloc de glaces blancs | <img src="./images/jump.gif" width="200" /> |
+| Finir un niveau avec des degres de temperature superieur a 0. | <img src="./images/points_when_entering_igloo.gif" width="100 /> |
+| Attraper un poisson. | <img src="./images/eat_fish.gif" width="100 /> |
 
 Chaque fois que le personnage saute sur une ligne de glace blanche, un bloc est ajouter a l'igloo.
 Lorsque l'igloo est completer, le joueur peut rentrer dedans pour mettre fin au niveau.
@@ -69,6 +63,9 @@ Il y a deux types de morceaux de glace.
 1. Large
 2. Petit
 Les niveaux alternent en les gros blocs et les petits blocs.
+| Niveau 1 | Niveau 2|
+|:-- | :----- |
+|.   |.       |
 
 Un ours polaire commence a apparaitre a partir du niveau 4 et se deplace sur la banquise pour empecher le joueur d'atteindre l'igloo.
 
