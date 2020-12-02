@@ -372,7 +372,7 @@ Je vais retourner sur `DQN`.
 
 <a id="dqn-2" />
 
-## DQN
+## Le retour de DQN
 
 Je viens de realiser que le DQN a beacoup plus d'hyper-parametres de disponibles que je le croyais.
 J'ai ajouter les hyper-paramètres que je n'avais pas vue dans l'agent DQN pour les voir dans la console.
