@@ -25,6 +25,7 @@
             <li><a href="#dqn-1">DQN</a></li>
             <li><a href="#actor-critic">Actor-Critic</a></li>
             <li><a href="#dqn-2">Le retour de DQN</a></li>
+            <li><a href="#autre-idee">Autre idée</a></li>
         </ol>
     </li>
     <li><a href="#conclusion">Conclusion</a></li>
@@ -391,21 +392,21 @@ def printParameters(self):
 
 Dans l'agent DQN avec lequel on avait des parties superieur a 1400 de temps en temps, on avait les paramètres par défaut soit :
 
-```C
-epsilon: 1
-obs_size: 128
-gamma: 0.99
-batch_size: 64
-epoch_length: 100
+```haskell
+      epsilon: 1
+     obs_size: 128
+        gamma: 0.99
+   batch_size: 64
+ epoch_length: 100
 learning_rate: 0.0001
-tau: 0.05
-nHidden: 150
+          tau: 0.05
+      nHidden: 150
 ```
 Je vais essayer de nouvelles choses en jouant avec des paramètres.
 En commençant par diminuer le nombre de neuronnes par couches.
 
 ```haskell
-150 -> 64
+nHidden: 150 -> 64
 ```
 
 <img src="./images/dqn-advance-1.png" />
@@ -422,42 +423,42 @@ On voit une bonne progression au debut mais il stagne au [180,220] points.
 J'ai de la misere a comprendre pourquoi il ne reussi pas tjrs a passer au 2eme niveau du jeu.
 On voit qu'il reussi de temps en temps mais il est quand souvent pris a la fin du premier niveau.
 
-Je vais transferer le fichier du modele et le rouler en local pour voir ce qu'il fait.
+Je vais transférer le fichier du modèle et le rouler en local pour voir ce qu'il fait.
 
 <img src="./images/not_going_to_igloo.gif" />
 
-Je crois qu'il exploite la meilleur strategie qu'il a trouver jusqu'a maintenant. Il semble toujours faire la meme ligne droite avec un retour.
-Il voit l'igloo completer mais il ne semble pas realiser le potentiel de point qui se trouve a sa porte et il decide de rexploiter sa ligne de point avec les plateformes de glaces plutot.
-Je crois qu'il devrait davantage explorer car il n'a clairement pas encore compris le concept de l'igloo.
-Je vais essayer de le faire explorer encore plus longtemps. 
-Pour lui faire comprendre le concept de l'igloo tant que ca moyenne de points ne sera pas superieur au premier niveau (800-900 points) plutot que de laisser exploiter a 99.995 je vais lui forcer un 20% d'exploration.
+Je crois qu'il exploite la meilleur strategie qu'il a trouver jusqu'à maintenant. Il semble toujours faire la même ligne droite avec un retour.
+Il voit l'igloo compléter mais il ne semble pas réaliser le potentiel de points qui se trouve à sa porte et il decide de réexploiter sa ligne de point avec les plateformes de glaces plutôt que d'aller dans l'igloo. Je crois qu'il devrait davantage explorer car il n'a clairement pas encore compris le concept de l'igloo.
+Je vais essayer de le faire explorer encore plus longtemps. Pour lui faire comprendre le concept de l'igloo tant que ca moyenne de points ne sera pas supérieur au premier niveau (800-900 points) plutôt que de laisser exploiter à 99% je vais lui forcer un 20% d'exploration.
 
-Je viens de repartir une run par accident avec l'ancien weights.h5 et un epislon de 1 alors il va explorer encore comme il l'etait avant.
+Je viens de repartir une run par accident avec l'ancien `weights.h5` et un `epsilon` de 1 alors il va explorer à 100% et diminuer avec le `epsilon decay` comme lors d'une nouvelle "run".
 
 <img src="./images/dqn-advance-3.png" />
 
-Meme probleme qu'avant.
+Même probleme qu'avant.
 
-On va changer un autre parametre. Si ce n'est pas l'exploration qui regle tout a fait le probleme de ressayer les meme solutions. Peut-etre que c'est de l'overfitting sur les experiences du passer qui ont donner des resultats positifs. Je vais tester une reduction du epoch length pour voir si ca diminue l'overfitting et ca nous permet de rejoindre l'igloo plus facilement.
+On va changer un autre parametre. Si ce n'est pas l'exploration qui règle tout à fait le problème, il y a surement un paramètre qui peut nous aider. Peut-être que c'est de l'overfitting sur les expériences du passé qui nous ont donner des résultats positifs. Je vais tester une réduction du `epoch length` pour voir si ça diminue l'overfitting et ca nous permet de rejoindre l'igloo plus facilement.
 
-Jusqu'ici je crois que je suis pris dans un maximum local, a cause du potentiel inexplorer de l'igloo.
+Jusqu'ici je crois que je suis pris dans un maximum local, à cause du potentiel inexploré de l'igloo.
 
 <img src="./images/dqn-advance-4.png" />
 
-Conclusion on dirait pas que ca nuit, mais c'est moins bon un peu. Note a moi meme l'exploitation n'etait pas a fond j'avais laisser le 20% d'exploration.
+Conclusion on dirait pas que ca nuit, mais c'est un peu moins bon. 
+> Note à moi même l'exploitation n'était pas a fond j'avais laisser le 20% d'exploration.
+
 Le `epoch length` à 100 était mieux.
 
 On va essayer le `learning rate`.
 
 <img src="./images/dqn-advance-5.png" />
 
-Bon bah ca diverge.
+Bon bah, ça diverge.
 
 On va jouer sur le `gamma` pour le mettre encore plus proche de 1 pour encourager les récompenses dans le future en espérant que l'agent considère ensuite l'igloo.
 
 <img src="./images/dqn-advance-6.png" />
 
-Trop fort l'apprentissage est pe2naliser. On va réssayer un peu moins fort.
+Trop fort l'apprentissage est pénalisé. On va réssayer un peu moins fort.
 
 <img src="./images/dqn-advance-7.png" />
 
@@ -466,9 +467,7 @@ Je vais essayer avec un gamma plus petit que ce que l'on avait au début.
 
 <img src="./images/dqn-advance-8.png" />
 
-Là, c'est bien, une moyenne à 550 points. Seul probleme c'est que j'enregistre au 100 episodes de facons fixe. Je vais changer le moment de l'enregistrement.
-
-Mettre le gif du bonhomme dans le coin. ICI .gif
+Là, c'est bien, une moyenne à 550 points. Seul probleme c'est que j'enregistre au 100 épisodes de facons fixe. Je vais changer le moment de l'enregistrement.
 
 ```Python
 if self.average_score > self.best_average:
@@ -482,13 +481,14 @@ epsilon decay: 0.9995 -> 0.9999 (faire de l'exploration plus longtemps.)
 ```
 <img src="./images/dqn-advance-9.png" />
 
-Bon bah c'etait boring ca. Pas reussir a passer dans le niveau 2. Juste vraiment bon sur le niveau 1.
+Bon bah c'était boring ça. Pas réussir à passer dans le niveau 2. Juste vraiment bon sur le niveau 1.
 
 <img src="./images/dqn-advance-10.png" />
 
-Meme avec les anciens parametres je n'arrive pas a reproduire une moyenne de 550. Le hasard joue quand meme un bon role sur la decouverte du monde.
+Même avec les anciens paramètres, je n'arrive pas à reproduire une moyenne de 550 points. Le hasard joue quand même un bon role sur la découverte du monde.
 
-On va jouer sur le Tau voir qu'est-ce que ca fait.
+On va jouer sur le `tau` voir qu'est-ce que ca fait.
+
 ```haskell
 tau: 0.05 -> 0.1
 ```
@@ -497,7 +497,7 @@ tau: 0.05 -> 0.1
 
 C'est mieux.
 
-Essayer d'enlever les 8 actions de fire puisque ca ne sert a rien dans ce jeu pour eviter de perdre du temps avec des controles inutilises.
+Je viens de réaliser que les 8 actions de `fire` avec une direction ne servent à rien dans ce jeu. La commande `fire` ne fait que changer la direction de la ligne de glace sur laquelle on est et la direction du "joystick" ne change rien. Pour eviter de perdre du temps avec des controles inutilises je vais les enlever.
 
 ```Python
 # Avant j'utilisais env.action_space
@@ -506,9 +506,9 @@ gym.spaces.Discrete(10)
 
 <img src="./images/dqn-advance-12.png" />
 
-C'est le plus rapide a atteindre le plateau. A peine 500 episodes. Les premiers entrainement du DQN pouvait prendre jusqu'a 2000-2500 pour atteinre le plateau de 180 points.
+Wow, c'est le plus rapide à atteindre le plateau avec à peine 500 épisodes. Les premiers entrainements de DQN pouvaient prendre jusqu'à 2000-2500 épisodes pour atteinre le plateau de 180 points.
 
-Je vais le laisser continuer voir s'il reussi a devenir bon dans le 2eme niveau.
+Je vais le laisser continuer voir s'il réussi à devenir bon dans le 2ème niveau.
 
 ```C
 +-------------------------------------+
@@ -584,7 +584,7 @@ Je vais le laisser continuer voir s'il reussi a devenir bon dans le 2eme niveau.
       0         200         400        600        800        1000        1200       1400       1600
 ```
 
-Autre idee 
+### Autre idée
 
 De l'exploration en double couche. Terme que je viens d'inventer. On sait que les tableaux du jeu alterne entre des petits blocs et des gros blocs et ca change beaucoup le comportement du jeu.
 
@@ -777,14 +777,7 @@ Go middle ground !
       0         200         400        600        800        1000        1200       1400       1600
 ```
 
-P-t qu'il manque un peu d'exploration.
-Diminuer le decay.
-
-Reduire le epoch p-t qu'il prend trop d'episode en consideration.
-
-decay .9995 -> .9997
-epoch de 100 -> 50
-learning rate un petit plus agressif 0.0001 -> 0.0002
+Bon, malheureusement je n'ai pas eu le temps d'avoir une run avec une moyenne supérieur à 300 points. J'aurai voir si l'idée était viable pour exploiter le niveau 1 et continuer d'explorer dans le niveau 2 pour éviter les problèmes d'exploitation trop précoce. 
 
 # Conclusion
 
@@ -794,6 +787,10 @@ Je suis quand même content des performances qu'il a eu. Une moyenne de 650 dans
 En jouant avec les paramètres on voit qu'on peut vraiment faire la différence.
 Avec le tau et le retrait des actions inutiles, on est passé de 2500 episodes à 500 épisodes pour atteindre la moyenne. 
 
+## Extrait de mon modèle entrainer avec une moyenne d'environ 650 points
+
 <img src="./images/best-score.gif" />
 
-presentation des performances.
+## Le graphique qui montre son entrainement
+
+
