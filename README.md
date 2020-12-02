@@ -49,7 +49,7 @@ Note supplémentaire, le code source des algorithmes a été fourni par Mr.Mika�
 ## 2. Description du jeu
 
 Un jeu de 1983 créé par Steve Cartwright et publié par Activision pour la console Atari 2600.
-Il y avait un semblant de multi-joueur avec la possibilité d'alterner en deux personnages.
+Il y avait un semblant de multi-joueur avec la possibilité d'échanger le contrôle du personnage entre deux joueurs.
 
 Le but du jeu est de marquer le plus de points. 
 
@@ -153,7 +153,7 @@ Notre objectif c'est en quelque sorte de créer un agent qui est capable d'appre
 
 ### GPU
 
-Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le configurer en utilisant un autre guide que j'ai fait en me basant sur des articles trouvés sur internet. 
+Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le configurer en utilisant un autre guide que j'ai fait en me basant sur des articles trouvés sur Internet. 
 
 [Mon Guide](https://github.com/Maesimt/tensorflow-cloud-gpu)
 
@@ -165,7 +165,7 @@ Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le
 
 ### OpenAI Gym
 
-Évidamment il faut que Python soit installé pour rouler le code. Il faut aussi avoir les librairies de OpenAI Gym sur sont poste.
+Évidemment il faut que Python soit installé pour rouler le code. Il faut aussi avoir les librairies d'OpenAI Gym sur son poste.
 
 [Documentation OpenAI Gym](https://gym.openai.com/docs/)
 
@@ -177,9 +177,9 @@ Si vous n'avez pas de GPU comme moi, vous pouvez en louer un dans le cloud et le
 
 ### Graphique Terminal
 
-On peut prendre jupyter notebook, mais j'aime bien rester dans le terminal. Une interface graphique n'est pas obligatoire. On peut toujours transférer les modèles entrainés sur notre machine locale plus tard pour voir le rendu.
+On peut prendre Jupyter Notebook, mais j'aime bien rester dans le terminal. Une interface graphique n'est pas obligatoire. On peut toujours transférer les modèles entrainés sur notre machine locale plus tard pour voir le rendu.
 
-J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais directement dans la console lorsque je suis connecter sur le serveur. Ça permet de suivre l'entrainement de l'algorithme en temps réel. Pour éviter les problèmes liés aux coupures d'internet, je recommande de démarrer des terminaux virtuels sur le server avec [Tmux](https://github.com/tmux/tmux/wiki/Getting-Started)
+J'ai utilisé termplotlib pour afficher des graphiques comme matplotlib, mais directement dans la console lorsque je suis connecté sur le serveur. Ça permet de suivre l'entrainement de l'algorithme en temps réel. Pour éviter les problèmes liés aux coupures d'Internet, je recommande de démarrer des terminaux virtuels sur le serveur avec [Tmux](https://github.com/tmux/tmux/wiki/Getting-Started)
 
 [Github - termplotlib](https://github.com/nschloe/termplotlib)
 
@@ -191,7 +191,7 @@ J'ai utiliser termplotlib pour afficher des graphiques comme matplotlib, mais di
 
 ##  Journal
 
-Ma stratégie initiale, c'est d'essayer une première fois plusieurs des algorithmes vues en cours pour voir si certains sont déjà capable de produire des résultats sans modification.
+Ma stratégie initiale, c'est d'essayer une première fois plusieurs des algorithmes vus en cours pour voir si certains sont déjà capables de produire des résultats sans modification.
 
 <p align="right">
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
@@ -201,23 +201,24 @@ Ma stratégie initiale, c'est d'essayer une première fois plusieurs des algorit
 
 ### Sarsa
 
-On vient de voir `Sarsa`, je viens de créer un répertoire avec les `Agents` et les `Experiment` pour centraliser tout le contenu.J'ai brancher `termplotlib` pour suivre les algos dans le terminal avec `tmux`.
+On vient de voir `Sarsa`, je viens de créer un répertoire avec les `Agents` et les `Experiment` pour centraliser tout le contenu.J'ai branché `termplotlib` pour suivre les algos dans le terminal avec `tmux`.
 
-J'essaye `Sarsa` avec les paramètres de bases sans rien toucher.
+J'essaie `Sarsa` avec les paramètres de base sans rien toucher.
 
 <img src="./images/sarsa-1.png" />
 
 Pas super bon, après 1000 parties on dirait que l'agent fait n'importe quoi. 
 
-Je sais pas trop quoi faire, je vais augmenter l'epsilon et baisser l'alpha:
+Je ne sais pas trop quoi faire, je vais augmenter l'epsilon et baisser l'alpha:
 ```haskell
 epsilon: 0.2 -> 0.4
   alpha: 0.5 -> 0.1
 ```
 <img src="./images/sarsa-2.png" />
 
-Légère amélioration par rapport à avant. L'agent fait encore n'importe quoi. Le nombre de partie n'est peut-être pas suffisant.
-J'ai essayer avec plusieurs autres paramètres avant de prendre des notes de qualités et j'ai essayer avec du gros volume d'épisodes (>30 000), mais sans succès. Ça restait pas mal aléatoire, mais on peut dire qu'un des avantages de Sarsa c'est la vitesse à laquelle il roule comparer aux algorithmes.
+Légère amélioration par rapport à avant. L'agent fait encore n'importe quoi. Le nombre de parties n'est peut-être pas suffisant.
+
+J'ai essayé avec plusieurs autres paramètres avant de prendre des notes de qualité et j'ai essayé avec du gros volume d'épisodes (>30 000), mais sans succès. Ça restait pas mal aléatoire, mais on peut dire qu'un des avantages de Sarsa c'est la vitesse à laquelle il roule comparer aux algorithmes.
 
 <p align="right">
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
@@ -227,13 +228,13 @@ J'ai essayer avec plusieurs autres paramètres avant de prendre des notes de qua
 
 ### b. Reinforce
 
-J'ai ajouter `Reinforce` dans le projet. Je vais essayer avec les paramètres par défaut du cours.
+J'ai ajouté `Reinforce` dans le projet. Je vais essayer avec les paramètres par défaut du cours.
 
 <img src="./images/reinforce-1.png" />
 
 Pour 1000 parties c'est encore pire que `Sarsa`.
 
-Je ne sais pas trop vers où m'enligner. Je vais jouer avec le nombre de neuronnes par couches voir qu'est-ce que ca peut faire. Et ajouter une 3ème couche cachée pour voir.  Je pense que mon problème doit être plus complexe que le `Cart Pole` et le `Lunar Lander`. 
+Je ne sais pas trop vers où m'enligner. Je vais jouer avec le nombre de neurones par couches voir ce que ça peut faire. Et ajouter une 3ème couche cachée pour voir.  Je pense que mon problème doit être plus complexe que le `Cart Pole` et le `Lunar Lander`.
 
 ```haskell
          1ère couche: 36 -> 128
@@ -241,21 +242,21 @@ Je ne sais pas trop vers où m'enligner. Je vais jouer avec le nombre de neuronn
 Nouvelle 3ème couche: 128
 ```
 
-* Le nombre 128 parce que c'est le nombre de bytes qui représente l'état. Je me dis que peut-ètre que c'est bien d'avoir 1 neuronnes fully-connected à chaque bytes de l'état (via la couche d'entrée). C'est complètement aléatoire, j'ai aucune idée si c'est une bonne décision.
-** Une nouvelle couche parce que le problème est plus complexe que ceux vu dans le cours. Encore là, aucune idée si c'est une bonne décision.
-*** Au moins je respecte le design de couche identique, peut-être que c'est pas fou, à voir.
+* Le nombre 128 parce que c'est le nombre de bytes qui représente l'état. Je me dis que peut-être que c'est bien d'avoir 1 neurone fully-connected à chaque byte de l'état (via la couche d'entrée). C'est complètement aléatoire, je n'ai aucune idée si c'est une bonne décision.
+** Une nouvelle couche parce que le problème est plus complexe que ceux vus dans le cours. Encore là, aucune idée si c'est une bonne décision.
+*** Au moins je respecte le design de couche identique, peut-être que ce n'est pas fou, à voir.
 
 <img src="./images/reinforce-2.png" />
 
 C'est un peu mieux qu'avant, c'est comparable à `Sarsa` encore avec 1000 épisodes.
 
-Avec la même logique un peu douteuse que j'ai prise avant, peut-être que je si réduis le nombres de neuronnes de la dernière couche cachée au même nombre que la couche de sortie. 18 c'est le nombre d'actions disponibles dans l'émulateur.
+Avec la même logique un peu douteuse que j'ai prise avant, peut-être que si je réduis le nombre de neurones de la dernière couche cachée au même nombre que la couche de sortie. 18 c'est le nombre d'actions disponibles dans l'émulateur.
 
-J'ai aussi enlever la limite de 1000 épisodes (parties) pour voir si avec le temps ça devient mieux.
+J'ai aussi enlevé la limite de 1000 épisodes (parties) pour voir si avec le temps ça devient mieux.
 
 <img src="./images/reinforce-3.png" />
 
-Bon on voit que les résultats semblent plus haut. La moyenne des 50 dernieres parties est pire, mais on voit qu'il était meilleur dans l'ensemble même au tout début. C'est peut-être faux parce qu'on voit que l'amplitude est similaire mais l'échelle des X n'est pas la même ça se peut que la compression dans le graphique nous induise en erreur.
+Bon on voit que les résultats semblent plus haut. La moyenne des 50 dernières parties est pire, mais on voit qu'il était meilleur dans l'ensemble même au tout début. C'est peut-être faux parce qu'on voit que l'amplitude est similaire mais l'échelle des X n'est pas la même ça se peut que la compression dans le graphique nous induise en erreur.
 
 <p align="right">
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
@@ -265,7 +266,7 @@ Bon on voit que les résultats semblent plus haut. La moyenne des 50 dernieres p
 
 ### DQN
 
-Nouvelle agent à essayer, comme d'habitude, les paramètres par défaut du cours. Je vais le laisser tourner un peu plus longtemps comme la dernière "run" de `Reinforce`.
+Un nouvel agent à essayer, comme d'habitude, les paramètres par défaut du cours. Je vais le laisser tourner un peu plus longtemps comme pour la dernière "run" de `Reinforce`.
 
 <img src="./images/dqn-1.png" />
 
@@ -274,21 +275,20 @@ On voit que c'est carrément meilleur que les autres dès le début.
 <img src="./images/dqn-2.png" />
 Notes:
 
-+ L'image ci-dessus c'est la suite de l'entrainement de la première run.
-+ Il manque le paramètre de décroissance du Epsilon parce que je l'avais modifier directement dans l'algo.
-+ Epsilon bouge pas rapport à la première image parce qu'il décroit pendant l'entrainement.
-
++ L'image ci-dessus c'est la suite de l'entrainement de la première "run".
++ Il manque le paramètre de décroissance du Epsilon parce que je l'avais modifié directement dans l'algo.
++ Epsilon ne bouge pas rapport à la première image parce qu'il décroît pendant l'entrainement.
 
 On voit qu'il vient d'avoir un score de 1470. Le meilleur jusqu'à présent.
 Je vais laisser l'entrainement continuer pour voir s'il va réussir à faire d'autres gros scores.
 
-> Pretend like there's a picture here :(
+> Oups, pretend like there's a picture here :(
 
-Suite a un crash de la machine sur GCP, je n'ai pas pu garder une trace du dernier graphique. La derniere fois que j'avais regarder le graphique, on voyait l'agent qui avait réussi à faire plusieurs parties supérieure a 1400 points.
+Suite à un crash de la machine sur GCP, je n'ai pas pu garder une trace du dernier graphique. La dernière fois que j'avais regardé le graphique, on voyait l'agent qui avait réussi à faire plusieurs parties supérieures à 1400 points.
 
-Heureusement, l'enregistrement des poids du model en `fichier.h5` était activé alors j'ai pu conserver l'entrainement qu'il avait realiser jusqu'à un certain point problablement proche du crash.
+Heureusement, l'enregistrement des poids du modèle en `fichier.h5` était activé alors j'ai pu conserver l'entrainement qu'il avait réalisé jusqu'à un certain point probablement proche du crash.
 
-J'ai ajouter du code pour repartir des poids sauvegardés.
+J'ai ajouté du code pour repartir des poids sauvegardés.
 
 ```python
 # Load existing model if available.
@@ -298,11 +298,11 @@ if (path.exists(existingWeightsFile)):
     self.model_network.load_weights("weights.h5")
 ```
 
-Seul difference, j'ai enlever l'exploration et la décroissance pour qu'il reparte de ses acquis. Donc epsilon a 0.01 en partant.
+Seule différence, j'ai enlevé l'exploration et la décroissance pour qu'il reparte de ses acquis. Donc epsilon à 0.01 en partant.
 
 <img src="./images/dqn-3.png" />
 
-On voit que des les premiers episodes il est capable de refaire une partie superieure a 1400 points, ce qui est encourageant.
+On voit que dès les premiers épisodes il est capable de refaire une partie supérieure a 1400 points, ce qui est encourageant.
 
 Ça prouve aussi que le chargement des poids enregistrés à bien fonctionner.
 
@@ -310,11 +310,11 @@ Je le laisse aller pour comprendre un peu mieux où il était rendu avant le cra
 
 <img src="./images/dqn-4.png" />
 
-Il reussi a avoir deux autres runs interessantes dans un intervalle de 100 parties. Je m'interesse au run superieur a 300 car en-bas de 300 le bot est encore dans le meme niveau du jeu.
+Il réussit à avoir deux autres parties intéressantes dans un intervalle de 100 parties. Je m'intéresse aux épisodes supérieurs à 300 car en bas de 300 l'agent est encore dans le même niveau du jeu.
 
-J'arrète l'agent pour faire un petite modification au code, suite à des commentaires des autres étudiants sur Teams.
+J'arrête l'agent pour faire une petite modification au code, suite à des commentaires des autres étudiants sur Teams.
 
-Je change le code pour qu'il enregistre les poids après 100 épisodes pour accelerer le temps d'entraintement, tant pis si des crashs comme la derniere fois arrive, je repartirai un peu en arriere.
+Je change le code pour qu'il enregistre les poids après 100 épisodes pour accélérer le temps d'entrainement, tant pis si des crashs comme la dernière fois arrive, je les repartirai un peu en arrière.
 
 ```python
 # DQN - Replay Method
@@ -326,13 +326,13 @@ if self.episodes_not_saved == 100:
 self.episodes_not_saved += 1
 ```
 
-Aussi, je vais ajouter un 2eme graphique pour suivre la tendance de la moyenne pour voir quand est-ce qu'on atteint des minimums locaux pour mieux comprendre et suivre l'apprentissage.
+Aussi, je vais ajouter un 2e graphique pour suivre la tendance de la moyenne pour voir quand est-ce qu'on atteint des minimums locaux pour mieux comprendre et suivre l'apprentissage.
 
 Je relance le même agent `DQN` déjà entrainé avec ces deux changements.
 
 <img src="./images/dqn-5.png" />
 
-La performance de l'agent a plateau, mais de temps en il a des bonnes "runs".
+La performance de l'agent a plateau, mais de temps en il a des bonnes parties.
 
 <p align="right">
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
@@ -342,25 +342,24 @@ La performance de l'agent a plateau, mais de temps en il a des bonnes "runs".
 
 ### Actor Critic
 
-Dernier cours, un nouvel agent à essayer. Même chose ont relance avec les paramètres par défaut.
+Dernier cours, un nouvel agent à essayer. Même chose on relance avec les paramètres par défaut.
 
 <img src="./images/actor-critic-1.png" />
 
-Eh, c'est vraiment étrange comme graphique, il plateau instantannément au début, ensuite il doit explorer pour finalement revenir exactement où il était plutôt.
+Eh, c'est vraiment étrange comme graphique, il plateau instantanément au début, ensuite il doit explorer pour finalement revenir exactement où il était plutôt.
 
-
-Prochaine "run", changement du nombre de neuronnes par couche:
+Prochaine "run", changement du nombre de neurones par couche:
 
 ```haskell
 couche cachée 1: 32 -> 128
 couche cachée 2: 32 -> 72
 ```
 
-Encore une fois le nombre de neuronnes est choisi avec très peu réflexion.
+Encore une fois le nombre de neurone est choisi avec très peu réflexion.
 
 <img src="./images/actor-critic-2.png" />
 
-Oups, c'est atroce. Ça commence bas, ça monte à peine et ça se casse la geule en pas trop de temps.
+Oups, c'est atroce. Ça commence bas, ça monte à peine et ça se casse la gueule en pas trop de temps.
 Je vais retourner sur `DQN`.
 
 <p align="right">
