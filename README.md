@@ -29,7 +29,6 @@
         </ol>
     </li>
     <li><a href="#conclusion">Conclusion</a></li>
-    <li><a href="#annexe">Annexe</a></li>
 </ol>
 
 <a id="contexte" />
@@ -584,6 +583,12 @@ Je vais le laisser continuer voir s'il réussi à devenir bon dans le 2ème nive
       0         200         400        600        800        1000        1200       1400       1600
 ```
 
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
+
+<a id="autre-idee" />
+
 ### Autre idée
 
 De l'exploration en double couche. Terme que je viens d'inventer. On sait que les tableaux du jeu alterne entre des petits blocs et des gros blocs et ca change beaucoup le comportement du jeu.
@@ -779,13 +784,17 @@ Go middle ground !
 
 Bon, malheureusement je n'ai pas eu le temps d'avoir une run avec une moyenne supérieur à 300 points. J'aurai voir si l'idée était viable pour exploiter le niveau 1 et continuer d'explorer dans le niveau 2 pour éviter les problèmes d'exploitation trop précoce. 
 
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
+
+<a id="conclusion" />
+
 # Conclusion
 
 J'ai choisi d'y aller avec `DQN` à cause des gains initiaux versus les autres algorithmes. Avec un contexte plus souple en terme de temps et avec une carte graphique à disposition pour éviter les coûts du cloud, j'aurais insister plus sur `Actor-Critic`. J'aurais aussi essayer plus d'algorithmes disponibles sur internet avec d'autres frameworks que Tensorflow.
 
-Je suis quand même content des performances qu'il a eu. Une moyenne de 650 dans les 50 derniers épisodes ça voulait dire qu'il passait régulièrement au 2ème niveau. 
-En jouant avec les paramètres on voit qu'on peut vraiment faire la différence.
-Avec le tau et le retrait des actions inutiles, on est passé de 2500 episodes à 500 épisodes pour atteindre la moyenne. 
+Je suis quand même content des performances qu'il a eu. Une moyenne de 650 dans les 50 derniers épisodes ça voulait dire qu'il passait régulièrement au 2ème niveau. En jouant avec les paramètres on voit qu'on peut vraiment faire la différence. Avec le tau et le retrait des actions inutiles, on est passé de 2500 episodes à 500 épisodes pour atteindre la moyenne. 
 
 ## Un bon épisode du modèle entrainé
 
@@ -794,3 +803,7 @@ Avec le tau et le retrait des actions inutiles, on est passé de 2500 episodes �
 ## Sa fiche d'entrainement
 
 <img src="./images/dqn-advance-11.png" />
+
+<p align="right">
+    <a href="#table-matieres">:scroll: Aller à la table des matières</a>
+</p>
