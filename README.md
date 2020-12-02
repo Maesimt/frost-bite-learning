@@ -50,9 +50,9 @@ Le but du jeu est de marquer le plus de points.
 
 | Façon de gagner des points | Démonstration  |
 |:-- | :----- |
-| Sauter sur un bloc de glaces blancs | <img src="./images/jump.gif" width="200" /> |
-| Finir un niveau avec des degres de temperature superieur a 0. | <img src="./images/points_when_entering_igloo.gif" width="200" /> |
-| Attraper un poisson. | <img src="./images/eat_fish.gif" width="200" /> |
+| Sauter sur un bloc de glaces blancs | <img src="./images/jump.gif" width="250" /> |
+| Finir un niveau avec des degres de temperature superieur a 0. | <img src="./images/points_when_entering_igloo.gif" width="250" /> |
+| Attraper un poisson. | <img src="./images/eat_fish.gif" width="250" /> |
 
 Chaque fois que le personnage saute sur une ligne de glace blanche, un bloc est ajouter a l'igloo.
 Lorsque l'igloo est completer, le joueur peut rentrer dedans pour mettre fin au niveau.
@@ -63,10 +63,12 @@ La direction des lignes de glaces peut etre changer en cliquant sur un bouton et
 Il y a deux types de morceaux de glace.
 1. Large
 2. Petit
+
 Les niveaux alternent en les gros blocs et les petits blocs.
-| Niveau 1 | Niveau 2|
+
+| Niveau 1 | Niveau 2 |
 |:-- | :----- |
-| <img src="./images/level-1.png" width="300" /> | <img src="./images/level-2.png" width="200" /> |
+| <img src="./images/level-1.png" width="350" /> | <img src="./images/level-2.png" width="350" /> |
 
 Notes:
 - Les deplacements horizontaux sont mortels au niveau 1 mais permis entre les blocs du niveau 2.
@@ -77,9 +79,9 @@ Un ours polaire commence a apparaitre a partir du niveau 4 et se deplace sur la 
 
 | Façon de mourir | Démonstration  |
 |:-- | :----- |
-| Tomber dans l'eau. | <img src="./images/death_by_stupidity.gif" width="200" /> |
-| Se faire toucher par l'ours polaire. | <img src="./images/death_by_bear.gif" width="200" /> |
-| La température atteint le 0 degré | <img src="./images/death-by-time.gif" width="200" /> |
+| Tomber dans l'eau. | <img src="./images/death_by_stupidity.gif" width="250" /> |
+| Se faire toucher par l'ours polaire. | <img src="./images/death_by_bear.gif" width="250" /> |
+| La température atteint le 0 degré | <img src="./images/death-by-time.gif" width="250" /> |
 
 > Source https://en.wikipedia.org/wiki/Frostbite_(video_game)
 
