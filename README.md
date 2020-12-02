@@ -35,10 +35,10 @@
 
 ## 1. Contexte
 
-Dans le cadre du cours <strong>Algorithmes d'appentissage par renforcement</strong> donné dans le programme de spécialisation en intelligence artificielle du Cégep de Sainte-foy à Québec, nous devons essayer de faire un agent qui est capable d'apprendre à jouer
+Dans le cadre du cours <strong>Algorithmes d'apprentissage par renforcement</strong> donné dans le programme de spécialisation en intelligence artificielle du Cégep de Sainte-foy à Québec, nous devons essayer de faire un agent qui est capable d'apprendre à jouer
 à un des jeux disponibles sur [OpenAI - Gym](https://gym.openai.com/envs).
 
-Note supplémentaire, le code source des algorithmes à été fourni par Mr.Mikaël pendant les cours.
+Note supplémentaire, le code source des algorithmes a été fourni par Mr.Mikaël pendant les cours.
 
 <p align="right">
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
@@ -48,24 +48,22 @@ Note supplémentaire, le code source des algorithmes à été fourni par Mr.Mika
 
 ## 2. Description du jeu
 
-Un jeu de 1983 cree par Steve Cartwright et publier par Activision pour la console Atari 2600.
-Il y avait un semblant de multi-joueur avec la posibilite d'alterner en deux personnages.
+Un jeu de 1983 créé par Steve Cartwright et publié par Activision pour la console Atari 2600.
+Il y avait un semblant de multi-joueur avec la possibilité d'alterner en deux personnages.
 
 Le but du jeu est de marquer le plus de points. 
 
-#### Le joueur peut accumuler des points de trois facons
+#### Le joueur peut accumuler des points de trois façons
 
 | Façon de gagner des points | Démonstration  |
 |:-- | :----- |
-| Sauter sur un bloc de glaces blancs | <img src="./images/jump.gif" width="250" /> |
-| Finir un niveau avec des degres de temperature superieur a 0. | <img src="./images/points_when_entering_igloo.gif" width="250" /> |
+| Sauter sur un bloc de glace blanc | <img src="./images/jump.gif" width="250" /> |
+| Finir un niveau avec des degrés de température supérieur à 0. | <img src="./images/points_when_entering_igloo.gif" width="250" /> |
 | Attraper un poisson. | <img src="./images/eat_fish.gif" width="250" /> |
 
-Chaque fois que le personnage saute sur une ligne de glace blanche, un bloc est ajouter a l'igloo.
-Lorsque l'igloo est completer, le joueur peut rentrer dedans pour mettre fin au niveau.
-Lorsque le joueur atteri sur une ligne de glace blanche, celle-ci devient bleue. Lorsque toutes les lignes de glaces sont bleus, elles redeviennent blanche.
+Chaque fois que le personnage saute sur une ligne de glace blanche, un bloc est ajouté à l'igloo. Lorsque l'igloo est complété, le joueur peut rentrer dedans pour mettre fin au niveau. Lorsque le joueur atterrit sur une ligne de glace blanche, celle-ci devient bleue. Lorsque toutes les lignes de glaces sont bleues, elles redeviennent blanches.
 
-La direction des lignes de glaces peut etre changer en cliquant sur un bouton et en sacrifiant un bloc de l'igloo en construction.
+La direction des lignes de glaces peut être changée en cliquant sur un bouton et en sacrifiant un bloc de l'igloo en construction.
 
 Il y a deux types de morceaux de glace.
 1. Large
@@ -78,9 +76,9 @@ Les niveaux alternent en les gros blocs et les petits blocs.
 | <img src="./images/level-1.png" width="350" /> | <img src="./images/level-2.png" width="350" /> |
 
 Notes:
-- Les deplacements horizontaux sont mortels au niveau 1 mais permis entre les blocs du niveau 2.
+- Les déplacements horizontaux sont mortels au niveau 1 mais permis entre les blocs du niveau 2.
 
-Un ours polaire commence a apparaitre a partir du niveau 4 et se deplace sur la banquise pour empecher le joueur d'atteindre l'igloo. Le joueur dispose de 3 vies. Lorsqu'il meurt, le joueur recommence au niveau qu'il etait rendu avec le meme score. Lorsqu'il epuise sa derniere vie, la partie est terminee et son score est celui qu'il avait juste avant sa mort.
+Un ours polaire commence à apparaitre à partir du niveau 4 et  il se déplace sur la banquise pour empêcher le joueur d'atteindre l'igloo. Le joueur dispose de 3 vies. Lorsqu'il meurt, le joueur recommence au niveau qu'il était rendu avec le même score. Lorsqu'il épuise sa dernière vie, la partie est terminée et son score est celui qu'il avait juste avant sa mort.
 
 #### Plusieurs choses peuvent enlever une vie au joueur.
 
@@ -100,15 +98,14 @@ Un ours polaire commence a apparaitre a partir du niveau 4 et se deplace sur la 
 
 ## 3. Détails techniques supplémentaires
 
-L'environnement est fourni par OpenAI Gym. Il nous donne accès à 128 bytes qui représente la ram du jeu à chaque instant t.
-Pour l'agent, jouer au jeu est en soit une tâche épisodique.
+L'environnement est fourni par OpenAI Gym. Il nous donne accès à 128 bytes qui représentent la RAM du jeu à chaque instant t. Pour l'agent, jouer au jeu est en soi une tâche épisodique.
 
 La fonction de récompenses nous retourne des points lorsqu'on :
-1. Saute sur un block de glace blanc (10 points * K) 
-2. Termine un niveau avec des degres restants (1 point par degré restant * K) 
+1. Saute sur un bloc de glace blanc (10 points * K) 
+2. Termine un niveau avec des degrés restants (1 point par degré restant * K) 
 3. Mange un poisson (200 points) 
 
-> où K = Un nombre qui augmente avec le temps et la progression du jeu.
+> où K est un nombre qui augmente avec le temps et la progression du jeu.
 
 Il y a 18 actions possibles dans l'environnement d'OpenAI. Ils correspondent aux touches de la manette de la console Atari 2600.
 | index        | name          | signification  |
@@ -134,15 +131,15 @@ Il y a 18 actions possibles dans l'environnement d'OpenAI. Ils correspondent aux
 
 (https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py#L219) 
 
-Jouer au jeu avec l'agent est un problème stationnaire. C'est-à-dire que les décisions ne dépendent pas du temps mais bien de l'état. L'agent vise à apprendre et améliorer une politique qui prendra les mêmes décisions lorsqu'elle sera présenté le même état. Dans note l'état est représenté par l'ensemble des 128 bytes.
+Jouer au jeu avec l'agent est un problème stationnaire. C'est-à-dire que les décisions ne dépendent pas du temps mais bien de l'état. L'agent vise à apprendre et améliorer une politique, qui prendra les meilleures décisions lorsqu'elle sera présentée à un état. Dans Frosbite, l'état est représenté par l'ensemble des 128 bytes en mémoire.
 
-La tâche est épisodique mais une chose intéressante qui potentiellement va amener son lot de défis c'est qu'un épisode ne correspond pas à une vie. L'agent commence un nouvel épisode avec 4 vies et lorsqu'il meurt pour la 4ème fois, l'épisode prend fin et son score est totaliser.
+La tâche est épisodique mais une chose intéressante qui potentiellement va amener son lot de défis c'est qu'un épisode ne correspond pas à une vie. L'agent commence un nouvel épisode avec 4 vies et lorsqu'il meurt pour la 4ème fois, l'épisode prend fin et son score est totalisé.
 
 Pour comprendre rapidement un peu les interactions possibles entre l'agent et les endroits sur lesquels il peut être dans le jeu. Voici un petit graphique qui inclut la plupart des règles du jeu.
 
 <img src="./images/frostbite-pdm.png" />
 
-Notre objectif c'est en quelque sorte de créer un agent qui est capable d'apprendre à naviguer au travers de ce graphique en évitant les points de terminaison. Avec plusieurs épisodes (parties), il va apprendre à éviter les situations terminales et exploiter certains mouvements pour accumuler des points. Une phase d'exploration sera de mise car il ne connait pas les règles de transitions décrites par ce graphique. Il devra aussi les apprendres au fur et à mesure.
+Notre objectif c'est en quelque sorte de créer un agent qui est capable d'apprendre à naviguer au travers de ce graphique en évitant les points de terminaison. Avec plusieurs épisodes (parties), il va apprendre à éviter les situations terminales et exploiter certains mouvements pour accumuler des points. Une phase d'exploration sera de mise car il ne connaît pas les règles de transition décrites par ce graphique. Il devra aussi les apprendre au fur et à mesure.
 
 <p align="right">
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
