@@ -1,4 +1,4 @@
-# Frost Bite
+# Frostbite - Apprentissage par renforcement
 <img src="./images/frostbite-box-front.jpg" />
 
 <a id="table-matieres" />
