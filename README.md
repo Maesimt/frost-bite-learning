@@ -77,9 +77,10 @@ Lorsqu'il meurt, le joueur recommence au niveau qu'il etait rendu avec le meme s
 
 Plusieurs choses peuvent enlever une vie au joueur.
 | Façon de mourir | Démonstration  |
-| Tomber dans l'eau. | <img src="./images/death_by_stupidity.gif" width="100" /> |
-| Se faire toucher par l'ours polaire. | <img src="./images/death_by_bear.gif" width="100" /> |
-| La température atteint le 0 degré | <img src="./images/frostbite-menu.gif" width="100" /> |
+|:-- | :----- |
+| Tomber dans l'eau. | <img src="./images/death_by_stupidity.gif" width="200" /> |
+| Se faire toucher par l'ours polaire. | <img src="./images/death_by_bear.gif" width="200" /> |
+| La température atteint le 0 degré | <img src="./images/frostbite-menu.gif" width="200" /> |
 
 
 > Source https://en.wikipedia.org/wiki/Frostbite_(video_game)
