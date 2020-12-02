@@ -787,10 +787,10 @@ Je suis quand même content des performances qu'il a eu. Une moyenne de 650 dans
 En jouant avec les paramètres on voit qu'on peut vraiment faire la différence.
 Avec le tau et le retrait des actions inutiles, on est passé de 2500 episodes à 500 épisodes pour atteindre la moyenne. 
 
-## Extrait de mon modèle entrainer avec une moyenne d'environ 650 points
+## Un bon épisode du modèle entrainé
 
 <img src="./images/best-score.gif" />
 
-## Le graphique qui montre son entrainement
+## Sa fiche d'entrainement
 
-
+<img src="./images/dqn-advance-11.png" />
