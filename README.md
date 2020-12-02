@@ -264,7 +264,7 @@ Bon on voit que les résultats semblent plus haut. La moyenne des 50 dernieres p
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
 </p>
 
-<a id="dqn1" />
+<a id="dqn-1" />
 
 ### DQN
 
@@ -353,8 +353,11 @@ Eh, c'est vraiment étrange comme graphique, il plateau instantannément au déb
 
 
 Prochaine "run", changement du nombre de neuronnes par couche:
-+ couche cachée 1: 32 -> 128
-+ couche cachée 2: 32 -> 72
+
+```haskell
+couche cachée 1: 32 -> 128
+couche cachée 2: 32 -> 72
+```
 
 Encore une fois le nombre de neuronnes est choisi avec très peu réflexion.
 
@@ -367,23 +370,23 @@ Je vais retourner sur `DQN`.
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
 </p>
 
-<a id="dqn2" />
+<a id="dqn-2" />
 
 ## DQN
 
 Je viens de realiser que le DQN a beacoup plus d'hyper-parametres de disponibles que je le croyais.
-J'ai ajouter les hyper-parametres que je n'avais pas vue dans l'agent DQN pour les voir.
+J'ai ajouter les hyper-paramètres que je n'avais pas vue dans l'agent DQN pour les voir dans la console.
 
 ```python
-    def printParameters(self):
-        print('+ epsilon: ' + str(self.epsilon))
-        print('+ obs_size: ' + str(self.obs_size))
-        print('+ gamma: ' + str(self.gamma))
-        print('+ batch_size: ' + str(self.batch_size))
-        print('+ epoch_length: ' + str(self.epoch_length))
-        print('+ learning_rate: ' + str(self.lr))
-        print('+ tau: ' + str(self.tau))
-        print('+ nHidden: ' + str(self.nhidden))
+def printParameters(self):
+    print('+ epsilon: ' + str(self.epsilon))
+    print('+ obs_size: ' + str(self.obs_size))
+    print('+ gamma: ' + str(self.gamma))
+    print('+ batch_size: ' + str(self.batch_size))
+    print('+ epoch_length: ' + str(self.epoch_length))
+    print('+ learning_rate: ' + str(self.lr))
+    print('+ tau: ' + str(self.tau))
+    print('+ nHidden: ' + str(self.nhidden))
 ```
 
 Dans l'agent DQN avec lequel on avait des parties superieur a 1400 de temps en temps, on avait les paramètres par défaut soit :
@@ -442,28 +445,28 @@ Jusqu'ici je crois que je suis pris dans un maximum local, a cause du potentiel 
 <img src="./images/dqn-advance-4.png" />
 
 Conclusion on dirait pas que ca nuit, mais c'est moins bon un peu. Note a moi meme l'exploitation n'etait pas a fond j'avais laisser le 20% d'exploration.
-Le epoch length a 100 etait mieux.
+Le `epoch length` à 100 était mieux.
 
-On va essayer le learning rate.
+On va essayer le `learning rate`.
 
 <img src="./images/dqn-advance-5.png" />
 
 Bon bah ca diverge.
 
-On va jouer sur le gamma pour le mettre encore plus proche de 1 pour encourager les recompenses dans le future en esperant que l'agent considere l'igloo.
+On va jouer sur le `gamma` pour le mettre encore plus proche de 1 pour encourager les récompenses dans le future en espérant que l'agent considère ensuite l'igloo.
 
 <img src="./images/dqn-advance-6.png" />
 
-Trop fort l'apprentissage est penaliser. On va ressayer un peu moins fort.
+Trop fort l'apprentissage est pe2naliser. On va réssayer un peu moins fort.
 
 <img src="./images/dqn-advance-7.png" />
 
-Bon bah c'etait pas vraiment mieux.
-Je vais essayer avec un gamma plus petit de ce qu'on avait au debut.
+Bon bah, c'était pas vraiment mieux.
+Je vais essayer avec un gamma plus petit que ce que l'on avait au début.
 
 <img src="./images/dqn-advance-8.png" />
 
-La, c'est bien, une moyenne a 550. Seul probleme c'est que j'enregistre au 100 episodes de facons fixe. Je vais changer le moment de l'enregistrement.
+Là, c'est bien, une moyenne à 550 points. Seul probleme c'est que j'enregistre au 100 episodes de facons fixe. Je vais changer le moment de l'enregistrement.
 
 Mettre le gif du bonhomme dans le coin. ICI .gif
 
@@ -472,10 +475,11 @@ if self.average_score > self.best_average:
     self.model_network.save_weights("weights.h5")
 ```
 
-Next try, 
-- diminuer le gamma 0.9 -> 0.85
-- le decay d'epsilone 0.9995 -> 0.9999 (faire de l'exploration plus longtemps.)
-
+Next try, on change encore 2-3 trucs.
+```haskell
+        gamma: 0.9    -> 0.85
+epsilon decay: 0.9995 -> 0.9999 (faire de l'exploration plus longtemps.)
+```
 <img src="./images/dqn-advance-9.png" />
 
 Bon bah c'etait boring ca. Pas reussir a passer dans le niveau 2. Juste vraiment bon sur le niveau 1.
