@@ -80,7 +80,7 @@ Plusieurs choses peuvent enlever une vie au joueur.
 |:-- | :----- |
 | Tomber dans l'eau. | <img src="./images/death_by_stupidity.gif" width="200" /> |
 | Se faire toucher par l'ours polaire. | <img src="./images/death_by_bear.gif" width="200" /> |
-| La température atteint le 0 degré | <img src="./images/frostbite-menu.gif" width="200" /> |
+| La température atteint le 0 degré | <img src="./images/death-by-time.gif" width="200" /> |
 
 
 > Source https://en.wikipedia.org/wiki/Frostbite_(video_game)
