@@ -370,8 +370,8 @@ Je vais retourner sur `DQN`.
 
 ## Le retour de DQN
 
-Je viens de realiser que le DQN a beacoup plus d'hyper-parametres de disponibles que je le croyais.
-J'ai ajouter les hyper-paramètres que je n'avais pas vue dans l'agent DQN pour les voir dans la console.
+Je viens de réaliser que le DQN a beaucoup plus d'hyper-paramètres de disponibles que je le croyais.
+J'ai ajouté les hyper-paramètres que je n'avais pas vus dans l'agent DQN pour les voir dans la console.
 
 ```python
 def printParameters(self):
@@ -385,7 +385,7 @@ def printParameters(self):
     print('+ nHidden: ' + str(self.nhidden))
 ```
 
-Dans l'agent DQN avec lequel on avait des parties superieur a 1400 de temps en temps, on avait les paramètres par défaut soit :
+Dans l'agent DQN avec lequel on avait des parties supérieures à 1400 de temps en temps, on avait les paramètres par défaut soit :
 
 ```haskell
       epsilon: 1
@@ -397,8 +397,9 @@ learning_rate: 0.0001
           tau: 0.05
       nHidden: 150
 ```
+
 Je vais essayer de nouvelles choses en jouant avec des paramètres.
-En commençant par diminuer le nombre de neuronnes par couches.
+En commençant par diminuer le nombre de neurones par couches.
 
 ```haskell
 nHidden: 150 -> 64
@@ -406,9 +407,9 @@ nHidden: 150 -> 64
 
 <img src="./images/dqn-advance-1.png" />
 
-Ah bah, c'est pas super ça meurt dès le début, la quantité de neuronnes ne doit pas ètre suffisantes pour s'ajuster à la compléxité de l'environnement.
+Ah bah, ce n'est pas super ça meurt dès le début, la quantité de neurones ne doit pas être suffisantes pour s'ajuster à la complexité de l'environnement.
 
-On va essayer avec une architecture 256 neuronnes, nombre arbitraire qui est le double du nombre de bytes de la ram. (128 x 2).
+On va essayer avec une architecture 256 neurones, nombre arbitraire qui est le double du nombre de bytes de la RAM. (128 x 2).
 
 <img src="./images/dqn-advance-2.png" />
 
@@ -422,24 +423,24 @@ Je vais transférer le fichier du modèle et le rouler en local pour voir ce qu'
 
 <img src="./images/not_going_to_igloo.gif" />
 
-Je crois qu'il exploite la meilleur strategie qu'il a trouver jusqu'à maintenant. Il semble toujours faire la même ligne droite avec un retour.
-Il voit l'igloo compléter mais il ne semble pas réaliser le potentiel de points qui se trouve à sa porte et il decide de réexploiter sa ligne de point avec les plateformes de glaces plutôt que d'aller dans l'igloo. Je crois qu'il devrait davantage explorer car il n'a clairement pas encore compris le concept de l'igloo.
-Je vais essayer de le faire explorer encore plus longtemps. Pour lui faire comprendre le concept de l'igloo tant que ca moyenne de points ne sera pas supérieur au premier niveau (800-900 points) plutôt que de laisser exploiter à 99% je vais lui forcer un 20% d'exploration.
+Je crois qu'il exploite la meilleure stratégie qu'il ait trouvée jusqu'à maintenant. Il semble toujours faire la même ligne droite avec un retour.
+Il voit l'igloo compléter mais il ne semble pas réaliser le potentiel de points qui se trouve à sa porte et il décide de réexploiter sa ligne de point avec les plateformes de glaces plutôt que d'aller dans l'igloo. Je crois qu'il devrait davantage explorer car il n'a clairement pas encore compris le concept de l'igloo.
+Je vais essayer de le faire explorer encore plus longtemps. Pour lui faire comprendre le concept de l'igloo tant que sa moyenne de points ne sera pas supérieure au premier niveau (800-900 points) plutôt que de laisser exploiter à 99% je vais lui forcer un 20% d'exploration.
 
-Je viens de repartir une run par accident avec l'ancien `weights.h5` et un `epsilon` de 1 alors il va explorer à 100% et diminuer avec le `epsilon decay` comme lors d'une nouvelle "run".
+Je viens de repartir une "run" par accident avec l'ancien `weights.h5` et un `epsilon` de 1 alors il va explorer à 100% et diminuer avec le `epsilon decay` comme lors d'une nouvelle "run".
 
 <img src="./images/dqn-advance-3.png" />
 
-Même probleme qu'avant.
+Même problème qu'avant.
 
-On va changer un autre parametre. Si ce n'est pas l'exploration qui règle tout à fait le problème, il y a surement un paramètre qui peut nous aider. Peut-être que c'est de l'overfitting sur les expériences du passé qui nous ont donner des résultats positifs. Je vais tester une réduction du `epoch length` pour voir si ça diminue l'overfitting et ca nous permet de rejoindre l'igloo plus facilement.
+On va changer un autre paramètre. Si ce n'est pas l'exploration qui règle tout à fait le problème, il y a surement un paramètre qui peut nous aider. Peut-être que c'est de l'overfitting sur les expériences du passé qui nous ont donné des résultats positifs. Je vais tester une réduction du `epoch length` pour voir si ça diminue l'overfitting et ça nous permet de rejoindre l'igloo plus facilement.
 
 Jusqu'ici je crois que je suis pris dans un maximum local, à cause du potentiel inexploré de l'igloo.
 
 <img src="./images/dqn-advance-4.png" />
 
-Conclusion on dirait pas que ca nuit, mais c'est un peu moins bon. 
-> Note à moi même l'exploitation n'était pas a fond j'avais laisser le 20% d'exploration.
+Conclusion on ne dirait pas que ça nuit, mais c'est un peu moins bon. 
+> Note à moi-même l'exploitation n'était pas à fond j'avais laissé le 20% d'exploration.
 
 Le `epoch length` à 100 était mieux.
 
@@ -449,40 +450,40 @@ On va essayer le `learning rate`.
 
 Bon bah, ça diverge.
 
-On va jouer sur le `gamma` pour le mettre encore plus proche de 1 pour encourager les récompenses dans le future en espérant que l'agent considère ensuite l'igloo.
+On va jouer sur le `gamma` pour le mettre encore plus proche de 1 pour encourager les récompenses dans le futur en espérant que l'agent considère ensuite l'igloo.
 
 <img src="./images/dqn-advance-6.png" />
 
-Trop fort l'apprentissage est pénalisé. On va réssayer un peu moins fort.
+Trop fort l'apprentissage est pénalisé. On va réessayer un peu moins fort.
 
 <img src="./images/dqn-advance-7.png" />
 
-Bon bah, c'était pas vraiment mieux.
+Bon bah, ce n'était pas vraiment mieux.
 Je vais essayer avec un gamma plus petit que ce que l'on avait au début.
 
 <img src="./images/dqn-advance-8.png" />
 
-Là, c'est bien, une moyenne à 550 points. Seul probleme c'est que j'enregistre au 100 épisodes de facons fixe. Je vais changer le moment de l'enregistrement.
+Là, c'est bien, une moyenne à 550 points. Seul problème c'est que j'enregistre aux 100 épisodes de façons fixe. Je vais changer le moment de l'enregistrement.
 
 ```Python
 if self.average_score > self.best_average:
     self.model_network.save_weights("weights.h5")
 ```
 
-Next try, on change encore 2-3 trucs.
+Prochain essai, on change encore 2-3 trucs.
 ```haskell
         gamma: 0.9    -> 0.85
 epsilon decay: 0.9995 -> 0.9999 (faire de l'exploration plus longtemps.)
 ```
 <img src="./images/dqn-advance-9.png" />
 
-Bon bah c'était boring ça. Pas réussir à passer dans le niveau 2. Juste vraiment bon sur le niveau 1.
+Bon bah, c'était boring ça. Pas réussir à passer dans le niveau 2. Juste vraiment bon sur le niveau 1.
 
 <img src="./images/dqn-advance-10.png" />
 
-Même avec les anciens paramètres, je n'arrive pas à reproduire une moyenne de 550 points. Le hasard joue quand même un bon role sur la découverte du monde.
+Même avec les anciens paramètres, je n'arrive pas à reproduire une moyenne de 550 points. Le hasard joue quand même un bon rôle sur la découverte du monde.
 
-On va jouer sur le `tau` voir qu'est-ce que ca fait.
+On va jouer sur le `tau` voir ce que ça fait.
 
 ```haskell
 tau: 0.05 -> 0.1
@@ -492,7 +493,7 @@ tau: 0.05 -> 0.1
 
 C'est mieux.
 
-Je viens de réaliser que les 8 actions de `fire` avec une direction ne servent à rien dans ce jeu. La commande `fire` ne fait que changer la direction de la ligne de glace sur laquelle on est et la direction du "joystick" ne change rien. Pour eviter de perdre du temps avec des controles inutilises je vais les enlever.
+Je viens de réaliser que les 8 actions de `fire` avec une direction ne servent à rien dans ce jeu. La commande `fire` ne fait que changer la direction de la ligne de glace sur laquelle on est et la direction du "joystick" ne change rien. Pour éviter de perdre du temps avec des contrôles inutilisés je vais les enlever.
 
 ```Python
 # Avant j'utilisais env.action_space
@@ -501,9 +502,9 @@ gym.spaces.Discrete(10)
 
 <img src="./images/dqn-advance-12.png" />
 
-Wow, c'est le plus rapide à atteindre le plateau avec à peine 500 épisodes. Les premiers entrainements de DQN pouvaient prendre jusqu'à 2000-2500 épisodes pour atteinre le plateau de 180 points.
+Wow, c'est le plus rapide à atteindre le plateau avec à peine 500 épisodes. Les premiers entrainements de DQN pouvaient prendre jusqu'à 2000-2500 épisodes pour atteindre le plateau de 180 points.
 
-Je vais le laisser continuer voir s'il réussi à devenir bon dans le 2ème niveau.
+Je vais le laisser continuer voir s'il réussit à devenir bon dans le 2ème niveau.
 
 ```C
 +-------------------------------------+
@@ -587,14 +588,16 @@ Je vais le laisser continuer voir s'il réussi à devenir bon dans le 2ème nive
 
 ### Autre idée
 
-N-epsilon, terme que je viens d'inventer (copyright - joke). On sait que les tableaux du jeu alterne entre des petits blocs et des gros blocs. Ça change beaucoup le comportement du jeu. Si on avait un algorithme qui devait apprendre à faire cuire des carottes au premier niveau et apprendre à faire cuire des croissants au 2ème niveau. Si l'exploration est rendu nulle en arrivant au niveau 2, il n'aura pas eu le temps d'explorer la complexité de la cuisson des croissants. Il va simplement appliquer sa politique de cuisson des carottes et les croissants vont être râtés.
+N-epsilon, terme que je viens d'inventer (copyright - joke). On sait que les tableaux du jeu alternent entre des petits blocs et des gros blocs. Ça change beaucoup le comportement du jeu. Si on avait un algorithme qui devait apprendre à faire cuire des carottes au premier niveau et apprendre à faire cuire des croissants au 2ème niveau. Si l'exploration est rendue nulle en arrivant au niveau 2, il n'aura pas eu le temps d'explorer la complexité de la cuisson des croissants. Il va simplement appliquer sa politique de cuisson des carottes et les croissants vont être ratés.
 
 je vais utiliser un `epsilon` pour le premier niveau et un autre `epsilon` pour le deuxième niveau.
-Comme ca lorsque la politque de l'agent devient greedy (1% exploration) sur le premier niveau et qu'il le maitrise, il va aller directement au deuxième niveau. Son score sera supérieur à 400 (dans Frosbite), il va utiliser l'autre `epsilon` pour le 2ème niveau et donc recommencer avec un 100% d'exploration. On perd en généralisation de l'algorithme mais on lui donne une information supplémentaire sur le fonctionnement du jeu.
 
-> C'est en quelque sorte ce qu'on a vu dans le cours, on peut donner un modele du monde à un agent pour l'aider. Je sais que le 2ème niveau à des nouveautés comme les poissons et que la logique de déplacement sur la glace n'est pas la même. Dans le niveau 1 les mouvements horizontaux sont mortels alors que dans le deuxième niveau c'est tout à fait possible et permettre d'aller chercher les poissons plus rapidement.
+Comme ça lorsque la politique de l'agent devient greedy (1% exploration) sur le premier niveau et qu'il le maitrise, il va aller directement au deuxième niveau. Son score sera supérieur à 400 (dans Frosbite), il va utiliser l'autre `epsilon` pour le 2ème niveau et donc recommencer avec un 100% d'exploration. On perd en généralisation de l'algorithme mais on lui donne une information supplémentaire sur le fonctionnement du jeu.
+
+> C'est en quelque sorte ce qu'on a vu dans le cours, on peut donner un modèle du monde à un agent pour l'aider. Je sais que le 2ème niveau à des nouveautés comme les poissons et que la logique de déplacement sur la glace n'est pas la même. Dans le niveau 1 les mouvements horizontaux sont mortels alors que dans le deuxième niveau c'est tout à fait possible et permettre d'aller chercher les poissons plus rapidement.
 
 On va choisir l'epsilon d'un niveau si le score est <= 400 et l'epsilon du niveau 2 si le score est > 400 tel que :
+
 ```python
 current_epsilon = self.epsilon if self.score <= 400 else self.epsilon_lvl_2 
 if np.random.random() < current_epsilon:
@@ -614,7 +617,7 @@ if self.epsilon_decay:
             self.epsilon = max(.01, self.epsilon * .9995)
 ```
 
-On lance ca, en espérant que ça réussise à briser le plateau.
+On lance ça, en espérant que ça réussisse à briser le plateau.
 
 ```C
 +-------------------------------------+
@@ -691,9 +694,9 @@ On lance ca, en espérant que ça réussise à briser le plateau.
       0         500         1000       1500       2000       2500        3000       3500       4000
 ```
 
-Il y a pas été assez performant pour être souvent dans le niveau 2.
+Il n'y a pas été assez performant pour être souvent dans le niveau 2.
 
-Dernier espoir du lundi matin on va combiner les parametres au milieu de tout ce qui a marcher pour voir.
+Dernier espoir du lundi matin on va combiner les paramètres au milieu de tout ce qui a marché pour voir.
 
 ```haskell
 neuronnes:  150 + 228 / 2 = 203 = 202 (pour avoir un nombre pair)
@@ -701,7 +704,7 @@ neuronnes:  150 + 228 / 2 = 203 = 202 (pour avoir un nombre pair)
     gamma:       0.99 + 0.9 / 2 = 0.945
 ```
 
-Go middle ground !
+Go avec les compromis!
 
 ```C
 +-------------------------------------+
@@ -778,7 +781,7 @@ Go middle ground !
       0         200         400        600        800        1000        1200       1400       1600
 ```
 
-Bon, malheureusement je n'ai pas eu le temps d'avoir une run avec une moyenne supérieur à 300 points pour tester ma théorie. J'aurai voir si l'idée était viable pour exploiter le niveau 1 et continuer d'explorer dans le niveau 2 pour éviter les problèmes d'exploitation trop précoce. 
+Bon, malheureusement je n'ai pas eu le temps d'avoir une "run" avec une moyenne supérieure à 300 points pour tester ma théorie. J'aurais vu si l'idée était viable pour exploiter le niveau 1 et continuer d'explorer dans le niveau 2 pour éviter les problèmes d'exploitation trop précoce. 
 
 <p align="right">
     <a href="#table-matieres">:scroll: Aller à la table des matières</a>
@@ -788,9 +791,9 @@ Bon, malheureusement je n'ai pas eu le temps d'avoir une run avec une moyenne su
 
 # Conclusion
 
-J'ai choisi d'y aller avec `DQN` à cause des gains initiaux versus les autres algorithmes. Avec un contexte plus souple en terme de temps et avec une carte graphique à disposition pour éviter les coûts du cloud, j'aurais insister plus sur `Actor-Critic`. J'aurais aussi essayer plus d'algorithmes disponibles sur internet avec d'autres frameworks que Tensorflow.
+J'ai choisi d'y aller avec `DQN` à cause des gains initiaux versus les autres algorithmes. Avec un contexte plus souple en terme de temps et avec une carte graphique à disposition pour éviter les coûts du cloud, j'aurais insisté plus sur `Actor-Critic`. J'aurais aussi essayé plus d'algorithmes disponibles sur Internet avec d'autres frameworks que Tensorflow.
 
-Je suis quand même content des performances qu'il a eu. Une moyenne de 650 dans les 50 derniers épisodes ça voulait dire qu'il passait régulièrement au 2ème niveau. En jouant avec les paramètres on voit qu'on peut vraiment faire la différence. Avec le tau et le retrait des actions inutiles, on est passé de 2500 episodes à 500 épisodes pour atteindre la moyenne. 
+Je suis quand même content des performances qu'il a eues. Une moyenne de 650 dans les 50 derniers épisodes ça voulait dire qu'il passait régulièrement au 2ème niveau. En jouant avec les paramètres on voit qu'on peut vraiment faire la différence. Avec le tau et le retrait des actions inutiles, on est passé de 2500 épisodes à 500 épisodes pour atteindre la moyenne.
 
 ## Un bon épisode du modèle entrainé
 
