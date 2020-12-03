@@ -243,8 +243,8 @@ Nouvelle 3ème couche: 128
 ```
 
 * Le nombre 128 parce que c'est le nombre de bytes qui représente l'état. Je me dis que peut-être que c'est bien d'avoir 1 neurone fully-connected à chaque byte de l'état (via la couche d'entrée). C'est complètement aléatoire, je n'ai aucune idée si c'est une bonne décision.
-** Une nouvelle couche parce que le problème est plus complexe que ceux vus dans le cours. Encore là, aucune idée si c'est une bonne décision.
-*** Au moins je respecte le design de couche identique, peut-être que ce n'est pas fou, à voir.
+* Une nouvelle couche parce que le problème est plus complexe que ceux vus dans le cours. Encore là, aucune idée si c'est une bonne décision.
+* Au moins je respecte le design de couche identique, peut-être que ce n'est pas fou, à voir.
 
 <img src="./images/reinforce-2.png" />
 
